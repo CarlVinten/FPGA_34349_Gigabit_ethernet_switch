@@ -3,8 +3,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 use std.textio.all;
-library work;
-use work.global_var.all;
+
+CONSTANT NUM_PORTS : integer range 0 to 3:= 4;
+CONSTANT BUS_WIDTH : integer := 8;
 
 entity MAC_learning is
 port (
