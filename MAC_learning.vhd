@@ -6,14 +6,15 @@ use std.textio.all;
 library work;
 use work.global_var.all;
 
+
 entity MAC_learning is
 port (
 	rst : in std_logic;
 	clk : in std_logic;
-	mac_dst : in std_logic_vector(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
-	mac_dst_ready : out std_logic
+	mac_dst : in mac_input;
+	mac_dst_ready : out std_logic;
 	mac_dst_valid : in std_logic_vector(NUM_PORTS - 1 downto 0);
-	mac_src : in std_logic_vector(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
+	mac_src : in mac_input;
 	mac_src_ready : out std_logic_vector(NUM_PORTS - 1 downto 0);
 	mac_src_valid : in std_logic_vector(NUM_PORTS - 1 downto 0)
 	);
@@ -30,33 +31,27 @@ ARCHITECTURE struc OF MAC_learning IS
 		);
 	end component;
 	SIGNAL address: std_logic_vector(12 downto 0);
-	SIGNAL dst_rr: std_logic_vector(1 downto 0) := "00";
+	SIGNAL dst_rr: integer range 0 to 1 := 0;
 
 	SIGNAL loading_dst: std_logic := '0';
-	SIGNAL dst_port: std_logic_vector := '0'
-	SIGNAL dst_counter: integer range 0 to 6 := 47;
+	SIGNAL dst_port: integer range 0 to 1 := 00;
 	SIGNAL dst_mac_buf: std_logic_vector(6 downto 0);
-	
+	SIGNAL dst_mac_buf_empty: std_logic := '1';
+	SIGNAL dst_ready: std_logic := '0';
 	SIGNAL loading_src: std_logic := '0';
-	SIGNAL src_port: std_logic_vector := '0';
+	SIGNAL src_port: std_logic_vector(1 downto 0) := "00";
 BEGIN
+
+	mac_dst_ready <= dst_ready;
 	process(clk)
 	begin
 	if rising_edge(clk) then -- check en port en ad gangen
 		dst_rr <= dst_rr + 1;
-		if(mac_dst_ready = '1') then
+		if(dst_ready = '1') then
 			if(mac_dst_valid(dst_rr) = '1') then
 				loading_dst <= '1';
 				dst_port <= dst_rr;
 				mac_dst_ready <= '0';
-			end if;
-		end if;
-
-		if(mac_src_ready = '1') then
-			if(mac_src_valid(dst_rr) = '1') then
-				loading_src <= '1';
-				src_port <= dst_rr;
-				mac_src_ready <= '0';
 			end if;
 		end if;
 	end if;
@@ -66,11 +61,9 @@ BEGIN
 	begin
 		if rising_edge(clk) then
 			if(loading_dst = '1') then
-				dst_mac_buf(dst_counter downto dst_counter - 7) <= mac_dst(dst_port);
-				dst_counter <= dst_counter - 8;
-				if(dst_counter = 0) then
-					loading_dst <= '0';
-				end if;
+				dst_mac_buf <= mac_dst(dst_port);
+				loading_dst <= '0';
+				dst_mac_buf_empty <= '0';
 			end if;
 		end if;
 	end process;

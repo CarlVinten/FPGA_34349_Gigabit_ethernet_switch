@@ -1,9 +1,43 @@
 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/top.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/top.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-** Error: (vcom-66) Execution of vlib.exe failed. Please check the error log for more details.
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+** Error: C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/top.vhd(5): near "EOF": syntax error
 
-} {3.0 4.0} {}} C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
+} {9.0 10.0} {}} C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-** Error: (vcom-66) Execution of vlib.exe failed. Please check the error log for more details.
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package global_var
+-- Compiling entity MAC_learning
+-- Compiling architecture struc of MAC_learning
+** Warning: C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd(64): (vcom-1272) Length of expected is 7; length of actual is 48.
 
-} {3.0 4.0} {}}
+} {} {}} C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+** Error: C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd(7): near "CONSTANT": syntax error
+
+} {9.0 10.0} {}} C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package altera_mf_components
+-- Compiling entity mac_learning_mem
+-- Compiling architecture SYN of mac_learning_mem
+
+} {} {}}
