@@ -1,12 +1,9 @@
-# Compile of MAC_learning.vhd failed with 1 errors.
-# Compile of top.vhd failed with 1 errors.
-# Compile of test.vhd failed with 1 errors.
-# 3 compiles, 3 failed with 3 errors.
-# Compile of MAC_learning.vhd failed with 1 errors.
-# Compile of top.vhd failed with 1 errors.
-# Compile of test.vhd failed with 1 errors.
-# 3 compiles, 3 failed with 3 errors.
-# Compile of MAC_learning.vhd failed with 1 errors.
-# Compile of top.vhd failed with 1 errors.
-# Compile of test.vhd failed with 1 errors.
-# 3 compiles, 3 failed with 3 errors.
+# Compile of FCS_1.vhd failed with 1 errors.
+# 1 compiles, 4 failed with 1 error.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of data_input.vhd failed with 1 errors.
+# 2 compiles, 1 failed with 1 error.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of data_input.vhd was successful.
+# 2 compiles, 0 failed with no errors.

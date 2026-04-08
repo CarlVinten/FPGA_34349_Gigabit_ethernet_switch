@@ -1,0 +1,16 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE ieee.std_logic_unsigned.ALL;
+USE std.textio.ALL;
+
+entity data_input is
+    Port ( clk : in  std_logic;
+           rst : in  std_logic;
+           data_in : in  std_logic_vector(7 downto 0);
+           data_valid : in  std_logic;
+           data_out : out  std_logic_vector(7 downto 0);
+           data_ready : out  std_logic);
+end data_input;
+
+
