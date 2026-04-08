@@ -8,6 +8,7 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
+<<<<<<< HEAD
 dC:/Users/carlv/FPGA_course/Ex2
 Ecrossbar
 w1774451179
@@ -76,3 +77,6 @@ R12
 !i113 1
 R5
 R6
+=======
+dC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch
+>>>>>>> 02d12978558312fd29f2499f6a5a42c34769989a
