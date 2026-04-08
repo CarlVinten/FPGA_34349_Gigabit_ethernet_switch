@@ -1,1 +1,9 @@
+work/*
 work\*
+
+# ModelSim / QuestaSim junk
+work/
+transcript
+*.qdb
+*.qpg
+*.qtl

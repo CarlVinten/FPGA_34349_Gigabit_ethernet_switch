@@ -3,91 +3,82 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 use std.textio.all;
+library work;
+use work.global_var.all;
 
-CONSTANT NUM_PORTS : integer range 0 to 3:= 4;
-CONSTANT BUS_WIDTH : integer := 8;
+entity test_mac_learning is
+    PORT ( 
+	port_output      : out mac_output;
+	output_valid     : out std_logic_vector(NUM_PORTS - 1 downto 0)
+);
+end;
 
-entity MAC_learning is
-port (
-	rst : in std_logic;
-	clk : in std_logic;
-	mac_dst : in std_logic_vector(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
-	mac_dst_ready : out std_logic
-	mac_dst_valid : in std_logic_vector(NUM_PORTS - 1 downto 0);
-	mac_src : in std_logic_vector(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
-	mac_src_ready : out std_logic_vector(NUM_PORTS - 1 downto 0);
-	mac_src_valid : in std_logic_vector(NUM_PORTS - 1 downto 0)
-	);
-end MAC_learning;
+architecture only of test_parallel_fcs is
+COMPONENT fcs_check_parallel
+    	PORT ( clk   : in std_logic;
+            reset : in std_logic;
+	        start_of_frame : IN std_logic;
+	        end_of_frame : IN std_logic;
+	        data_in : IN std_logic_vector(7 downto 0);
+	        fcs_error : OUT std_logic);
+END COMPONENT ;
 
-ARCHITECTURE struc OF MAC_learning IS
-	component mac_learning_mem
-		port(
-			address		: IN STD_LOGIC_VECTOR (12 DOWNTO 0);
-			clock		: IN STD_LOGIC  := '1';
-			data		: IN STD_LOGIC_VECTOR (63 DOWNTO 0);
-			wren		: IN STD_LOGIC ;
-			q			: OUT STD_LOGIC_VECTOR (63 DOWNTO 0)
-		);
-	end component;
-	SIGNAL address: std_logic_vector(12 downto 0);
-	SIGNAL dst_rr: std_logic_vector(1 downto 0) := "00";
+SIGNAL clk   : std_logic := '0';    
+SIGNAL reset : std_logic := '0';
+SIGNAL pakke1 : std_logic_vector(511 downto 0);
+SIGNAL pakke2 : std_logic_vector(511 downto 0);
+SIGNAL pakke3 : std_logic_vector(511 downto 0);
+SIGNAL index : integer range -100 to 511 := 511;
+SIGNAL start_of_frame : std_logic := '0';
+SIGNAL end_of_frame : std_logic := '0';
+SIGNAL data_in : std_logic_vector(7 downto 0) := x"00";
+--SIGNAL fcs_error : bit := '0';
 
-	SIGNAL loading_dst: std_logic := '0';
-	SIGNAL dst_port: std_logic_vector := '0'
-	SIGNAL dst_counter: integer range 0 to 6 := 47;
-	SIGNAL dst_mac_buf: std_logic_vector(6 downto 0);
-	
-	SIGNAL loading_src: std_logic := '0';
-	SIGNAL src_port: std_logic_vector := '0';
-BEGIN
-	process(clk)
-	begin
-	if rising_edge(clk) then -- check en port en ad gangen
-		dst_rr <= dst_rr + 1;
-		if(mac_dst_ready = '1') then
-			if(mac_dst_valid(dst_rr) = '1') then
-				loading_dst <= '1';
-				dst_port <= dst_rr;
-				mac_dst_ready <= '0';
-			end if;
-		end if;
+begin
 
-		if(mac_src_ready = '1') then
-			if(mac_src_valid(dst_rr) = '1') then
-				loading_src <= '1';
-				src_port <= dst_rr;
-				mac_src_ready <= '0';
-			end if;
-		end if;
-	end if;
-	end process;
--- process to load mac adresses
-	process(clk)
-	begin
-		if rising_edge(clk) then
-			if(loading_dst = '1') then
-				dst_mac_buf(dst_counter downto dst_counter - 7) <= mac_dst(dst_port);
-				dst_counter <= dst_counter - 8;
-				if(dst_counter = 0) then
-					loading_dst <= '0';
-				end if;
-			end if;
-		end if;
-	end process;
--- process for src mac address
+pakke1 <= x"00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2";
+pakke2 <= x"FF_EF_5B_84_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_19_3A_C2_4D";
+pakke3 <= x"00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_19_3A_C2_4D";
+dut : fcs_check_parallel 
+   PORT MAP (
+   clk => clk,
+   reset => reset,
+   data_in => data_in,
+   start_of_frame => start_of_frame,
+   end_of_frame => end_of_frame,
+   fcs_error => fcs_error);
 
--- process for dest mac address 
+clock : PROCESS
+   begin
+   wait for 3 ns; clk  <= not clk;
+end PROCESS clock;
 
+stimulus : PROCESS(clk)
+   begin
+      if rising_edge(clk) then
+         if index >= 0 then
+         data_in <= pakke1((index) downto (index - 7));
+         end if;
+	      index <= index - 8;
 
-END struc;
+         if index = 511 then
+            start_of_frame <= '1';
+            end_of_frame <= '0'; 
+         else
+            start_of_frame <= '0';
+         end if;
+		end_of_frame <= '0';
+         if index = 31 then
+            end_of_frame <= '1';
+         end if;
 
--- Hash the mac address. 
--- Write to memory
-	-- Save the port
--- Read from memory
-    -- read the port number
-
-
+	      if reset = '1' then
+            index <= 511;
+         end if;
+      end if;
+   
+      
+end PROCESS stimulus;
+end only;
 
 
