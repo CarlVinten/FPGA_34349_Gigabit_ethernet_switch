@@ -1,15 +1,10 @@
-# Compile of MAC_learning.vhd failed with 1 errors.
-# Compile of top.vhd failed with 1 errors.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd failed with 21 errors.
-# 4 compiles, 3 failed with 23 errors.
-# Compile of MAC_learning.vhd failed with 1 errors.
-# Compile of top.vhd failed with 1 errors.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd failed with 21 errors.
-# 4 compiles, 3 failed with 23 errors.
 # Compile of MAC_learning.vhd failed with 3 errors.
 # Compile of top.vhd failed with 1 errors.
 # Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd failed with 21 errors.
-# 4 compiles, 3 failed with 25 errors.
+# Compile of crossbar.vhd failed with 16 errors.
+# 4 compiles, 3 failed with 20 errors.
+# Compile of MAC_learning.vhd failed with 3 errors.
+# Compile of top.vhd failed with 1 errors.
+# Compile of crossbarfifo.vhd was successful.
+# Compile of crossbar.vhd was successful.
+# 4 compiles, 2 failed with 4 errors.
