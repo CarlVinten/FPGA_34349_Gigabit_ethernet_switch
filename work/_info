@@ -1,0 +1,105 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch
+Edata_input
+Z1 w1776260945
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z4 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 13
+R0
+Z7 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
+Z8 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
+l0
+L7 1
+V=0De;`oD3G3O@1@`=jKOZ0
+!s100 `h>5Rek;_:5[MUbJiOaRJ2
+Z9 OV;C;2020.1;71
+32
+Z10 !s110 1776260947
+!i10b 1
+Z11 !s108 1776260947.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
+Z13 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
+!i113 1
+Z14 o-work work -2002 -explicit
+Z15 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+R4
+R5
+R6
+DEx4 work 10 data_input 0 22 =0De;`oD3G3O@1@`=jKOZ0
+!i122 13
+l39
+L22 81
+V`h>M@Z7L:fUjVQkVNKI_]1
+!s100 >j2?0@0^D^eGD;F=Hcgm@0
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Efcs_check_parallel
+Z16 w1776260274
+R2
+R3
+R4
+R5
+R6
+!i122 14
+R0
+Z17 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
+Z18 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
+l0
+L7 1
+V6OJPd;fRlPdkYAdz56Ih:3
+!s100 HANT4hh?7EzBcI<M<PlJ40
+R9
+32
+R10
+!i10b 1
+R11
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
+Z20 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
+!i113 1
+R14
+R15
+Astruc
+R2
+R3
+R4
+R5
+R6
+Z21 DEx4 work 18 fcs_check_parallel 0 22 6OJPd;fRlPdkYAdz56Ih:3
+!i122 14
+l34
+Z22 L21 111
+Z23 V7oflP7_E[7d@P^LM3N_:a0
+Z24 !s100 dSf@deL7m?HQno:d;AN2d1
+R9
+32
+R10
+!i10b 1
+R11
+R19
+R20
+!i113 1
+R14
+R15

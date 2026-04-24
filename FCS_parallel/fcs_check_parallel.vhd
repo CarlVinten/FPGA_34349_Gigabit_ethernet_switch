@@ -10,24 +10,26 @@ ENTITY fcs_check_parallel IS
 		reset : IN STD_LOGIC; -- asynchronous reset
 		-- start_of_frame : IN STD_LOGIC; -- arrival of the first bit.
 		-- end_of_frame : IN STD_LOGIC; -- arrival of the first bit in FCS.
-		data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
-		valid : IN STD_LOGIC_VECTOR(3 DOWNTO 0); -- indicates the validity of data_in.
 
-		fcs_error : OUT STD_LOGIC -- indicates an error.
+		data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
+		valid : IN STD_LOGIC; -- indicates the validity of data_in.
+
+		is_data_valid : OUT STD_LOGIC -- indicates an error.
 	);
 END fcs_check_parallel;
 
 ARCHITECTURE struc OF fcs_check_parallel IS
 
-	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0);
+	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (others => '1');
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	SIGNAL fcs_error : STD_LOGIC;
 
-	SIGNAL start_cnt : INTEGER := - 1;
-	SIGNAL end_cnt : INTEGER := - 1;
+	-- SIGNAL start_cnt : INTEGER := - 1;
+	-- SIGNAL end_cnt : INTEGER := - 1;
 
-	SIGNAL end_flag : STD_LOGIC := '0';
-	SIGNAL preamble : STD_LOGIC_VECTOR(3 DOWNTO 0);
-	SIGNAL start_of_frame : STD_LOGIC;
+	-- SIGNAL end_flag : STD_LOGIC := '0';
+	-- SIGNAL preamble : STD_LOGIC_VECTOR(3 DOWNTO 0);
+	-- SIGNAL start_of_frame : STD_LOGIC;
 
 BEGIN
 
@@ -37,41 +39,29 @@ BEGIN
 		data_temp <= data_in;
 		IF reset = '1' THEN
 			data_temp <= (OTHERS => '0');
+			sum_reg <= (others => '1');
 		ELSIF rising_edge(clk) THEN
-			IF data_in = x"AA" AND valid(0) = '1' THEN
+			-- end_flag <= '0';
+			-- IF start_of_frame = '1' THEN
+			-- 	start_cnt <= 3;
+			-- ELSIF end_of_frame = '1' THEN
+			-- 	end_cnt <= 3;
+			-- END IF;
 
-				preamble <= preamble + 1;
+			-- IF start_cnt > 0 THEN
+			-- 	start_cnt <= start_cnt - 1;
+			-- ELSIF end_cnt > 0 THEN
+			-- 	end_cnt <= end_cnt - 1;
+			-- 	IF end_cnt = 0 THEN
+			-- 		end_flag <= '1';
+			-- 	END IF;
+			-- END IF;
 
-			END IF;
-
-			IF preamble = b"1000" THEN
-				start_of_frame <= '1' WHEN data_temp = x"10101011" ELSE
-					'0';
-			END IF;
-
-
-			
-			end_flag <= '0';
-			IF start_of_frame = '1' THEN
-				start_cnt <= 3;
-			ELSIF end_of_frame = '1' THEN
-				end_cnt <= 3;
-			END IF;
-
-			IF start_cnt > 0 THEN
-				start_cnt <= start_cnt - 1;
-			ELSIF end_cnt > 0 THEN
-				end_cnt <= end_cnt - 1;
-				IF end_cnt = 0 THEN
-					end_flag <= '1';
-				END IF;
-			END IF;
-
-			IF (start_cnt > 0 OR start_of_frame = '1') OR (end_cnt > 0 OR end_of_frame = '1') OR end_flag = '1' THEN
-				data_temp <= NOT data_in;
-			ELSE
-				data_temp <= data_in;
-			END IF;
+			-- IF (start_cnt > 0 OR start_of_frame = '1') OR (end_cnt > 0 OR end_of_frame = '1') OR end_flag = '1' THEN
+			-- 	data_temp <= NOT data_in;
+			-- ELSE
+			-- 	data_temp <= data_in;
+			-- END IF;
 
 		END IF;
 	END PROCESS;
@@ -126,14 +116,16 @@ BEGIN
 	BEGIN
 		IF rising_edge(clk) THEN
 			fcs_error <= '0';
-			IF end_flag = '1' AND end_cnt = 0 THEN
-				IF sum_reg /= x"00_00_00_00" THEN
-					fcs_error <= '1';
-					--ELSE
-					--end_flag <= '0';
-				END IF;
+			-- IF end_flag = '1' AND end_cnt = 0 THEN
+			IF sum_reg /= x"C7_04_DD_7B" THEN
+				fcs_error <= '1';
+				--ELSE
+				--end_flag <= '0';
 			END IF;
 		END IF;
-	END PROCESS;
+		IF valid = '0' THEN
+			is_data_valid <= fcs_error;
+		END IF;
+END PROCESS;
 
 END struc;
