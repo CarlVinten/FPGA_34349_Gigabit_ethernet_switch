@@ -14,7 +14,7 @@ ARCHITECTURE sim OF test IS
             reset : IN STD_LOGIC;
             data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             valid : IN STD_LOGIC;
-            is_data_valid : OUT STD_LOGIC;
+            is_data_valid : OUT STD_LOGIC
             start_of_frame : IN STD_LOGIC;
             end_of_frame : IN STD_LOGIC
         );

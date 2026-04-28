@@ -1,14 +1,14 @@
 m255
 K4
 z2
-!s11e MIXED_VERSIONS
+!s11e vcom 2020.1 2020.02, Feb 28 2020
 13
 !s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch
+Z0 d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel
 Edata_input
 Z1 w1776260945
 Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
@@ -16,7 +16,7 @@ Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z4 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 54
+!i122 38
 R0
 Z7 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
 Z8 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
@@ -26,9 +26,9 @@ V=0De;`oD3G3O@1@`=jKOZ0
 !s100 `h>5Rek;_:5[MUbJiOaRJ2
 Z9 OV;C;2020.1;71
 32
-Z10 !s110 1777393658
+Z10 !s110 1777409762
 !i10b 1
-Z11 !s108 1777393658.000000
+Z11 !s108 1777409762.000000
 Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
 Z13 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
 !i113 1
@@ -41,7 +41,7 @@ R4
 R5
 R6
 DEx4 work 10 data_input 0 22 =0De;`oD3G3O@1@`=jKOZ0
-!i122 54
+!i122 38
 l39
 L22 81
 V`h>M@Z7L:fUjVQkVNKI_]1
@@ -57,25 +57,25 @@ R13
 R14
 R15
 Efcs_check_parallel
-Z16 w1777391803
+Z16 w1777409530
 R4
 R5
 R6
-!i122 55
+!i122 39
 R0
 Z17 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
 Z18 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
 l0
 L6 1
-Ve2SI[_RNhViW8ScIJS2HT3
-!s100 g8HaYkEIBhgdUb58zca6O0
+Vnl916Ke[c;MWVh1RPK3402
+!s100 oLF?NhPO7L0BVK7z`AB_51
 R9
 32
-Z19 !s110 1777393659
+R10
 !i10b 1
 R11
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
-Z21 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
+Z20 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
 !i113 1
 R14
 R15
@@ -83,44 +83,44 @@ Astruc
 R4
 R5
 R6
-DEx4 work 18 fcs_check_parallel 0 22 e2SI[_RNhViW8ScIJS2HT3
-!i122 55
+DEx4 work 18 fcs_check_parallel 0 22 nl916Ke[c;MWVh1RPK3402
+!i122 39
 l33
-L20 111
-V4IS4Tz5j7fI?P4dXhZA0;1
-!s100 MR:>i<CHYNY3=cU9n5Z1B1
+L21 95
+V?]O@^k85L8XCPEe@Qjhd^2
+!s100 5hbI1;XmRUo4F30WOzlnC0
 R9
 32
-R19
+R10
 !i10b 1
 R11
+R19
 R20
-R21
 !i113 1
 R14
 R15
 Etest
-Z22 w1777393566
+Z21 w1777409761
 R2
 R3
 R4
 R5
 R6
-!i122 56
+!i122 40
 R0
-Z23 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
-Z24 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
+Z22 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
+Z23 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
 l0
 L6 1
 ViVNZB]7DOK<oMk7o1K@c?0
 !s100 nz[WMOeKO==abB2`gYa>S2
 R9
 32
-R19
+R10
 !i10b 1
-Z25 !s108 1777393659.000000
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
-Z27 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
+R11
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
+!s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
 !i113 1
 R14
 R15
@@ -130,19 +130,19 @@ R3
 R4
 R5
 R6
-Z28 DEx4 work 4 test 0 22 iVNZB]7DOK<oMk7o1K@c?0
-!i122 56
-l39
-Z29 L9 89
-V:P?<b5MbG6EzFeKQ<lFKo0
-!s100 _XG2niF^Xb5i0DV;NGT323
+DEx4 work 4 test 0 22 iVNZB]7DOK<oMk7o1K@c?0
+!i122 40
+l58
+L9 114
+VnQfH?@8SIPz[FWg@HNJdj3
+!s100 VeZKHCE`o=nTYR2ROoXMK0
 R9
 32
-R19
+R10
 !i10b 1
-R25
-R26
-R27
+R11
+R24
+Z25 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
 !i113 1
 R14
 R15
