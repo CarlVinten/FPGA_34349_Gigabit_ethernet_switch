@@ -23,6 +23,6 @@ entity top_module is
     );
 end top_module;
 
-output 
-3 downto 0 
-mac src dst valid 1 downto 0
+-- output 
+-- 3 downto 0 
+-- mac src dst valid 1 downto 0

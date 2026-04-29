@@ -1,0 +1,35 @@
+# Create the work library if it doesn't exist
+vlib work
+
+# Compile the VHDL source files
+# Note: Ensure the entity is compiled before the testbench
+vcom -reportprogress 300 -work work fcs_check_parallel.vhd
+vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd
+
+# Load the simulation
+# 'test' is the name of the entity in your testbench file
+vsim work.test
+
+# Add signals to the waveform viewer
+add wave -divider "System Signals"
+add wave -format Logic /test/s_clk
+add wave -format Logic /test/s_reset
+
+add wave -divider "Input Data"
+add wave -format Literal -radix hexadecimal /test/s_data_in
+add wave -format Logic /test/s_valid
+add wave -format Logic /test/s_start_of_frame
+add wave -format Logic /test/s_end_of_frame
+
+add wave -divider "Internal DUT State"
+add wave -format Literal -radix hexadecimal /test/dut/sum_reg
+add wave -format Literal -radix decimal /test/dut/start_cnt
+
+add wave -divider "Output"
+add wave -format Logic -color "Yellow" /test/s_is_data_valid
+
+# Set simulation time
+run 650 ns
+
+# Zoom to fit the window
+wave zoom full

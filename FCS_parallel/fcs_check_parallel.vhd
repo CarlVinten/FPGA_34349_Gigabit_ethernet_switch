@@ -10,6 +10,7 @@ ENTITY fcs_check_parallel IS
 
 		data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
 		valid : IN STD_LOGIC; -- indicates the validity of data_in.
+
 		start_of_frame : IN STD_LOGIC; -- indicates the start of a frame.
 		end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
 
@@ -21,51 +22,29 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '1');
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
-	SIGNAL fcs_error : STD_LOGIC;
-
 	SIGNAL start_cnt : INTEGER := - 1;
-	-- SIGNAL end_cnt : INTEGER := - 1;
-	-- SIGNAL end_flag : STD_LOGIC := '0';
-	-- SIGNAL preamble : STD_LOGIC_VECTOR(3 DOWNTO 0);
-	-- SIGNAL start_of_frame : STD_LOGIC;
-	-- signal end_of_frame : STD_LOGIC;
-
-
 
 BEGIN
 
 	Frame_Process : PROCESS (clk, reset)
 	BEGIN
-
-		data_temp <= data_in;
+		IF (start_cnt > 0 OR start_of_frame = '1') THEN
+			data_temp <= NOT data_in;
+		ELSE
+			data_temp <= data_in;
+		END IF;
 		IF reset = '1' THEN
 			data_temp <= (OTHERS => '0');
 			sum_reg <= (OTHERS => '0');
 		ELSIF rising_edge(clk) THEN
 			IF start_of_frame = '1' THEN
-				sum_reg <= (OTHERS => '0');
 				start_cnt <= 3;
-			ELSIF valid = '1' THEN
-				-- ELSIF end_of_frame = '1' THEN
-				-- 	end_cnt <= 3;
-				-- END IF;
-
-				IF start_cnt > 0 THEN
-					start_cnt <= start_cnt - 1;
-				END IF;
-				-- ELSIF end_cnt > 0 THEN
-				-- 	end_cnt <= end_cnt - 1;
-				-- 	IF end_cnt = 0 THEN
-				-- 		end_flag <= '1';
-				-- 	END IF;
-
-				-- IF (start_cnt > 0 OR start_of_frame = '1') OR (end_cnt > 0 OR end_of_frame = '1') OR end_flag = '1' THEN
-				IF (start_cnt > 0 OR start_of_frame = '1') THEN
-				data_temp <= NOT data_in;
-				ELSE
-					data_temp <= data_in;
-				END IF;
-
+				is_data_valid <= '0';
+			ELSIF valid = '1' AND start_cnt > 0 THEN
+				start_cnt <= start_cnt - 1;
+			END IF;
+-- potential optimize is use valid below rising edge and check when it is low
+			IF valid = '1' OR start_of_frame = '1' THEN
 				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
 				sum_reg(2) <= data_temp(2) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
@@ -101,18 +80,20 @@ BEGIN
 				sum_reg(29) <= sum_reg(21) XOR sum_reg(27) XOR sum_reg(30) XOR sum_reg(31);
 				sum_reg(30) <= sum_reg(22) XOR sum_reg(28) XOR sum_reg(31);
 				sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
-
-				IF end_of_frame = '1' THEN
-					-- end_flag <= '1';
-					IF sum_reg = x"C7_04_DD_7B" THEN
-						fcs_error <= '1';
-						--ELSE
-						--end_flag <= '0';
-					END IF;
-				END IF;
-
 			END IF;
+
+			IF end_of_frame = '1' THEN
+				IF sum_reg = x"FF_FF_FF_FF" THEN
+					is_data_valid <= '1';
+					sum_reg <= (OTHERS => '0');
+				ELSE
+					sum_reg <= (OTHERS => '0');
+					is_data_valid <= '0';
+				END IF;
+			END IF;
+
 		END IF;
+		--END IF;
 	END PROCESS;
 
 END struc;
