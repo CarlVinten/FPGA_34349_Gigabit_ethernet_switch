@@ -1,3 +1,2 @@
 import scapy
 
-print("hej")

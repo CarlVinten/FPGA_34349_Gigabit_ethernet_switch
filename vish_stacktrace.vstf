@@ -1,0 +1,46 @@
+# Current time Wed Apr 29 13:39:24 2026
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = win32pe
+
+Exception c0000005 has occurred at address 00502839. Traceback:
+# 0    0x00502839: 'EnumDispProc + 0xccb9'
+# 1    0x00502ae1: 'EnumDispProc + 0xcf61'
+# 2    0x005031af: 'EnumDispProc + 0xd62f'
+# 3    0x00503253: 'EnumDispProc + 0xd6d3'
+# 4    0x005034fd: 'EnumDispProc + 0xd97d'
+# 5    0x0050377f: 'EnumDispProc + 0xdbff'
+# 6    0x00504e30: 'EnumDispProc + 0xf2b0'
+# 7    0x004fdcbb: 'EnumDispProc + 0x813b'
+# 8    0x004f4097: 'mti_strlen + 0x45a37'
+# 9    0x004f7329: 'EnumDispProc + 0x17a9'
+# 10   0x6ceb39f1: 'TclNREvalObjv + 0x3e1'
+StackWalk failed 299
+# End of Stack Trace
+
+# Current time Wed Apr 29 13:40:21 2026
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = win32pe
+
+Exception c0000005 has occurred at address 00502839. Traceback:
+# 0    0x00502839: 'EnumDispProc + 0xccb9'
+# 1    0x00502ae1: 'EnumDispProc + 0xcf61'
+# 2    0x005031af: 'EnumDispProc + 0xd62f'
+# 3    0x00503253: 'EnumDispProc + 0xd6d3'
+# 4    0x005034fd: 'EnumDispProc + 0xd97d'
+# 5    0x0050377f: 'EnumDispProc + 0xdbff'
+# 6    0x00504e30: 'EnumDispProc + 0xf2b0'
+# 7    0x004fdcbb: 'EnumDispProc + 0x813b'
+# 8    0x004f4097: 'mti_strlen + 0x45a37'
+# 9    0x004f7329: 'EnumDispProc + 0x17a9'
+# 10   0x6ceb39f1: 'TclNREvalObjv + 0x3e1'
+StackWalk failed 299
+# End of Stack Trace
+
