@@ -132,6 +132,7 @@ BEGIN
 					when 0 =>
 						address <= d_mac(port_to_check)(12 downto 0);
 						mac_check_state <= 1;
+
 					when 1 =>
 						if(m_out(47 downto 0) = d_mac(port_to_check))then
 							port_output(port_to_check) <= m_out(51 downto 48);
@@ -142,6 +143,7 @@ BEGIN
 						if(output_ready(port_to_check) = '1') then
 							mac_check_state <= 2;
 						end if;
+						
 					when 2 =>
 						output_valid(port_to_check) <= '0';
 						m_wren <= '1';
