@@ -53,9 +53,7 @@ BEGIN
 
 				start_cnt <= start_cnt - 1;
 			END IF;
-			-- ELSIF end_of_frame = '1' THEN
-			-- 	end_cnt <= 3;
-			-- END IF;
+		
 			-- IF valid = '1' THEN
 			-- 	IF start_cnt > 0 THEN
 			-- 		start_cnt <= start_cnt - 1;

@@ -113,16 +113,11 @@ BEGIN
                     s_valid <= '1';
                     s_data_in <= TEST_PACKET(i);
 
-                    IF i = test_packet'high THEN
-                        s_end_of_frame <= '1';
-                    END IF;
-
                     WAIT UNTIL rising_edge(s_clk);
                     s_start_of_frame <= '0';
                 END LOOP;
             END IF;
             -- END IF;
-            
 
             s_end_of_frame <= '1';
             s_valid <= '0'; -- single data
