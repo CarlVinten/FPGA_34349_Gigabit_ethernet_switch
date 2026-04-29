@@ -1,7 +1,19 @@
 # ModelSim / QuestaSim junk
+ModelSim
 work/
 work\
 transcript
-*.qdb
-*.qpg
-*.qtl
+vsim.wlf
+*.mpf
+*.mti
+work/_info
+# Quartus
+db/
+incremental_db/
+output_files/
+*.rpt
+*.summary
+*.done
+*.jdi
+*.pin
+*.qws
