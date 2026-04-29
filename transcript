@@ -1,0 +1,56 @@
+# Compile of MAC_learning.vhd failed with 3 errors.
+# Compile of top.vhd failed with 1 errors.
+# Compile of crossbarfifo.vhd was successful with warnings.
+# Compile of crossbar.vhd failed with 1 errors.
+# Compile of crossbar_tb.vhd failed with 2 errors.
+# 5 compiles, 4 failed with 7 errors.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Compile of MAC_learning.vhd failed with 3 errors.
+# Compile of top.vhd failed with 1 errors.
+# Compile of crossbarfifo.vhd was successful with warnings.
+# Compile of crossbar.vhd failed with 3 errors.
+# Compile of crossbar_tb.vhd failed with 2 errors.
+# 5 compiles, 4 failed with 9 errors.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Compile of MAC_learning.vhd failed with 3 errors.
+# Compile of top.vhd failed with 1 errors.
+# Compile of crossbarfifo.vhd was successful with warnings.
+# Compile of crossbar.vhd failed with 3 errors.
+# Compile of crossbar_tb.vhd failed with 2 errors.
+# Compile of global.vhd was successful with warnings.
+# 6 compiles, 4 failed with 9 errors.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Errors: 0, Warnings: 1
+# Compile of MAC_learning.vhd was successful.
+# Errors: 1, Warnings: 1
+# Errors: 0, Warnings: 1
+# Compile of crossbarfifo.vhd was successful.
+# Errors: 209, Warnings: 1
+# Errors: 8, Warnings: 1
+# Errors: 0, Warnings: 1
+# Compile of global.vhd was successful.
+# Errors: 1, Warnings: 1
+# Errors: 209, Warnings: 1
+# Errors: 8, Warnings: 1
+# Errors: 1, Warnings: 1
+# Compile of top.vhd failed.
+# Errors: 209, Warnings: 1
+# Compile of crossbar.vhd failed.
+# Errors: 8, Warnings: 1
+# Compile of crossbar_tb.vhd failed.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# Compile of MAC_learning.vhd was successful with warnings.
+# Compile of crossbarfifo.vhd was successful with warnings.
+# Compile of global.vhd was successful with warnings.
+# Compile of top.vhd failed with 1 errors.
+# Compile of crossbar.vhd failed with 209 errors.
+# Compile of crossbar_tb.vhd failed with 8 errors.
+# 6 compiles, 3 failed with 218 errors.
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
