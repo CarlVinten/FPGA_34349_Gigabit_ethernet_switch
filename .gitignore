@@ -6,7 +6,7 @@ transcript
 vsim.wlf
 *.mpf
 *.mti
-
+work/_info
 # Quartus
 db/
 incremental_db/
