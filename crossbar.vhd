@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
+library work;
+use work.global_var.all;
 
 LIBRARY altera_mf;
 USE altera_mf.altera_mf_components.all;
@@ -12,8 +14,8 @@ entity crossbar is
     port
     (
         clock		: IN STD_LOGIC ;
-        data		: IN array(3 DOWNTO 0) of STD_LOGIC_VECTOR (8 DOWNTO 0);
-        dstport 	: IN array(3 DOWNTO 0) of STD_LOGIC_VECTOR (3 DOWNTO 0);
+        data		: IN crossbar_input_array;
+        dstport 	: IN crossbar_dstport_array;
         output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
         output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
         output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
