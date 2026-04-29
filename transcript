@@ -126,3 +126,8 @@
 # 6 compiles, 2 failed with 9 errors.
 # Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
 # Unable to save project.
+# SIGSEGV: segmentation violation
+
+
+# Project file C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf is write protected, data cannot be saved.
+# Unable to save project.
