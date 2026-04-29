@@ -18,7 +18,7 @@ ARCHITECTURE sim OF test IS
 
             start_of_frame : IN STD_LOGIC;
             end_of_frame : IN STD_LOGIC;
-            
+
             is_data_valid : OUT STD_LOGIC
         );
     END COMPONENT;
@@ -32,8 +32,6 @@ ARCHITECTURE sim OF test IS
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
     SIGNAL s_start_of_frame : STD_LOGIC := '1';
     SIGNAL s_end_of_frame : STD_LOGIC := '0';
-    
-
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     -- Change this to test different packet lengths (or make it empty)
@@ -98,26 +96,37 @@ BEGIN
 
             s_data_in <= (OTHERS => '0');
             s_valid <= '0';
+            s_start_of_frame <= '0';
+            s_end_of_frame <= '0';
 
             WAIT FOR 15 ns;
 
             WAIT UNTIL rising_edge(s_clk);
 
+            WAIT FOR 1 ns;
+
             s_start_of_frame <= '1';
 
-            IF s_start_of_frame = '1' THEN
-                IF TEST_PACKET'LENGTH > 0 THEN
-                    FOR i IN test_packet'RANGE LOOP
-                        s_valid <= '1';
-                        s_data_in <= TEST_PACKET(i);
-                        WAIT UNTIL rising_edge(s_clk);
-                    END LOOP;
-                END IF;
+            -- IF s_start_of_frame = '1' THEN
+            IF TEST_PACKET'LENGTH > 0 OR s_start_of_frame = '1' THEN
+                FOR i IN test_packet'RANGE LOOP
+                    s_valid <= '1';
+                    s_data_in <= TEST_PACKET(i);
+
+                    IF i = test_packet'high THEN
+                        s_end_of_frame <= '1';
+                    END IF;
+
+                    WAIT UNTIL rising_edge(s_clk);
+                    s_start_of_frame <= '0';
+                END LOOP;
             END IF;
+            -- END IF;
+            
+
             s_end_of_frame <= '1';
-            s_valid <= '0';
+            s_valid <= '0'; -- single data
             s_data_in <= (OTHERS => '0');
-            s_start_of_frame <= '0';
 
             WAIT FOR 100 ns;
         END PROCESS;

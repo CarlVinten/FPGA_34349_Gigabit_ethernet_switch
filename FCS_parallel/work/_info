@@ -10,25 +10,25 @@ z2
 cModel Technology
 Z0 d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel
 Edata_input
-Z1 w1776260945
+Z1 w1777452254
 Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z4 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 73
+!i122 159
 R0
 Z7 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
 Z8 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
 l0
 L7 1
-V=0De;`oD3G3O@1@`=jKOZ0
-!s100 `h>5Rek;_:5[MUbJiOaRJ2
+VS95zd2b^h?iCWz9InFd2c3
+!s100 ?;=fG7V3IjH0`zZLW?cKo0
 Z9 OV;C;2020.1;71
 32
-Z10 !s110 1777450668
+Z10 !s110 1777460468
 !i10b 1
-Z11 !s108 1777450668.000000
+Z11 !s108 1777460468.000000
 Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
 Z13 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
 !i113 1
@@ -40,12 +40,12 @@ R3
 R4
 R5
 R6
-DEx4 work 10 data_input 0 22 =0De;`oD3G3O@1@`=jKOZ0
-!i122 73
-l39
-L22 81
-V`h>M@Z7L:fUjVQkVNKI_]1
-!s100 >j2?0@0^D^eGD;F=Hcgm@0
+DEx4 work 10 data_input 0 22 S95zd2b^h?iCWz9InFd2c3
+!i122 159
+l40
+L23 82
+V?9lc71>>8S^5DGnR1Hfm;0
+!s100 nnAzHWnj]lB;oAkkobjB33
 R9
 32
 R10
@@ -57,11 +57,11 @@ R13
 R14
 R15
 Efcs_check_parallel
-Z16 w1777450599
+Z16 w1777460143
 R4
 R5
 R6
-!i122 76
+!i122 162
 R0
 Z17 8fcs_check_parallel.vhd
 Z18 Ffcs_check_parallel.vhd
@@ -71,9 +71,9 @@ VoN42W?IRD[7fHd3ABMbRF3
 !s100 TXebZdmHC_YUJ7zbZbLJU3
 R9
 32
-Z19 !s110 1777450671
+Z19 !s110 1777460470
 !i10b 1
-Z20 !s108 1777450670.000000
+Z20 !s108 1777460469.000000
 Z21 !s90 -reportprogress|300|-work|work|fcs_check_parallel.vhd|
 Z22 !s107 fcs_check_parallel.vhd|
 !i113 1
@@ -84,11 +84,11 @@ R4
 R5
 R6
 DEx4 work 18 fcs_check_parallel 0 22 oN42W?IRD[7fHd3ABMbRF3
-!i122 76
-l35
-L20 99
-V>IQBA4b3_hB>SHlALeB5P1
-!s100 nQ]KiKJhEn4X<halb0kn21
+!i122 162
+l34
+L20 101
+V=8UVBT8XBQPd3:>36Z[QU1
+!s100 J8hDzULCcdC=G09[dB=SL3
 R9
 32
 R19
@@ -100,13 +100,13 @@ R22
 R23
 R15
 Etest
-Z24 w1777450665
+Z24 w1777460467
 R2
 R3
 R4
 R5
 R6
-!i122 77
+!i122 163
 R0
 Z25 8tb_fcs_check_parallel.vhd
 Z26 Ftb_fcs_check_parallel.vhd
@@ -118,7 +118,7 @@ R9
 32
 R19
 !i10b 1
-Z27 !s108 1777450671.000000
+Z27 !s108 1777460470.000000
 Z28 !s90 -reportprogress|300|-work|work|tb_fcs_check_parallel.vhd|
 !s107 tb_fcs_check_parallel.vhd|
 !i113 1
@@ -131,11 +131,11 @@ R4
 R5
 R6
 DEx4 work 4 test 0 22 ;]HMhjf;:8X2E8zR24]]]3
-!i122 77
-l62
-Z29 L9 117
-VJF=zOo6<PNRcR?2B><z:E1
-Z30 !s100 Hf8;maHohG;RWCJo13<PJ0
+!i122 163
+l60
+Z29 L9 126
+VM731_SE[MPT19kUIb^9LY3
+Z30 !s100 KaeRChB9lQhPAFY_Z9GOJ1
 R9
 32
 R19

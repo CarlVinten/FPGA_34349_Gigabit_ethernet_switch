@@ -1,30 +1,33 @@
-# 1. Quit any current simulation
-quit -sim
-
-# 2. Create and map the work library
-vlib work
-vmap work work
-
-# 3. Compile your VHDL files
-# (Using the names from your screenshot)
+# 1. Compile the source files (Always do this to pick up code changes)
 vcom -reportprogress 300 -work work fcs_check_parallel.vhd
 vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd
 
-# 4. Start the simulation on the test entity
-# -voptargs="+acc" ensures signals aren't optimized away so you can see them
-vsim -voptargs="+acc" work.test
+# 2. Check if a simulation is already running
+# If yes, restart it (keeps signals). If no, start it and add signals.
+if {[runStatus] != "No Design Loaded"} {
+    echo "--- Restarting Existing Simulation ---"
+    restart -f
+} else {
+    echo "--- Starting New Simulation ---"
+    vsim -voptargs="+acc" work.test
+    
+    # 3. Add signals only on the first load to avoid duplicates
+    add wave -noupdate -divider "Top Level Signals"
+    add wave -hex /test/s_clk
+    add wave -hex /test/s_reset
+    add wave -hex /test/s_data_in
+    add wave -hex /test/s_valid
+    add wave -hex /test/s_start_of_frame
+    add wave -hex /test/s_end_of_frame
+    add wave -hex /test/s_is_data_valid
 
-# 5. Add signals to the wave window
-# The '*' adds all top-level signals. 
-# The '-recursive' would add internal DUT signals too.
-add wave -noupdate -divider "Top Level Signals"
-add wave -hex /test/*
+    add wave -noupdate -divider "Internal DUT Logic"
+    add wave -hex /test/dut/sum_reg
+    add wave -hex /test/dut/start_cnt
+}
 
-add wave -noupdate -divider "Internal DUT Logic"
-add wave -hex /test/dut/*
+# 4. Run the simulation
+run 600 ns
 
-# 6. Run the simulation
-run 400 ns
-
-# 7. Zoom to fit the full waveform
+# 5. Zoom to fit
 wave zoom full
