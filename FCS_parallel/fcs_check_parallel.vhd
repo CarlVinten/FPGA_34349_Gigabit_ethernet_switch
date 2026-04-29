@@ -7,7 +7,6 @@ ENTITY fcs_check_parallel IS
 	PORT (
 		clk : IN STD_LOGIC; -- system clock
 		reset : IN STD_LOGIC; -- asynchronous reset
-		-- end_of_frame : IN STD_LOGIC; -- arrival of the first bit in FCS.
 
 		data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
 		valid : IN STD_LOGIC; -- indicates the validity of data_in.
@@ -24,11 +23,14 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
 	SIGNAL fcs_error : STD_LOGIC;
 
-	-- SIGNAL start_cnt : INTEGER := - 1;
+	SIGNAL start_cnt : INTEGER := - 1;
 	-- SIGNAL end_cnt : INTEGER := - 1;
 	-- SIGNAL end_flag : STD_LOGIC := '0';
 	-- SIGNAL preamble : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	-- SIGNAL start_of_frame : STD_LOGIC;
+	-- signal end_of_frame : STD_LOGIC;
+
+
 
 BEGIN
 
@@ -42,26 +44,27 @@ BEGIN
 		ELSIF rising_edge(clk) THEN
 			IF start_of_frame = '1' THEN
 				sum_reg <= (OTHERS => '0');
+				start_cnt <= 3;
 			ELSIF valid = '1' THEN
-				-- 	start_cnt <= 3;
 				-- ELSIF end_of_frame = '1' THEN
 				-- 	end_cnt <= 3;
 				-- END IF;
 
-				-- IF start_cnt > 0 THEN
-				-- 	start_cnt <= start_cnt - 1;
+				IF start_cnt > 0 THEN
+					start_cnt <= start_cnt - 1;
+				END IF;
 				-- ELSIF end_cnt > 0 THEN
 				-- 	end_cnt <= end_cnt - 1;
 				-- 	IF end_cnt = 0 THEN
 				-- 		end_flag <= '1';
 				-- 	END IF;
-				-- END IF;
 
 				-- IF (start_cnt > 0 OR start_of_frame = '1') OR (end_cnt > 0 OR end_of_frame = '1') OR end_flag = '1' THEN
-				-- 	data_temp <= NOT data_in;
-				-- ELSE
-				-- 	data_temp <= data_in;
-				-- END IF;
+				IF (start_cnt > 0 OR start_of_frame = '1') THEN
+				data_temp <= NOT data_in;
+				ELSE
+					data_temp <= data_in;
+				END IF;
 
 				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
@@ -112,4 +115,4 @@ BEGIN
 		END IF;
 	END PROCESS;
 
-END struc;	
+END struc;

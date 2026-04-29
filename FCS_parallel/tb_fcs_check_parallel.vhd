@@ -12,11 +12,14 @@ ARCHITECTURE sim OF test IS
         PORT (
             clk : IN STD_LOGIC;
             reset : IN STD_LOGIC;
+
             data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             valid : IN STD_LOGIC;
-            is_data_valid : OUT STD_LOGIC;
+
             start_of_frame : IN STD_LOGIC;
-            end_of_frame : IN STD_LOGIC
+            end_of_frame : IN STD_LOGIC;
+            
+            is_data_valid : OUT STD_LOGIC
         );
     END COMPONENT;
 
@@ -27,8 +30,9 @@ ARCHITECTURE sim OF test IS
     SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
     SIGNAL s_valid : STD_LOGIC := '0';
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
-    SIGNAL s_start_of_frame : STD_LOGIC := '0';
+    SIGNAL s_start_of_frame : STD_LOGIC := '1';
     SIGNAL s_end_of_frame : STD_LOGIC := '0';
+    
 
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
@@ -102,7 +106,6 @@ BEGIN
             s_start_of_frame <= '1';
 
             IF s_start_of_frame = '1' THEN
-
                 IF TEST_PACKET'LENGTH > 0 THEN
                     FOR i IN test_packet'RANGE LOOP
                         s_valid <= '1';

@@ -9,6 +9,7 @@ ENTITY data_input IS
     rst : IN STD_LOGIC;
     data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
     data_valid : IN STD_LOGIC;
+    
     data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
     data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -82,6 +83,7 @@ BEGIN
                     ELSE
                         data_to_switch_core_fifo <= '0' & data_in;
                     END IF;
+
                     IF data_cnt < 13 THEN
                         data_to_mac_fifo <= data_in;
                         -- mac addr_cnt <= mac_addr_cnt + 1;
