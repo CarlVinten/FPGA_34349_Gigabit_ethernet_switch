@@ -1,16 +1,21 @@
-<<<<<<< Updated upstream
-C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd
-=======
-C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
+** Warning: (vcom-14) Failed to open "C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf" specified by the MODELSIM environment variable.
+No such file or directory. (errno = ENOENT)
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity crossbarfifo
--- Compiling architecture SYN of crossbarfifo
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package global_var
+-- Loading package altera_mf_components
+-- Compiling entity crossbar
+-- Compiling architecture struc1 of crossbar
 
 } {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd
->>>>>>> Stashed changes
+** Warning: (vcom-14) Failed to open "C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf" specified by the MODELSIM environment variable.
+No such file or directory. (errno = ENOENT)
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -18,9 +23,12 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Loading package NUMERIC_STD
 -- Loading package std_logic_arith
 -- Loading package STD_LOGIC_UNSIGNED
-** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd(5): near "EOF": syntax error
+-- Compiling entity top_module
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd(23): near ")": (vcom-1576) expecting IDENTIFIER.
 
-} {9.0 10.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+} {12.0 13.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+** Warning: (vcom-14) Failed to open "C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf" specified by the MODELSIM environment variable.
+No such file or directory. (errno = ENOENT)
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -28,20 +36,9 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity crossbarfifo
 -- Compiling architecture SYN of crossbarfifo
 
-} {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
-** Error: (vcom-13) Recompile work.global_var because ieee.std_logic_1164, ieee.numeric_std have changed.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd(7): (vcom-1195) Cannot find expanded name "work.global_var".
-** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd(7): Unknown expanded name.
-** Note: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd(10): VHDL Compiler exiting
-
-} {9.0 10.0 11.0 12.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
+} {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
+** Warning: (vcom-14) Failed to open "C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf" specified by the MODELSIM environment variable.
+No such file or directory. (errno = ENOENT)
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -51,7 +48,31 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling architecture tb of crossbar_tb
 -- Loading package std_logic_arith
 -- Loading package STD_LOGIC_UNSIGNED
+-- Loading package global_var
 -- Loading package altera_mf_components
 -- Loading entity crossbar
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(126): (vcom-1484) Unknown formal identifier "data1".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(127): (vcom-1484) Unknown formal identifier "data2".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(128): (vcom-1484) Unknown formal identifier "data3".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(129): (vcom-1484) Unknown formal identifier "data4".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(130): (vcom-1484) Unknown formal identifier "dstport1".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(131): (vcom-1484) Unknown formal identifier "dstport2".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(132): (vcom-1484) Unknown formal identifier "dstport3".
+** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(133): (vcom-1484) Unknown formal identifier "dstport4".
+** Note: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd(175): VHDL Compiler exiting
+
+} {16.0 24.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
+** Warning: (vcom-14) Failed to open "C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/finalfifo.mpf" specified by the MODELSIM environment variable.
+No such file or directory. (errno = ENOENT)
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package global_var
+-- Compiling entity MAC_learning
+-- Compiling architecture struc of MAC_learning
 
 } {} {}}
