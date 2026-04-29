@@ -1,6 +1,7 @@
 # ModelSim / QuestaSim junk
 ModelSim
 work/
+work\
 transcript
 vsim.wlf
 *.mpf
