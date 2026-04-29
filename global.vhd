@@ -15,4 +15,4 @@ package global_var is
 	type crossbar_input_array is array(3 DOWNTO 0) of STD_LOGIC_VECTOR (8 DOWNTO 0);
 	type crossbar_dstport_array is array(3 DOWNTO 0) of STD_LOGIC_VECTOR (3 DOWNTO 0);
 
-	end package global_var;
+end package global_var;
