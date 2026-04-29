@@ -12,4 +12,7 @@ package global_var is
 
 	type mac_input is array (NUM_PORTS - 1 downto 0) of std_logic_vector(MAC_ADDR_LEN - 1 downto 0);
 	type mac_output is array (NUM_PORTS - 1 downto 0) of std_logic_vector(NUM_PORTS - 1 downto 0);
+
+
+	
 end package global_var;
