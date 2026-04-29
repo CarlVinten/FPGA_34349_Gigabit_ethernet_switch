@@ -1,9 +1,6 @@
-work/*
-work\*
-work/
-work\
 # ModelSim / QuestaSim junk
 work/
+work\
 transcript
 *.qdb
 *.qpg
