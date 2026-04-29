@@ -179,6 +179,76 @@ begin
         stop_clock <= true;
         wait for CLK_PERIOD;
         wait;
+
+        report "Testing Contention (Inputs 0, 1, 2 all to Output 0)..." severity note;
+        next_data := (others => ZERO_WORD);
+        next_port := (others => ZERO_PORT);
+        
+        -- Fire data from three inputs simultaneously to PORT0
+        next_data(0) := "100000001"; -- Tag with bit 8 to simulate a single-word packet
+        next_data(1) := "100000010";
+        next_data(2) := "100000011";
+        next_port(0) := PORT0;
+        next_port(1) := PORT0;
+        next_port(2) := PORT0;
+        
+        data <= next_data;
+        dstport <= next_port;
+        wait_cycles(1); -- Just pulse it for one clock cycle
+        
+        -- Clear inputs so we don't overflow the FIFOs
+        data <= (others => ZERO_WORD);
+        dstport <= (others => ZERO_PORT);
+        
+        -- Wait long enough for the arbiter to pull all three out of the FIFOs sequentially
+        wait_cycles(15); 
+        -- Note: Verification for this is best done visually in the ModelSim waveform 
+        -- to watch `output1` cycle through the three packets.
+
+
+        report "Testing Multi-word Packet Transmission..." severity note;
+        next_data := (others => ZERO_WORD);
+        next_port := (others => ZERO_PORT);
+        
+        -- Word 1: Payload (Bit 8 is '0')
+        next_data(0) := "0" & x"AA";
+        next_port(0) := PORT1; 
+        data <= next_data;
+        dstport <= next_port;
+        wait_cycles(1);
+        
+        -- Word 2: Payload (Bit 8 is '0')
+        next_data(0) := "0" & x"BB";
+        data <= next_data;
+        wait_cycles(1);
+        
+        -- Word 3: End of Packet (Bit 8 is '1')
+        next_data(0) := "1" & x"CC";
+        data <= next_data;
+        wait_cycles(1);
+        
+        -- Stop sending
+        data <= (others => ZERO_WORD);
+        dstport <= (others => ZERO_PORT);
+        wait_cycles(10);
+
+        report "Testing Multicast (Input 2 to Outputs 1 and 3)..." severity note;
+        next_data := (others => ZERO_WORD);
+        next_port := (others => ZERO_PORT);
+        
+        -- '1010' targets PORT3 (Output 4) and PORT1 (Output 2)
+        next_data(2) := "1" & x"DD";
+        next_port(2) := "1010"; 
+        data <= next_data;
+        dstport <= next_port;
+        
+        wait_cycles(5);
+        expected := (others => ZERO_WORD);
+        expected(1) := next_data(2); -- Output 2
+        expected(3) := next_data(2); -- Output 4
+        check_outputs("Multicast routing", expected(0), expected(1), expected(2), expected(3));
     end process;
+
+    
 
 end architecture;
