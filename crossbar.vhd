@@ -1,63 +1,75 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-use ieee.std_logic_unsigned.all;
-library work;
-use work.global_var.all;
+    library ieee;
+    use ieee.std_logic_1164.all;
+    use ieee.numeric_std.all;
+    use ieee.std_logic_unsigned.all;
+    library work;
+    use work.global_var.all;
 
-LIBRARY altera_mf;
-USE altera_mf.altera_mf_components.all;
+    LIBRARY altera_mf;
+    USE altera_mf.altera_mf_components.all;
 
---her skal der nok stå noget om entity og architecture
+    --her skal der nok stå noget om entity og architecture
 
-entity crossbar is
-    port
-    (
-        clock		: IN STD_LOGIC ;
-        data		: IN crossbar_input_array;
-        dstport 	: IN crossbar_dstport_array;
-        output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-        output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-        output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-        output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
-    );
-end crossbar;
-
-
-architecture struc1 of crossbar is
-    COMPONENT crossbarfifo
-    PORT
-    (
-        clock		: IN STD_LOGIC ;
-        data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
-        rdreq		: IN STD_LOGIC ;
-        sclr		: IN STD_LOGIC ;
-        wrreq		: IN STD_LOGIC ;
-        empty		: OUT STD_LOGIC ;
-        full		: OUT STD_LOGIC ;
-        q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-        usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
-    );
-END COMPONENT;
+    entity crossbar is
+        port
+        (
+            clock		: IN STD_LOGIC ;
+            data		: IN crossbar_input_array;
+            dstport 	: IN crossbar_dstport_array;
+            output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+        );
+    end crossbar;
 
 
-SIGNAL output1_mux: std_logic_vector(35 downto 0);
-SIGNAL output2_mux: std_logic_vector(35 downto 0);
-SIGNAL output3_mux: std_logic_vector(35 downto 0);
-SIGNAL output4_mux: std_logic_vector(35 downto 0);
+    architecture struc1 of crossbar is
+        COMPONENT crossbarfifo
+        PORT
+        (
+            clock		: IN STD_LOGIC ;
+            data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+            rdreq		: IN STD_LOGIC ;
+            sclr		: IN STD_LOGIC ;
+            wrreq		: IN STD_LOGIC ;
+            empty		: OUT STD_LOGIC ;
+            full		: OUT STD_LOGIC ;
+            q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            usedw	: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
+        );
+    END COMPONENT;
 
--- Add these missing signals:
-SIGNAL rdreq : STD_LOGIC_vector(15 downto 0);
-SIGNAL sclr  : STD_LOGIC;
-SIGNAL wrreq : STD_LOGIC;
-SIGNAL empty : STD_LOGIC_vector(15 downto 0);
-SIGNAL full  : STD_LOGIC_vector(15 downto 0);
-SIGNAL usedw : array(15 downto 0) of STD_LOGIC_VECTOR(11 DOWNTO 0);
+
+    SIGNAL output1_mux: std_logic_vector(35 downto 0);
+    SIGNAL output2_mux: std_logic_vector(35 downto 0);
+    SIGNAL output3_mux: std_logic_vector(35 downto 0);
+    SIGNAL output4_mux: std_logic_vector(35 downto 0);
+
+    -- Add these missing signals:
+    SIGNAL rdreq : STD_LOGIC_vector(15 downto 0);
+    SIGNAL sclr  : STD_LOGIC;
+    SIGNAL wrreq : STD_LOGIC;
+    SIGNAL empty : STD_LOGIC_vector(15 downto 0);
+    SIGNAL full  : STD_LOGIC_vector(15 downto 0);
+    TYPE usedw_array_t IS ARRAY(15 downto 0) OF STD_LOGIC_VECTOR(11 DOWNTO 0);
+    SIGNAL usedw : usedw_array_t;
+
+    TYPE state_array_t IS ARRAY (0 to 3) OF STD_LOGIC;
+    TYPE int_array_t   IS ARRAY (0 to 3) OF integer range 0 to 3;
+
+    -- '0' = IDLE/Arbitrate, '1' = TRANSMITTING a packet
+    SIGNAL tx_state  : state_array_t := (others => '0');
+    SIGNAL tx_src    : int_array_t := (others => 0);
+    SIGNAL rr_turn_tx: int_array_t := (others => 0);
+
+    -- Placeholder validity signal used by packet admission logic.
+    SIGNAL rx_valid : STD_LOGIC_VECTOR(3 downto 0) := (others => '1');
 
 
 
--- Add this right below your empty/full/usedw signals
-SIGNAL rr_turn : integer range 0 to 3 := 0;
+    -- Add this right below your empty/full/usedw signals
+    SIGNAL rr_turn : integer range 0 to 3 := 0;
 
 -- signal declarations 
 SIGNAL state : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
@@ -69,20 +81,32 @@ SIGNAL write_enable : STD_LOGIC_VECTOR(15 downto 0) := (others => '0');
 begin
 
 -- The Round Robin Counter: Rotates the priority every clock cycle
+    -- process(clock)
+    -- begin
+    --     if rising_edge(clock) then
+    --         if rr_turn = 3 then
+    --             rr_turn <= 0;
+    --         else
+    --             rr_turn <= rr_turn_next;
+    --         end if;
+    --     end if;
+    -- end process;
+
+    -- The Round Robin Counter: Rotates the priority every clock cycle
     process(clock)
     begin
         if rising_edge(clock) then
             if rr_turn = 3 then
                 rr_turn <= 0;
             else
-                rr_turn <= rr_turn_next;
+                rr_turn <= rr_turn + 1; -- Increment directly instead of using rr_turn_next
             end if;
         end if;
     end process;
 
     sclr <= '0';
     wrreq <= '1';
-    rdreq <= '1';
+    -- rdreq is driven by the arbiter process below.
 
     --port map for mem component
 
@@ -90,10 +114,10 @@ f1: crossbarfifo
 port map (
     clock => clock,
     data => data(0),
-    rdreq => rdreq,
+    rdreq => rdreq(0),
     sclr => sclr,
-    wrreq => dstport(0),
-    empty => empty,
+    wrreq => dstport(0)(0),
+    empty => empty(0),
     full => full(0),
     q => output1_mux(8 downto 0),
     usedw => usedw(0)
@@ -102,10 +126,10 @@ f2: crossbarfifo
 port map (
     clock => clock,
     data => data(0),
-    rdreq => rdreq,
+    rdreq => rdreq(1),
     sclr => sclr,
-    wrreq => dstport(1),
-    empty => empty,
+    wrreq => dstport(0)(1),
+    empty => empty(1),
     full => full(1),
     q => output2_mux(8 downto 0),
     usedw => usedw(1)
@@ -114,10 +138,10 @@ f3: crossbarfifo
 port map (
     clock => clock,
     data => data(0),
-    rdreq => rdreq,
+    rdreq => rdreq(2),
     sclr => sclr,
-    wrreq => dstport(2),
-    empty => empty,
+    wrreq => dstport(0)(2),
+    empty => empty(2),
     full => full(2),
     q => output3_mux(8 downto 0),
     usedw => usedw(2)
@@ -126,10 +150,10 @@ f4: crossbarfifo
 port map (
     clock => clock,
     data => data(0),
-    rdreq => rdreq,
+    rdreq => rdreq(3),
     sclr => sclr,
-    wrreq => dstport(3),
-    empty => empty,
+    wrreq => dstport(0)(3),
+    empty => empty(3),
     full => full(3),
     q => output4_mux(8 downto 0),
     usedw => usedw(3)
@@ -138,10 +162,10 @@ f5: crossbarfifo
 port map (
     clock => clock,
     data => data(1), 
-    rdreq => rdreq,
+    rdreq => rdreq(4),
     sclr => sclr,
-    wrreq => dstport(0),
-    empty => empty,
+    wrreq => dstport(1)(0),
+    empty => empty(4),
     full => full(4),
     q => output1_mux(17 downto 9), 
     usedw => usedw(4)
@@ -150,10 +174,10 @@ f6: crossbarfifo
 port map (
     clock => clock,
     data => data(1), 
-    rdreq => rdreq,
+    rdreq => rdreq(5),
     sclr => sclr,
-    wrreq => dstport(1),
-    empty => empty,
+    wrreq => dstport(1)(1),
+    empty => empty(5),
     full => full(5),
     q => output2_mux(17 downto 9), 
     usedw => usedw(5)
@@ -162,10 +186,10 @@ f7: crossbarfifo
 port map (
     clock => clock,
     data => data(1), 
-    rdreq => rdreq,
+    rdreq => rdreq(6),
     sclr => sclr,
-    wrreq => dstport(2),
-    empty => empty,
+    wrreq => dstport(1)(2),
+    empty => empty(6),
     full => full(6),
     q => output3_mux(17 downto 9), 
     usedw => usedw(6)
@@ -174,10 +198,10 @@ f8: crossbarfifo
 port map (
     clock => clock,
     data => data(1), 
-    rdreq => rdreq,
+    rdreq => rdreq(7),
     sclr => sclr,
-    wrreq => dstport(3),
-    empty => empty,
+    wrreq => dstport(1)(3),
+    empty => empty(7),
     full => full(7),
     q => output4_mux(17 downto 9), 
     usedw => usedw(7)
@@ -186,10 +210,10 @@ f9: crossbarfifo
 port map (
     clock => clock,
     data => data(2), 
-    rdreq => rdreq,
+    rdreq => rdreq(8),
     sclr => sclr,
-    wrreq => dstport(0),
-    empty => empty,
+    wrreq => dstport(2)(0),
+    empty => empty(8),
     full => full(8),
     q => output1_mux(26 downto 18), 
     usedw => usedw(8)
@@ -198,10 +222,10 @@ f10: crossbarfifo
 port map (
     clock => clock,
     data => data(2), 
-    rdreq => rdreq,
+    rdreq => rdreq(9),
     sclr => sclr,
-    wrreq => dstport(1),
-    empty => empty,
+    wrreq => dstport(2)(1),
+    empty => empty(9),
     full => full(9),
     q => output2_mux(26 downto 18), 
     usedw => usedw(9)
@@ -210,10 +234,10 @@ f11: crossbarfifo
 port map (
     clock => clock,
     data => data(2), 
-    rdreq => rdreq,
+    rdreq => rdreq(10),
     sclr => sclr,
-    wrreq => dstport(2),
-    empty => empty,
+    wrreq => dstport(2)(2),
+    empty => empty(10),
     full => full(10),
     q => output3_mux(26 downto 18), 
     usedw => usedw(10)
@@ -222,10 +246,10 @@ f12: crossbarfifo
 port map (
     clock => clock,
     data => data(2), 
-    rdreq => rdreq,
+    rdreq => rdreq(11),
     sclr => sclr,
-    wrreq => dstport(3),
-    empty => empty,
+    wrreq => dstport(2)(3),
+    empty => empty(11),
     full => full(11),
     q => output4_mux(26 downto 18), 
     usedw => usedw(11)
@@ -234,10 +258,10 @@ f13: crossbarfifo
 port map (
     clock => clock,
     data => data(3), 
-    rdreq => rdreq,
+    rdreq => rdreq(12),
     sclr => sclr,
-    wrreq => dstport(0),
-    empty => empty,
+    wrreq => dstport(3)(0),
+    empty => empty(12),
     full => full(12),
     q => output1_mux(35 downto 27), 
     usedw => usedw(12)
@@ -246,10 +270,10 @@ f14: crossbarfifo
 port map (
     clock => clock,
     data => data(3), 
-    rdreq => rdreq,
+    rdreq => rdreq(13),
     sclr => sclr,
-    wrreq => dstport(1),
-    empty => empty,
+    wrreq => dstport(3)(1),
+    empty => empty(13),
     full => full(13),
     q => output2_mux(35 downto 27), 
     usedw => usedw(13)  
@@ -258,10 +282,10 @@ f15: crossbarfifo
 port map (
     clock => clock,
     data => data(3), 
-    rdreq => rdreq,
+    rdreq => rdreq(14),
     sclr => sclr,
-    wrreq => dstport(2),
-    empty => empty,
+    wrreq => dstport(3)(2),
+    empty => empty(14),
     full => full(14),
     q => output3_mux(35 downto 27), 
     usedw => usedw(14)
@@ -270,10 +294,10 @@ f16: crossbarfifo
 port map (
     clock => clock,
     data => data(3), 
-    rdreq => rdreq,
+    rdreq => rdreq(15),
     sclr => sclr,
-    wrreq => dstport(3),
-    empty => empty,
+    wrreq => dstport(3)(3),
+    empty => empty(15),
     full => full(15),
     q => output4_mux(35 downto 27), 
     usedw => usedw(15)
@@ -526,25 +550,6 @@ end process;
     --     end if;
 
     -- end process;
-
-
-
-
-    -- Custom types for our arrays
-type state_array_t is array (0 to 3) of std_logic;
-type int_array_t   is array (0 to 3) of integer range 0 to 3;
-
--- '0' = IDLE/Arbitrate, '1' = TRANSMITTING a packet
-SIGNAL tx_state : state_array_t := (others => '0'); 
-
--- Which Input Port (0-3) is currently locked to each Output Port
-SIGNAL tx_src   : int_array_t := (others => 0);
-
--- The Round Robin tracker for each Output Port
-SIGNAL rr_turn  : int_array_t := (others => 0);
-
-
-
 process(clock)
     variable check_idx : integer;
     variable fifo_idx  : integer;
@@ -561,7 +566,7 @@ begin
                 
                 -- Loop 4 times to check all 4 inputs in Round Robin order
                 for offset in 0 to 3 loop
-                    check_idx := (rr_turn(0) + offset) mod 4; -- Yields 0, 1, 2, or 3
+                    check_idx := (rr_turn_tx(0) + offset) mod 4; -- Yields 0, 1, 2, or 3
                     fifo_idx  := check_idx * 4 + 0;           -- Maps to FIFOs 0, 4, 8, 12
                     
                     if empty(fifo_idx) = '0' then 
@@ -582,28 +587,31 @@ begin
                     output1 <= output1_mux(8 downto 0);
                     if output1_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(0) <= '0';                 -- Go back to IDLE
-                        rr_turn(0)  <= 1;                   -- Pass turn to Input 2
+                        rr_turn_tx(0)  <= 1;                   -- Pass turn to Input 2
                         rdreq(fifo_idx) <= '0';             -- Override read request to stop
                     end if;
                     
                 elsif tx_src(0) = 1 then 
                     output1 <= output1_mux(17 downto 9);
                     if output1_mux(17) = '1' then 
-                        tx_state(0) <= '0'; rr_turn(0) <= 2; rdreq(fifo_idx) <= '0'; 
+                        tx_state(0) <= '0'; rr_turn_tx(0) <= 2; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(0) = 2 then 
                     output1 <= output1_mux(26 downto 18);
                     if output1_mux(26) = '1' then 
-                        tx_state(0) <= '0'; rr_turn(0) <= 3; rdreq(fifo_idx) <= '0'; 
+                        tx_state(0) <= '0'; rr_turn_tx(0) <= 3; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(0) = 3 then 
                     output1 <= output1_mux(35 downto 27);
                     if output1_mux(35) = '1' then 
-                        tx_state(0) <= '0'; rr_turn(0) <= 0; rdreq(fifo_idx) <= '0'; 
+                        tx_state(0) <= '0'; rr_turn_tx(0) <= 0; rdreq(fifo_idx) <= '0'; 
                     end if;
                 end if;
+                when others =>
+                tx_state(0) <= '0';
+        
         end case;
 
         -- ==========================================
@@ -615,7 +623,7 @@ case tx_state(1) is
                 
                 -- Loop 4 times to check all 4 inputs in Round Robin order
                 for offset in 0 to 3 loop
-                    check_idx := (rr_turn(1) + offset) mod 4; -- Yields 0, 1, 2, or 3
+                    check_idx := (rr_turn_tx(1) + offset) mod 4; -- Yields 0, 1, 2, or 3
                     fifo_idx  := check_idx * 4 + 1;           -- Maps to FIFOs 1, 5, 9, 13
                     
                     if empty(fifo_idx) = '0' then 
@@ -636,28 +644,30 @@ case tx_state(1) is
                     output2 <= output2_mux(8 downto 0);
                     if output2_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(1) <= '0';                 -- Go back to IDLE
-                        rr_turn(1)  <= 1;                   -- Pass turn to Input 2
+                        rr_turn_tx(1)  <= 1;                   -- Pass turn to Input 2
                         rdreq(fifo_idx) <= '0';             -- Override read request to stop
                     end if;
                     
                 elsif tx_src(1) = 1 then 
                     output2 <= output2_mux(17 downto 9);
                     if output2_mux(17) = '1' then 
-                        tx_state(1) <= '0'; rr_turn(1) <= 2; rdreq(fifo_idx) <= '0'; 
+                        tx_state(1) <= '0'; rr_turn_tx(1) <= 2; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(1) = 2 then 
                     output2 <= output2_mux(26 downto 18);
                     if output2_mux(26) = '1' then 
-                        tx_state(1) <= '0'; rr_turn(1) <= 3; rdreq(fifo_idx) <= '0'; 
+                        tx_state(1) <= '0'; rr_turn_tx(1) <= 3; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(1) = 3 then 
                     output2 <= output2_mux(35 downto 27);
                     if output2_mux(35) = '1' then 
-                        tx_state(1) <= '0'; rr_turn(1) <= 0; rdreq(fifo_idx) <= '0'; 
+                        tx_state(1) <= '0'; rr_turn_tx(1) <= 0; rdreq(fifo_idx) <= '0'; 
                     end if;
                 end if;
+                when others =>
+                tx_state(1) <= '0';
         end case;
 
         -- ==========================================
@@ -669,7 +679,7 @@ case tx_state(1) is
                 
                 -- Loop 4 times to check all 4 inputs in Round Robin order
                 for offset in 0 to 3 loop
-                    check_idx := (rr_turn(2) + offset) mod 4; -- Yields 0, 1, 2, or 3
+                    check_idx := (rr_turn_tx(2) + offset) mod 4; -- Yields 0, 1, 2, or 3
                     fifo_idx  := check_idx * 4 + 2;           -- Maps to FIFOs 2, 6, 10, 14
                     
                     if empty(fifo_idx) = '0' then 
@@ -690,22 +700,25 @@ case tx_state(1) is
                     output3 <= output3_mux(8 downto 0);
                     if output3_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(2) <= '0';                 -- Go back to IDLE
-                        rr_turn(2)  <= 1;                   -- Pass turn to Input 2
+                        rr_turn_tx(2)  <= 1;                   -- Pass turn to Input 2
                         rdreq(fifo_idx) <= '0';             -- Override read request to stop
                     end if;
                     
                 elsif tx_src(2) = 1 then 
                     output3 <= output3_mux(17 downto 9);
                     if output3_mux(17) = '1' then 
-                        tx_state(2) <= '0'; rr_turn(2) <= 2; rdreq(fifo_idx) <= '0'; 
+                        tx_state(2) <= '0'; rr_turn_tx(2) <= 2; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(2) = 2 then 
                     output3 <= output3_mux(26 downto 18);
                     if output3_mux(26) = '1' then 
-                        tx_state(2) <= '0'; rr_turn(2) <= 3; rdreq(fifo_idx) <= '0'; 
+                        tx_state(2) <= '0'; rr_turn_tx(2) <= 3; rdreq(fifo_idx) <= '0'; 
                     end if;
                 end if;
+                when others =>
+                tx_state(2) <= '0';
+        
         end case;
 
 
@@ -718,7 +731,7 @@ case tx_state(1) is
                 
                 -- Loop 4 times to check all 4 inputs in Round Robin order
                 for offset in 0 to 3 loop
-                    check_idx := (rr_turn(3) + offset) mod 4; -- Yields 0, 1, 2, or 3
+                    check_idx := (rr_turn_tx(3) + offset) mod 4; -- Yields 0, 1, 2, or 3
                     fifo_idx  := check_idx * 4 + 3;           -- Maps to FIFOs 3, 7, 11, 15
                     
                     if empty(fifo_idx) = '0' then 
@@ -739,22 +752,26 @@ case tx_state(1) is
                     output4 <= output4_mux(8 downto 0);
                     if output4_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(3) <= '0';                 -- Go back to IDLE
-                        rr_turn(3)  <= 1;                   -- Pass turn to Input 2
+                        rr_turn_tx(3)  <= 1;                   -- Pass turn to Input 2
                         rdreq(fifo_idx) <= '0';             -- Override read request to stop
                     end if;
                     
                 elsif tx_src(3) = 1 then 
                     output4 <= output4_mux(17 downto 9);
                     if output4_mux(17) = '1' then 
-                        tx_state(3) <= '0'; rr_turn(3) <= 2; rdreq(fifo_idx) <= '0'; 
+                        tx_state(3) <= '0'; rr_turn_tx(3) <= 2; rdreq(fifo_idx) <= '0'; 
                     end if;
                     
                 elsif tx_src(3) = 2 then 
                     output4 <= output4_mux(26 downto 18);
                     if output4_mux(26) = '1' then 
-                        tx_state(3) <= '0'; rr_turn(3) <= 3; rdreq(fifo_idx) <= '0'; 
+                        tx_state(3) <= '0'; rr_turn_tx(3) <= 3; rdreq(fifo_idx) <= '0'; 
                     end if;
                 end if;
+
+                -- ADD THESE TWO LINES:
+            when others =>
+                tx_state(0) <= '0';
         end case;
 
 
