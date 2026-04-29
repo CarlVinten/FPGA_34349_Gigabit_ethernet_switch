@@ -1,42 +1,4 @@
-C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package altera_mf_components
--- Compiling entity crossbar
--- Compiling architecture struc1 of crossbar
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(75): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(87): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(99): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(111): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(123): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(135): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(147): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(159): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(171): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(183): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(195): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(207): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(219): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(231): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(243): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Error (suppressible): C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(255): (vcom-1272) Length of formal "q" is 9; length of slice name is 8.
-** Warning: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(262): (vcom-1272) Length of expected is 9; length of slice name is 8.
-** Note: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd(265): VHDL Compiler exiting
-
-} {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity crossbarfifo
--- Compiling architecture SYN of crossbarfifo
-
-} {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd
+C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -46,7 +8,15 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Loading package STD_LOGIC_UNSIGNED
 ** Error: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/top.vhd(5): near "EOF": syntax error
 
-} {9.0 10.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
+} {9.0 10.0} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity crossbarfifo
+-- Compiling architecture SYN of crossbarfifo
+
+} {} {}} C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd {0 {vcom -work work -2002 -explicit -stats=none C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
