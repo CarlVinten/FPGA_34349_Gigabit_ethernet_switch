@@ -34,7 +34,7 @@ ARCHITECTURE struc OF MAC_learning IS
 	SIGNAL address: std_logic_vector(12 downto 0);
 	SIGNAL m_data: std_logic_vector(63 downto 0);
 	SIGNAL m_wren: std_logic := '0';
-	SIGNAL m_out: std_logic_vector(63 downto 0);
+	SIGNAL m_out: std_logic_vector(63 downto 0) := x"0000000000000000";
 	SIGNAL rr: integer range 0 to 3 := 0;
 	SIGNAL process_mac: std_logic := '0';
 	SIGNAL port_to_check: integer range 0 to 3 := 0;
@@ -119,6 +119,7 @@ BEGIN
 		end if;
 
 		if rising_edge(clk) then
+
 			m_wren <= '0';
 			output_valid <= "0000";
 			case port_to_check is
@@ -130,8 +131,9 @@ BEGIN
 			if(process_mac = '1') then
 				case mac_check_state is
 					when 0 =>
-						address <= d_mac(port_to_check)(12 downto 0);
+						address <= hash_mac_addr(d_mac(port_to_check));
 						mac_check_state <= 1;
+
 					when 1 =>
 						if(m_out(47 downto 0) = d_mac(port_to_check))then
 							port_output(port_to_check) <= m_out(51 downto 48);
@@ -142,6 +144,7 @@ BEGIN
 						if(output_ready(port_to_check) = '1') then
 							mac_check_state <= 2;
 						end if;
+
 					when 2 =>
 						output_valid(port_to_check) <= '0';
 						m_wren <= '1';
@@ -162,11 +165,6 @@ BEGIN
 
 END struc;
 
--- Hash the mac address. 
--- Write to memory
-	-- Save the port
--- Read from memory
-    -- read the port number
 
 
 

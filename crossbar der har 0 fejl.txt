@@ -1,0 +1,272 @@
+crossbar der har 0 fejl 
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+
+LIBRARY altera_mf;
+USE altera_mf.altera_mf_components.all;
+
+--her skal der nok stå noget om entity og architecture
+
+entity crossbar is
+    port
+    (
+        clock		: IN STD_LOGIC ;
+        data1		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+        data2		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+        data3		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+        data4		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+        dstport1	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+        dstport2	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+        dstport3	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+        dstport4	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+        output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+        output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+        output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+        output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0)
+    );
+end crossbar;
+
+
+architecture struc1 of crossbar is
+    COMPONENT crossbarfifo
+    PORT
+    (
+        clock		: IN STD_LOGIC ;
+        data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+        rdreq		: IN STD_LOGIC ;
+        sclr		: IN STD_LOGIC ;
+        wrreq		: IN STD_LOGIC ;
+        empty		: OUT STD_LOGIC ;
+        full		: OUT STD_LOGIC ;
+        q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+        usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
+    );
+END COMPONENT;
+
+
+SIGNAL output1_mux: std_logic_vector(35 downto 0);
+SIGNAL output2_mux: std_logic_vector(35 downto 0);
+SIGNAL output3_mux: std_logic_vector(35 downto 0);
+SIGNAL output4_mux: std_logic_vector(35 downto 0);
+
+-- Add these missing signals:
+SIGNAL rdreq : STD_LOGIC;
+SIGNAL sclr  : STD_LOGIC;
+SIGNAL wrreq : STD_LOGIC;
+SIGNAL empty : STD_LOGIC;
+SIGNAL full  : STD_LOGIC;
+SIGNAL usedw : STD_LOGIC_VECTOR(11 DOWNTO 0);
+
+-- signal declarations 
+
+begin
+    --port map for mem component
+
+f1: crossbarfifo
+port map (
+    clock => clock,
+    data => data1,
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output1_mux(8 downto 0),
+    usedw => usedw
+);
+f2: crossbarfifo
+port map (
+    clock => clock,
+    data => data1,
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output2_mux(8 downto 0),
+    usedw => usedw
+);
+f3: crossbarfifo
+port map (
+    clock => clock,
+    data => data1,
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output3_mux(8 downto 0),
+    usedw => usedw
+);
+f4: crossbarfifo
+port map (
+    clock => clock,
+    data => data1,
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output4_mux(8 downto 0),
+    usedw => usedw
+);
+f5: crossbarfifo
+port map (
+    clock => clock,
+    data => data2, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output1_mux(17 downto 9), 
+    usedw => usedw
+);
+f6: crossbarfifo
+port map (
+    clock => clock,
+    data => data2, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output2_mux(17 downto 9), 
+    usedw => usedw
+);
+f7: crossbarfifo
+port map (
+    clock => clock,
+    data => data2, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output3_mux(17 downto 9), 
+    usedw => usedw
+);
+f8: crossbarfifo
+port map (
+    clock => clock,
+    data => data2, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output4_mux(17 downto 9), 
+    usedw => usedw
+);
+f9: crossbarfifo
+port map (
+    clock => clock,
+    data => data3, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output1_mux(26 downto 18), 
+    usedw => usedw
+);
+f10: crossbarfifo
+port map (
+    clock => clock,
+    data => data3, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output2_mux(26 downto 18), 
+    usedw => usedw
+);
+f11: crossbarfifo
+port map (
+    clock => clock,
+    data => data3, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output3_mux(26 downto 18), 
+    usedw => usedw
+);
+f12: crossbarfifo
+port map (
+    clock => clock,
+    data => data3, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output4_mux(26 downto 18), 
+    usedw => usedw
+);
+f13: crossbarfifo
+port map (
+    clock => clock,
+    data => data4, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output1_mux(35 downto 27), 
+    usedw => usedw
+);
+f14: crossbarfifo
+port map (
+    clock => clock,
+    data => data4, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output2_mux(35 downto 27), 
+    usedw => usedw
+);
+f15: crossbarfifo
+port map (
+    clock => clock,
+    data => data4, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output3_mux(35 downto 27), 
+    usedw => usedw
+);
+f16: crossbarfifo
+port map (
+    clock => clock,
+    data => data4, 
+    rdreq => rdreq,
+    sclr => sclr,
+    wrreq => wrreq,
+    empty => empty,
+    full => full,
+    q => output4_mux(35 downto 27), 
+    usedw => usedw
+);
+
+-- if out4port = 3
+--     output4 <= output4_mux(23 downto 16);
+
+output1 <= output1_mux(8 downto 0)   when dstport1 = "0000" else (others => '0');
+output2 <= output2_mux(17 downto 9)  when dstport2 = "0001" else (others => '0');
+output3 <= output3_mux(26 downto 18) when dstport3 = "0010" else (others => '0');
+output4 <= output4_mux(26 downto 18) when dstport4 = "0011" else (others => '0');
+
+--output4 <= output4_mux(23 downto 16) when dstport4 = "0011" else (others => '0');
+
+
+END struc1;
