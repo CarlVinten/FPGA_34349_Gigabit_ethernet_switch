@@ -43,7 +43,7 @@ BEGIN
 			ELSIF valid = '1' AND start_cnt > 0 THEN
 				start_cnt <= start_cnt - 1;
 			END IF;
-
+-- potential optimize is use valid below rising edge and check when it is low
 			IF valid = '1' OR start_of_frame = '1' THEN
 				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);

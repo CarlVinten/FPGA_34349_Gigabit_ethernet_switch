@@ -83,8 +83,9 @@ BEGIN
 			END IF;
 
 			IF end_of_frame = '1' THEN
-				IF sum_reg = x"C7_04_DD_7B" THEN
+				IF sum_reg = x"FF_FF_FF_FF" THEN
 					is_data_valid <= '1';
+					sum_reg <= (OTHERS => '0');
 				ELSE
 					sum_reg <= (OTHERS => '0');
 					is_data_valid <= '0';
