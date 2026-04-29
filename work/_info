@@ -22,232 +22,198 @@ R0
 R1
 Z2 tExplicit 1 CvgOpt 0
 Ecrossbar
-Z3 w1777455222
-Z4 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
-Z5 DPx4 work 10 global_var 0 22 L<RTQf4We`5]4ZG8KI91J0
+Z3 w1777455552
+Z4 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+Z5 DPx4 work 10 global_var 0 22 CJnG947BGoNgWa?1S?2J:0
 Z6 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z7 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-Z8 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z8 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z9 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z10 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 62
-Z11 dC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch
-8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
-FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
+Z10 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
+FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd
 l0
-L13 1
+L13
 VHLRk6]dkAVzfcFeJS=@f>2
 !s100 ]fB<RhIe:NOkgkEJ3`DY93
-Z12 OV;C;2020.1;71
+Z11 OV;C;10.5b;63
 32
-Z13 !s110 1777455348
+Z12 !s110 1777462432
 !i10b 1
-Z14 !s108 1777455348.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd|
-!s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd|
+Z13 !s108 1777462432.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd|
+!s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd|
 !i113 1
-Z15 o-work work -2002 -explicit
+Z14 o-work work -2002 -explicit
 R2
 Astruc1
-R4
+Z15 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
 R6
 R7
-R8
+Z16 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 R9
-R10
-Z16 DEx4 work 8 crossbar 0 22 W>_Pi0^==]QjYGX>2aHAk3
+Z17 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z18 DEx4 work 8 crossbar 0 22 W>_Pi0^==]QjYGX>2aHAk3
 !i122 41
 l66
 L31 356
 V[jWRKW9bCVHgfI4oIh;MJ0
 !s100 ?m51c`IHeNYl04Wz:kQ_e1
-R12
+Z19 OV;C;2020.1;71
 32
-Z17 !s110 1776257196
+Z20 !s110 1776257196
 !i10b 1
-Z18 !s108 1776257196.000000
+Z21 !s108 1776257196.000000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\meier\Desktop\FPGA_GIGABIT\FPGA_34349_Gigabit_ethernet_switch\crossbar.vhd|
 !s107 C:\Users\meier\Desktop\FPGA_GIGABIT\FPGA_34349_Gigabit_ethernet_switch\crossbar.vhd|
 !i113 1
-R15
+R14
 R2
 FC:\Users\meier\Desktop\FPGA_GIGABIT\FPGA_34349_Gigabit_ethernet_switch\crossbar.vhd
 8C:\Users\meier\Desktop\FPGA_GIGABIT\FPGA_34349_Gigabit_ethernet_switch\crossbar.vhd
+Z22 dC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch
 Ecrossbar_tb
-Z19 w1777454566
+Z23 w1777454624
 R8
 R9
 R10
-!i122 63
-R11
-Z20 8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
-Z21 FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
-Z20 w1777454624
-Z21 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-R8
-Z22 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-R1
+R0
 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
 l0
 L5
 V^<YGj@cBAdLVJClQZ1oQ53
 !s100 PnM<R?KQ=47njhSU6<V_f2
-R12
+R11
 32
-R13
-Z23 OV;C;10.5b;63
-32
-!s110 1777455004
+!s110 1777462433
 !i10b 1
-R14
-Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
-Z23 !s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
-!s108 1777455004.000000
-!s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
+!s108 1777462433.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
 !i113 1
-R15
+R14
 R2
 Atb
-R4
+R15
 R6
 R7
+R18
 R16
-R8
 R9
-R10
-DEx4 work 11 crossbar_tb 0 22 ^<YGj@cBAdLVJClQZ1oQ53
-DEx4 work 11 crossbar_tb 0 22 ^<YGj@cBAdLVJClQZ1oQ53
+R17
+Z24 DEx4 work 11 crossbar_tb 0 22 ^<YGj@cBAdLVJClQZ1oQ53
+R24
 !i122 42
 l109
-L8 168
-VV@DMml:4g>I3g?RWL6jTW2
-!s100 ^_2:mR5Ag0Em6A;j3Xe790
-R12
-L8 168
-VV@DMml:4g>I3g?RWL6jTW2
-!s100 ^_2:mR5Ag0Em6A;j3Xe790
-R13
+Z25 L8 168
+Z26 VV@DMml:4g>I3g?RWL6jTW2
+Z27 !s100 ^_2:mR5Ag0Em6A;j3Xe790
+R19
+R25
+R26
+R27
+!s110 1777455348
 32
-R17
+R20
 !i10b 1
-R18
-R22
-R23
-R15
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
-!s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
+R21
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
+Z29 !s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd|
+R14
+R28
+R29
 !i113 1
-R15
+R14
 R2
-R10
+R17
+R22
 FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
 8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar_tb.vhd
 Ecrossbarfifo
-Z24 w1774446210
+Z30 w1775651443
 R9
 R10
-!i122 60
-R11
-Z25 8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
-Z26 FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
-Z24 w1775651443
-R8
-R22
-R1
-Z25 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
-Z26 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+R0
+Z31 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
+Z32 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd
 l0
 L43
 VHcYj<WAEzCEY93CRXObQW1
 !s100 Aamk:F7NOH;n?Nc0zDQ[N3
-R12
-R23
+R11
 32
-Z27 !s110 1777455347
-Z27 !s110 1777455003
+R12
 !i10b 1
-Z28 !s108 1777455347.000000
-Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
-Z30 !s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
-Z28 !s108 1777455003.000000
-Z29 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
-Z30 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
+R13
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
+Z34 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/crossbarfifo.vhd|
 !i113 1
-R15
+R14
 R2
 Asyn
 R9
 R10
-R8
-R22
 DEx4 work 12 crossbarfifo 0 22 HcYj<WAEzCEY93CRXObQW1
-!i122 60
 l94
 L59
 V32ooiaC@f[8i=zhkM`dX@0
 !s100 SlWYZW9@K]G68`SKk4W_z0
+R11
+32
 R12
-32
-R27
-R23
-32
-R27
 !i10b 1
-R28
-R29
-R30
+R13
+R33
+R34
 !i113 1
-R18
+R14
 R2
 Efcs_check_parallel
-Z31 w1777453859
-R5
+Z35 w1777453859
 R6
-R21
+R7
 R8
-R22
-R1
-Z32 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd
-Z33 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd
+R9
+R10
+R0
+Z36 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd
+Z37 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd
 l0
 L7
 VTem]E:I^RN8Me1>O>@?VZ3
 !s100 `a]Uk9A:z@YfX^LFkZkZN1
-R23
+R11
 32
-R27
+R12
 !i10b 1
-R28
-Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd|
-Z35 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd|
+R13
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd|
+Z39 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/FCS_1.vhd|
 !i113 1
-R18
+R14
 R2
 Astruc
-R5
 R6
-R21
+R7
 R8
-R22
+R9
+R10
 DEx4 work 18 fcs_check_parallel 0 22 Tem]E:I^RN8Me1>O>@?VZ3
 l28
 L18
 VPnWfG_cISDVJ;@aQJ0<k@3
 !s100 U8alc^?i3mQ]b8FPzZLOg1
-R23
+R11
 32
-R27
+R12
 !i10b 1
-R28
-R29
-R30
-R28
-R34
-R35
+R13
+R38
+R39
 !i113 1
-R15
+R14
 R2
 Pglobal_var
 R6
@@ -255,227 +221,178 @@ R7
 R8
 R9
 R10
-!i122 61
-w1777455177
-R11
-8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/global.vhd
-FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/global.vhd
-R5
-R6
-R21
-R8
-R22
-w1775651481
-R1
-8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd
-FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd
+Z40 w1777462423
+R0
+Z41 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd
+Z42 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd
 l0
-L8 1
-VL<RTQf4We`5]4ZG8KI91J0
-!s100 G:MbV1_[kOYUca3P]TU5=1
-R12
-32
-R13
 L8
-ViCI_L2P?ki7H4_WOI5CfC3
-!s100 6YIzZDdEOzOT>M^>_]:L]2
-R23
+VCJnG947BGoNgWa?1S?2J:0
+!s100 Xdz=a9nH2P5Q29Li1[JPZ3
+R11
 32
-R27
+b1
+R12
 !i10b 1
-R28
-!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
-!s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
-R28
-!s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
-!s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
+R13
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
+Z44 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/global.vhd|
 !i113 1
-R15
+R14
 R2
-Emac_learning
-Z31 w1777454369
-Z36 w1776855534
-Z37 DPx4 work 10 global_var 0 22 iCI_L2P?ki7H4_WOI5CfC3
+Bbody
 R5
 R6
 R7
-R21
 R8
 R9
 R10
-!i122 59
-R11
-Z32 8C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
-Z33 FC:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
-R22
-R1
-Z38 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
-Z39 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
 l0
-L10 1
-V>h=f`79NTQmKB5:TeIhiN0
-!s100 4C:TOPkblHgiC;E6Q[4]I3
+L25
+VClU;XdKD?O61mZHh5[VEK0
+!s100 [3zf4HXHb7fP2b5M2ohTI0
+R11
+32
 R12
+!i10b 1
+R13
+R43
+R44
+!i113 1
+R14
+R2
+Emac_learning
+Z45 w1777460852
+R5
+R6
+R7
+R8
+R9
+R10
+R0
+Z46 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
+Z47 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd
+l0
 L10
 V>h=f`79NTQmKB5:TeIhiN0
 !s100 4C:TOPkblHgiC;E6Q[4]I3
-R23
+R11
 32
-R27
-Z40 !s110 1777455002
+R12
 !i10b 1
-R28
-Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
-Z35 !s107 C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
-Z41 !s108 1777455002.000000
-Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
-Z43 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
+R13
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
+Z49 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning.vhd|
 !i113 1
-R15
+R14
 R2
 Astruc
-R37
 R5
 R6
 R7
-R21
 R8
 R9
 R10
 DEx4 work 12 mac_learning 0 22 >h=f`79NTQmKB5:TeIhiN0
-!i122 59
-l48
-L24 142
-VBaBZj1DbGGUR3=m9>PXd91
-!s100 G>TQloVP_[]>oNPE>@fO]1
-R12
-R22
-DEx4 work 12 mac_learning 0 22 >h=f`79NTQmKB5:TeIhiN0
 l48
 L24
-VBaBZj1DbGGUR3=m9>PXd91
-!s100 G>TQloVP_[]>oNPE>@fO]1
-R23
+VkKe^IUA]o_AD>Jc^hJVla3
+!s100 2=NW?T_mDb=4zADB6oP0K1
+R11
 32
-R27
-R40
+R12
 !i10b 1
-R28
-R34
-R35
-R41
-R42
-R43
+R13
+R48
+R49
 !i113 1
-R15
+R14
 R2
 Emac_learning_mem
-Z36 w1774442594
-Z37 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+R30
+R4
 R9
-Z38 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R10
 R0
-Z39 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
-Z40 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
-R24
-Z44 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
-R8
-R22
-R1
-Z45 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
-Z46 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
+Z50 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
+Z51 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd
 l0
 L43
 VVU]V:XoWGS2HYJU`H^IUC0
 !s100 HVfd0QDm7CW6BZ>2J9gED1
-Z41 OV;C;10.5b;63
-R23
+R11
 32
-Z42 !s110 1774451505
-R27
+R12
 !i10b 1
-Z43 !s108 1774451505.000000
-Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
-Z45 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
-R28
-Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
-Z48 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
+R13
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
+Z53 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/mac_learning_mem.vhd|
 !i113 1
-R15
+R14
 R2
 Asyn
-R37
+R4
 R9
-R38
-R44
-R8
-R22
+R10
 DEx4 work 16 mac_learning_mem 0 22 VU]V:XoWGS2HYJU`H^IUC0
 l59
 L55
 V@FeA1]_9hJGSCGI7eV20I0
 !s100 ]4hBB=NTViNjY32lkNzB?2
-R41
+R11
 32
-R42
-R23
-32
-R27
+R12
 !i10b 1
-R28
-R47
-R48
+R13
+R52
+R53
 !i113 1
-R18
+R14
 R2
 Etest_mac_learning
-Z49 w1776258458
-R37
+Z54 w1776258458
 R5
 R6
-R21
+R7
 R8
-R22
-R1
-Z50 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd
-Z51 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd
+R9
+R10
+R0
+Z55 8C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd
+Z56 FC:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd
 l0
 L9
 V?O?19HhIa6:gjCS4hA6l:0
 !s100 I5CXz>S^SOQIX72=T5ehW1
-R23
+R11
 32
-R40
+R12
 !i10b 1
-R41
-Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd|
-Z53 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd|
+R13
+Z57 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd|
+Z58 !s107 C:/Users/carlv/FPGA_course/FPGA_34349_Gigabit_ethernet_switch/MAC_learning_tb.vhd|
 !i113 1
-R18
+R14
 R2
 Aonly
-R37
 R5
 R6
-R21
+R7
 R8
-R22
+R9
+R10
 DEx4 work 17 test_mac_learning 0 22 ?O?19HhIa6:gjCS4hA6l:0
 l38
 L17
 V^1]_:NCk=2LV<PGOoRoJd1
 !s100 `Fi;oGa?GVVec0gI9N_Pn1
-R23
+R11
 32
-R40
+R12
 !i10b 1
-R43
-R44
-R45
-R41
-R52
-R53
+R13
+R57
+R58
 !i113 1
-R15
+R14
 R2
-R1

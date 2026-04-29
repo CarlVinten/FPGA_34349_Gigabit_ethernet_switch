@@ -130,7 +130,7 @@ BEGIN
 			if(process_mac = '1') then
 				case mac_check_state is
 					when 0 =>
-						address <= d_mac(port_to_check)(12 downto 0);
+						address <= hash_mac_addr(d_mac(port_to_check));
 						mac_check_state <= 1;
 
 					when 1 =>
@@ -143,7 +143,7 @@ BEGIN
 						if(output_ready(port_to_check) = '1') then
 							mac_check_state <= 2;
 						end if;
-						
+
 					when 2 =>
 						output_valid(port_to_check) <= '0';
 						m_wren <= '1';
