@@ -26,7 +26,7 @@ package body global_var is
 function hash_mac_addr(
 		mac_addr_in : std_logic_vector(MAC_ADDR_LEN - 1 downto 0))
 		return std_logic_vector is
-		variable mac_hash : std_logic_vector(12 downto 0);
+		variable mac_hash : std_logic_vector(12 downto 0) := "0000000000000";
 	begin
 		mac_hash(0)  := mac_addr_in(0) xor mac_addr_in(13) xor mac_addr_in(26) xor mac_addr_in(39);
 		mac_hash(1)  := mac_addr_in(1) xor mac_addr_in(14) xor mac_addr_in(27) xor mac_addr_in(40);
