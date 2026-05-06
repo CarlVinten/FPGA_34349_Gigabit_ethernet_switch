@@ -24,6 +24,7 @@ add wave -hex /test/s_clk
 add wave -hex /test/s_rst
 add wave -hex /test/u_data_in
 add wave -hex /test/u_valid
+#add wave -hex /test/s_data_to_fcs
 
 # --- The Bridge (The Connection) ---
 add wave -noupdate -divider "THE BRIDGE"

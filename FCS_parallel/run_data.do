@@ -1,51 +1,45 @@
-# 1. Prepare the environment
-# Stop any active simulation
-quit -sim
-
-# Create and map the work library
+# 1. Clean up the environment
+if [file exists work] {
+    vdel -all -lib work
+}
 vlib work
 vmap work work
 
-# 2. Compile VHDL files
-# Adjust the filenames if they are different on your computer
+# 2. Compile the source files
+# Order matters: compile the components first, then the top-level testbench
 vcom -reportprogress 300 -work work fcs_check_parallel.vhd
 vcom -reportprogress 300 -work work data_input.vhd
 vcom -reportprogress 300 -work work tb_data_input.vhd
 
 # 3. Load the simulation
-# "work.test" refers to your ENTITY test. 
-# -voptargs="+acc" ensures internal signals are visible in the wave window.
+# Use -voptargs="+acc" to ensure internal signals/registers are visible
 vsim -voptargs="+acc" work.test
 
-# 4. Add Waves
-# --- Top Level Testbench Signals ---
-add wave -noupdate -divider "TESTBENCH (STIMULUS)"
+# 4. Configure the Wave window
+# Organize with dividers for better readability
+add wave -noupdate -divider "TB STIMULUS"
 add wave -hex /test/s_clk
 add wave -hex /test/s_rst
 add wave -hex /test/u_data_in
 add wave -hex /test/u_valid
-add wave -hex /test/s_data_to_fcs
 
-# --- The Bridge (The Connection) ---
-add wave -noupdate -divider "THE BRIDGE"
+add wave -noupdate -divider "THE BRIDGE (Parser -> Checker)"
 add wave -hex /test/f_fcs_data_bridge
-add wave -hex /test/f_start_of_frame
-add wave -color "Cyan" -hex /test/s_is_data_valid
+add wave -hex /test/f_sof_bridge
+add wave -color "Yellow" -hex /test/s_is_data_valid
 
-# --- Internal Parser (data_input) ---
-add wave -noupdate -divider "INTERNAL PARSER"
+add wave -noupdate -divider "PARSER INTERNAL"
 add wave -hex /test/u_parser/state
 add wave -hex /test/u_parser/preamble_cnt
 add wave -hex /test/u_parser/data_cnt
 
-# --- Internal Checker (fcs_check_parallel) ---
-# Check if your internal signal is named sum_reg
-add wave -noupdate -divider "INTERNAL CHECKER"
+add wave -noupdate -divider "CHECKER INTERNAL"
 add wave -hex /test/u_checker/sum_reg
+add wave -hex /test/u_checker/data_temp
 
-# 5. Run simulation
-# Based on your 8ns clock, 1000ns should show several packets
-run 1000 ns
+# 5. Run the simulation
+# 1200 ns should be enough to see the preamble, data, and final result
+run 1200 ns
 
-# 6. Zoom to see the full picture
+# 6. View full results
 wave zoom full

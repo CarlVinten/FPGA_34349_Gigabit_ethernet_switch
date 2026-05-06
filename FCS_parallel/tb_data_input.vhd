@@ -33,6 +33,7 @@ ARCHITECTURE simData OF test IS
             data_valid : IN STD_LOGIC;
 
             -- outputs
+            sof : OUT STD_LOGIC;
             data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
             data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
             data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -46,6 +47,7 @@ ARCHITECTURE simData OF test IS
     -- general signals
     SIGNAL s_clk : STD_LOGIC := '0';
     SIGNAL s_rst : STD_LOGIC := '1';
+
     -- SIGNALS for data input
     SIGNAL u_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
     SIGNAL u_valid : STD_LOGIC := '0';
@@ -54,9 +56,11 @@ ARCHITECTURE simData OF test IS
     -- signals connecting fcs and data input
     SIGNAL f_start_of_frame : STD_LOGIC := '0';
     SIGNAL f_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL f_sof_bridge : STD_LOGIC := '0';
     -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
     -- signals out of fcs check parallel (NOT USED)
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
+
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     -- Change this to test different packet lengths (or make it empty)
@@ -95,10 +99,12 @@ BEGIN
             rst => s_rst,
             data_in => u_data_in,
             data_valid => u_valid,
+            sof => f_sof_bridge,
             data_to_switch_core_fifo => OPEN,
             data_to_mac_fifo => OPEN,
             data_to_ethertype => OPEN,
             data_to_fcs => f_fcs_data_bridge
+
         );
 
         u_checker : COMPONENT fcs_check_parallel
@@ -108,7 +114,7 @@ BEGIN
                 data_in => f_fcs_data_bridge,
                 valid => u_valid,
                 is_data_valid => s_is_data_valid,
-                start_of_frame => f_start_of_frame
+                start_of_frame => f_sof_bridge
                 -- end_of_frame => f_end_of_frame
             );
 
@@ -132,7 +138,7 @@ BEGIN
 
                 u_data_in <= (OTHERS => '0');
                 u_valid <= '0';
-                f_start_of_frame <= '0';
+                -- f_sof_bridge <= '0';
                 -- s_end_of_frame <= '0';
 
                 WAIT FOR 15 ns;
@@ -148,7 +154,7 @@ BEGIN
                         u_data_in <= TEST_PACKET(i);
 
                         WAIT UNTIL rising_edge(s_clk);
-                        f_start_of_frame <= '0';
+                        -- f_sof_bridge <= '0';
                     END LOOP;
                 END IF;
                 -- -- END IF;

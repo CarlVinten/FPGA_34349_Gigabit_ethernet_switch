@@ -14,39 +14,40 @@ ENTITY data_input IS
         data_valid : IN STD_LOGIC;
 
         -- outputs
+
+        -- outputs to fcs check parallel
+        sof : OUT STD_LOGIC;
+        data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+        -- outputs to switch core fifo, mac fifo, and ethertype
         data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
         data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-        data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-        data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+        data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 
-    -- data_to_valid_fifo : out  std_logic;
-
-    --    data_ready : out  std_logic);
 END data_input;
 
 ARCHITECTURE Behavioral OF data_input IS
-    -- change depending on how many states
+
+    -- states
     TYPE state_type IS (state_idle, state_preamble, state_data);
     SIGNAL state : state_type := state_idle;
 
-    -- signal data_to_fifo_reg : std_logic_vector(8 downto 0) := (others => '0');
+    -- internal counters
     SIGNAL preamble_cnt : INTEGER RANGE 0 TO 7 := 0;
     SIGNAL data_cnt : INTEGER RANGE 0 TO 1514 := 0;
-
     SIGNAL mac_addr_cnt : INTEGER RANGE 0 TO 12 := 0;
     SIGNAL ethertype_cnt : INTEGER RANGE 0 TO 2 := 0;
-    SIGNAL start_of_frame : STD_LOGIC := '0';
+    --SIGNAL start_of_frame : STD_LOGIC := '0';
 
-    -- signal state_idle : std_logic := '1';
-    -- signal state_preamble : std_logic_vector(3 downto 0) := (others => '0');
-
+    -- fcs signals
     SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL s_data_valid : STD_LOGIC;
     SIGNAL s_start_of_frame : STD_LOGIC;
 
-    SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0);
-    SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+    SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0); -- not used
+    SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
+    SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
 
     COMPONENT fcs_check_parallel
         PORT (
@@ -69,14 +70,17 @@ BEGIN
     PORT MAP(
         clk => clk,
         rst => rst,
-        data_in => s_data_to_fcs, -- Hooking up the internal signal
-        valid => data_valid,
+        data_in => s_data_to_fcs,
+        valid => s_data_valid,
         start_of_frame => s_start_of_frame,
         --end_of_frame => s_end_of_frame,
         is_data_valid => OPEN -- Or map to a signal if you need the result
-    ); 
+    );
 
     -- data_to_fcs <= s_data_to_fcs; 
+
+    sof <= s_start_of_frame;
+    data_to_fcs <= s_data_to_fcs;
 
     PROCESS (clk, rst)
     BEGIN
@@ -91,7 +95,13 @@ BEGIN
 
             CASE state IS
                 WHEN state_idle =>
-
+                    s_start_of_frame <= '0';
+                    s_data_to_fcs <= (OTHERS => '0');
+                    preamble_cnt <= 0;
+                    data_cnt <= 0;
+                    mac_addr_cnt <= 0;
+                    ethertype_cnt <= 0;
+ 
                     IF data_valid = '1' THEN
                         IF data_in = x"AA" THEN
                             preamble_cnt <= preamble_cnt + 1;
@@ -106,21 +116,23 @@ BEGIN
                         preamble_cnt <= preamble_cnt + 1;
                     END IF;
 
-                    IF preamble_cnt = 7 and data_in =x"AB" THEN
+                    IF preamble_cnt = 7 AND data_in = x"AB" THEN
                         state <= state_data;
+                        s_start_of_frame <= '1';
                     ELSIF data_valid = '0' THEN
                         state <= state_idle;
                     END IF;
 
-                -- WHEN state_SOF =>
-                --     IF data_in = x"AB" AND data_valid = '1' THEN
-                --         state <= state_data;
-                --     ELSIF data_valid = '0' THEN
-                --         state <= state_idle;
-                --     END IF;
+                    -- WHEN state_SOF =>
+                    --     IF data_in = x"AB" AND data_valid = '1' THEN
+                    --         state <= state_data;
+                    --     ELSIF data_valid = '0' THEN
+                    --         state <= state_idle;
+                    --     END IF;
 
                 WHEN state_data =>
 
+                    data_to_fcs <= data_in; -- Hooking up the internal signal to the output
                     s_data_to_fcs <= data_in;
                     data_cnt <= data_cnt + 1;
 
