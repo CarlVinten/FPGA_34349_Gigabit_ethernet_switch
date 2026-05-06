@@ -3,6 +3,8 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE std.textio.ALL;
+
+
 ENTITY test IS
 END;
 
@@ -28,15 +30,27 @@ ARCHITECTURE simData OF test IS
 
     END COMPONENT;
 
-    -- SIGNALS 
+    -- general signals
     SIGNAL s_clk : STD_LOGIC := '0';
     SIGNAL s_rst : STD_LOGIC := '1';
+
+
+    -- SIGNALS for data input
     SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
     SIGNAL s_valid : STD_LOGIC := '0';
-    SIGNAL s_is_data_valid : STD_LOGIC := '0';
+    
+    
+    -- signals for fcs check parallel
+    
+    -- signals connecting fcs and data input
     SIGNAL s_start_of_frame : STD_LOGIC := '1';
-
+    signal s_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
     -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
+
+
+    -- signals out of fcs check parallel (NOT USED)
+    SIGNAL s_is_data_valid : STD_LOGIC := '0';
+
 
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
