@@ -1,0 +1,92 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE std.textio.ALL;
+
+ENTITY test IS
+END;
+
+ARCHITECTURE only2 OF test IS
+
+    COMPONENT fcs_check_parallel_old IS
+        PORT (
+            clk : IN STD_LOGIC; -- system clock
+            reset : IN STD_LOGIC; -- asynchronous reset
+            start_of_frame : IN STD_LOGIC; -- arrival of the first bit .
+            end_of_frame : IN STD_LOGIC; -- arrival of the first bit in FCS .
+            data_in : IN STD_LOGIC_VECTOR (7 DOWNTO 0); -- serial input data .
+            fcs_error : OUT STD_LOGIC -- indicates an error .
+        );
+    END COMPONENT;
+
+    SIGNAL clk : STD_LOGIC := '0';
+    SIGNAL reset : STD_LOGIC := '0';
+    SIGNAL start_of_frame : STD_LOGIC := '0';
+    SIGNAL end_of_frame : STD_LOGIC := '0';
+    SIGNAL data_in : STD_LOGIC_VECTOR (7 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL fcs_error : STD_LOGIC;
+    SIGNAL idx : INTEGER := 512;
+    SIGNAL packet : STD_LOGIC_VECTOR (511 DOWNTO 0);
+    -- SIGNAL packet : STD_LOGIC_VECTOR (31 DOWNTO 0) ;
+
+BEGIN
+    packet <= X"00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2";
+
+    dut : COMPONENT fcs_check_parallel
+        PORT MAP(
+            clk => clk,
+            reset => reset,
+            start_of_frame => start_of_frame,
+            end_of_frame => end_of_frame,
+            data_in => data_in,
+            fcs_error => fcs_error
+        );
+
+        clock : PROCESS
+        BEGIN
+            clk <= '0';
+            WAIT FOR 3 ns;
+            clk <= '1';
+            WAIT FOR 3 ns;
+        END PROCESS clock;
+
+        reset_process : PROCESS
+        BEGIN
+            reset <= '1';
+            WAIT FOR 10 ns;
+            reset <= '0';
+            WAIT;
+        END PROCESS reset_process;
+
+        stimulus : PROCESS (clk, reset)
+        BEGIN
+
+            IF (reset = '1') THEN
+                idx <= 511;
+                start_of_frame <= '0';
+                end_of_frame <= '0';
+                -- data_in <= '0 ';
+            ELSIF rising_edge (clk) THEN
+                IF (idx >= 0) THEN
+                    data_in <= packet (idx DOWNTO idx - 7);
+                ELSE
+                    start_of_frame <= '0';
+                    end_of_frame <= '0';
+                    data_in <= (OTHERS => '0');
+
+                END IF;
+
+                IF (idx = 511) THEN
+                    start_of_frame <= '1';
+                ELSIF (idx = 31) THEN
+                    end_of_frame <= '1';
+                ELSE
+                    start_of_frame <= '0';
+                    end_of_frame <= '0';
+                END IF;
+                idx <= idx - 8;
+            END IF;
+
+        END PROCESS stimulus;
+
+END only2;

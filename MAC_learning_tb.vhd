@@ -49,15 +49,15 @@ begin
 			output_ready => tb_output_ready
 		);
 
-	tb_dmac(0) <= x"FFFFFFEEEEEE";
-	tb_dmac(1) <= x"DDDDDDCCCCCC";
-	tb_dmac(2) <= x"BBBBBBAAAAAA";
-	tb_dmac(3) <= x"999999888888";
+	tb_dmac(0) <= x"FF";
+	tb_dmac(1) <= x"DD";
+	tb_dmac(2) <= x"BB";
+	tb_dmac(3) <= x"99";
 
-	tb_smac(0) <= x"777777666666";
-	tb_smac(1) <= x"555555444444";
-	tb_smac(2) <= x"333333222222";
-	tb_smac(3) <= x"111111000000";
+	tb_smac(0) <= x"77";
+	tb_smac(1) <= x"55";
+	tb_smac(2) <= x"33";
+	tb_smac(3) <= x"11";
 clock : PROCESS
    begin
    wait for 3 ns; clk  <= not clk;

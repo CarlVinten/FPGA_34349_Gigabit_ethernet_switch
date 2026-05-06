@@ -1,104 +1,163 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+LIBRARY IEEE;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE ieee.std_logic_unsigned.ALL;
+USE std.textio.ALL;
 
-entity tb_data_input is
-end entity;
 
-architecture sim of tb_data_input is
-    constant CLK_PERIOD : time := 8 ns;
+ENTITY test IS
+END;
 
-    signal clk : std_logic := '0';
-    signal rst : std_logic := '1';
+ARCHITECTURE simData OF test IS
 
-    signal data_in    : std_logic_vector(7 downto 0) := (others => '0');
-    signal data_valid : std_logic := '0';
+    COMPONENT data_input IS
+        PORT (
+            clk : IN STD_LOGIC;
+            rst : IN STD_LOGIC;
 
-    signal data_to_switch_core_fifo : std_logic_vector(8 downto 0);
-    signal data_to_mac_fifo         : std_logic_vector(7 downto 0);
-    signal data_to_ethertype        : std_logic_vector(7 downto 0);
-    signal data_to_fcs              : std_logic_vector(7 downto 0);
+            -- inputs 
+            data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            data_valid : IN STD_LOGIC;
 
-    function has_unknown(v : std_logic_vector) return boolean is
-    begin
-        for i in v'range loop
-            if v(i) /= '0' and v(i) /= '1' then
-                return true;
-            end if;
-        end loop;
-        return false;
-    end function;
+            -- outputs
+            data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+            data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+            data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+            data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 
-    procedure send_byte(
-        signal clk_s      : in std_logic;
-        signal din_s      : out std_logic_vector(7 downto 0);
-        signal dvalid_s   : out std_logic;
-        constant byte_val : in std_logic_vector(7 downto 0);
-        constant valid_val: in std_logic
-    ) is
-    begin
-        din_s <= byte_val;
-        dvalid_s <= valid_val;
-        wait until rising_edge(clk_s);
-    end procedure;
+        -- data_to_valid_fifo : out  std_logic;
+        --    data_ready : out  std_logic);
 
-begin
-    clk <= not clk after CLK_PERIOD / 2;
+    END COMPONENT;
 
-    dut : entity work.data_input
-        port map (
-            clk => clk,
-            rst => rst,
-            data_in => data_in,
-            data_valid => data_valid,
-            data_to_switch_core_fifo => data_to_switch_core_fifo,
-            data_to_mac_fifo => data_to_mac_fifo,
-            data_to_ethertype => data_to_ethertype,
-            data_to_fcs => data_to_fcs
+    -- general signals
+    SIGNAL s_clk : STD_LOGIC := '0';
+    SIGNAL s_rst : STD_LOGIC := '1';
+
+
+    -- SIGNALS for data input
+    SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL s_valid : STD_LOGIC := '0';
+    
+    
+    -- signals for fcs check parallel
+    
+    -- signals connecting fcs and data input
+    SIGNAL s_start_of_frame : STD_LOGIC := '1';
+    signal s_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
+
+
+    -- signals out of fcs check parallel (NOT USED)
+    SIGNAL s_is_data_valid : STD_LOGIC := '0';
+
+
+    TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
+
+    -- Change this to test different packet lengths (or make it empty)
+    CONSTANT TEST_PACKET : byte_array := (
+        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
+
+        x"AB", -- Start of Frame Delimiter
+
+        -- Destination & Source MAC Addresses
+        x"00", x"10", x"A4", x"7B", x"EA", x"80",
+        x"00", x"12", x"34", x"56", x"78", x"90",
+        -- Type/Length (IPv4)
+        x"08", x"00",
+        -- IP Header
+        x"45", x"00", x"00", x"2E", x"B3", x"FE", x"00", x"00",
+        x"80", x"11", x"05", x"40", x"C0", x"A8", x"00", x"2C",
+        x"C0", x"A8", x"00", x"04",
+        -- UDP Header
+        x"04", x"00", x"04", x"00", x"00", x"1A", x"2D", x"E8",
+        -- Payload Data
+        x"00", x"01", x"02", x"03", x"04", x"05", x"06", x"07",
+        x"08", x"09", x"0A", x"0B", x"0C", x"0D", x"0E", x"0F",
+        x"10", x"11",
+        -- Valid FCS Checksum 
+        x"E6", x"C5", x"3D", x"B2"
+    );
+
+BEGIN
+
+    u_checker : COMPONENT data_input
+        PORT MAP(
+            clk => s_clk,
+            rst => s_rst,
+            data_in => s_data_in,
+            data_valid => s_valid,
+            data_to_switch_core_fifo => OPEN,
+            data_to_mac_fifo => OPEN,
+            data_to_ethertype => OPEN,
+            data_to_fcs => OPEN
         );
 
-    stim : process
-    begin
-        -- Reset
-        rst <= '1';
-        data_valid <= '0';
-        data_in <= (others => '0');
-        wait for 4 * CLK_PERIOD;
-        wait until rising_edge(clk);
-        rst <= '0';
+        u_parser : COMPONENT fcs_check_parallel
+            PORT MAP(
+                clk => s_clk,
+                rst => s_rst,
+                data_in => s_data_in,
+                valid => s_valid,
+                is_data_valid => s_is_data_valid,
+                start_of_frame => s_start_of_frame,
+                end_of_frame => s_end_of_frame
+            );
 
-        -- Idle cycles
-        send_byte(clk, data_in, data_valid, x"00", '0');
-        send_byte(clk, data_in, data_valid, x"00", '0');
+            clock_process : PROCESS
+            BEGIN
+                s_clk <= '0';
+                WAIT FOR 4 ns;
+                s_clk <= '1';
+                WAIT FOR 4 ns;
+            END PROCESS;
 
-        -- Preamble + SOF + a short payload
-        for i in 0 to 7 loop
-            send_byte(clk, data_in, data_valid, x"AA", '1');
-        end loop;
-        send_byte(clk, data_in, data_valid, x"AB", '1');
+            rst_on_start : PROCESS
+            BEGIN
+                s_rst <= '1';
+                WAIT FOR 10 ns;
+                s_rst <= '0';
+                WAIT;
+            END PROCESS;
 
-        for i in 0 to 31 loop
-            send_byte(clk, data_in, data_valid, std_logic_vector(to_unsigned(i, 8)), '1');
-        end loop;
+            --  valid_signal : PROCESS
+            --BEGIN
 
-        -- End of frame indication via data_valid low
-        send_byte(clk, data_in, data_valid, x"00", '0');
-        send_byte(clk, data_in, data_valid, x"00", '0');
+            --END PROCESS;
 
-        wait for 10 * CLK_PERIOD;
+            stimulus_process : PROCESS
+            BEGIN
 
-        -- Smoke checks: outputs should not remain unknown forever
-        assert not has_unknown(data_to_switch_core_fifo)
-            report "data_to_switch_core_fifo contains unknown values" severity warning;
-        assert not has_unknown(data_to_mac_fifo)
-            report "data_to_mac_fifo contains unknown values" severity warning;
-        assert not has_unknown(data_to_ethertype)
-            report "data_to_ethertype contains unknown values" severity warning;
-        assert not has_unknown(data_to_fcs)
-            report "data_to_fcs contains unknown values" severity warning;
+                s_data_in <= (OTHERS => '0');
+                s_valid <= '0';
+                s_start_of_frame <= '0';
+                s_end_of_frame <= '0';
 
-        assert false report "tb_data_input completed" severity note;
-        wait;
-    end process;
+                WAIT FOR 15 ns;
 
-end architecture;
+                WAIT UNTIL rising_edge(s_clk);
+
+                WAIT FOR 1 ns;
+
+                s_start_of_frame <= '1';
+
+                -- IF s_start_of_frame = '1' THEN
+                IF TEST_PACKET'LENGTH > 0 OR s_start_of_frame = '1' THEN
+                    FOR i IN test_packet'RANGE LOOP
+                        s_valid <= '1';
+                        s_data_in <= TEST_PACKET(i);
+
+                        WAIT UNTIL rising_edge(s_clk);
+                        s_start_of_frame <= '0';
+                    END LOOP;
+                END IF;
+                -- END IF;
+
+                s_end_of_frame <= '1';
+                s_valid <= '0'; -- single data
+                s_data_in <= (OTHERS => '0');
+
+                WAIT FOR 100 ns;
+            END PROCESS;
+
+        END sim;

@@ -8,44 +8,44 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel
+d/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel
 Edata_input
-Z1 w1776260945
-Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
-Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
-Z4 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
-Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z6 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 73
-R0
-Z7 8/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
-Z8 F/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
+Z0 w1778062525
+Z1 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z3 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 413
+Z6 d/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel
+Z7 8/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
+Z8 F/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd
 l0
 L7 1
-V=0De;`oD3G3O@1@`=jKOZ0
-!s100 `h>5Rek;_:5[MUbJiOaRJ2
+VSGHjKA?OegWlN1X4?B@^O3
+!s100 F=IR6Qh=9<28E>cRWcc^K0
 Z9 OV;C;2020.1;71
 32
-Z10 !s110 1777450668
+Z10 !s110 1778065505
 !i10b 1
-Z11 !s108 1777450668.000000
-Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
-Z13 !s107 /home/liou/FPGA/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
+Z11 !s108 1778065505.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
+Z13 !s107 /home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/data_input.vhd|
 !i113 1
 Z14 o-work work -2002 -explicit
 Z15 tExplicit 1 CvgOpt 0
 Abehavioral
+R1
 R2
 R3
 R4
 R5
-R6
-DEx4 work 10 data_input 0 22 =0De;`oD3G3O@1@`=jKOZ0
-!i122 73
-l39
-L22 81
-V`h>M@Z7L:fUjVQkVNKI_]1
-!s100 >j2?0@0^D^eGD;F=Hcgm@0
+DEx4 work 10 data_input 0 22 SGHjKA?OegWlN1X4?B@^O3
+!i122 413
+l67
+L27 121
+V<G=]kSDTTQh_W]XSN`^5a3
+!s100 A@8=9o^WSEzd>4T:n3AAJ2
 R9
 32
 R10
@@ -57,92 +57,92 @@ R13
 R14
 R15
 Efcs_check_parallel
-Z16 w1777450599
+Z16 w1778062471
+R3
 R4
 R5
+!i122 414
 R6
-!i122 76
-R0
-Z17 8fcs_check_parallel.vhd
-Z18 Ffcs_check_parallel.vhd
+Z17 8/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
+Z18 F/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd
 l0
 L6 1
-VoN42W?IRD[7fHd3ABMbRF3
-!s100 TXebZdmHC_YUJ7zbZbLJU3
+V1KD5nW;l4LDdH>eQX`Y^<3
+!s100 B6?Q6lW:]lUkl6XDVPS9T3
 R9
 32
-Z19 !s110 1777450671
+R10
 !i10b 1
-Z20 !s108 1777450670.000000
-Z21 !s90 -reportprogress|300|-work|work|fcs_check_parallel.vhd|
-Z22 !s107 fcs_check_parallel.vhd|
+R11
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
+Z20 !s107 /home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/fcs_check_parallel.vhd|
 !i113 1
-Z23 o-work work
+R14
 R15
 Astruc
+R3
 R4
 R5
-R6
-DEx4 work 18 fcs_check_parallel 0 22 oN42W?IRD[7fHd3ABMbRF3
-!i122 76
-l35
-L20 99
-V>IQBA4b3_hB>SHlALeB5P1
-!s100 nQ]KiKJhEn4X<halb0kn21
+DEx4 work 18 fcs_check_parallel 0 22 1KD5nW;l4LDdH>eQX`Y^<3
+!i122 414
+l27
+L21 84
+VIIeBm`KZ;IlEUl21ok^O23
+!s100 k>N?;95<A4oM28dPH0e@k1
 R9
 32
-R19
+R10
 !i10b 1
+R11
+R19
 R20
-R21
-R22
 !i113 1
-R23
+R14
 R15
 Etest
-Z24 w1777450665
+Z21 w1778059749
+R1
 R2
 R3
 R4
 R5
+!i122 415
 R6
-!i122 77
-R0
-Z25 8tb_fcs_check_parallel.vhd
-Z26 Ftb_fcs_check_parallel.vhd
+Z22 8/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
+Z23 F/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd
 l0
 L6 1
-V;]HMhjf;:8X2E8zR24]]]3
+ViVNZB]7DOK<oMk7o1K@c?0
 !s100 nz[WMOeKO==abB2`gYa>S2
 R9
 32
-R19
+Z24 !s110 1778065506
 !i10b 1
-Z27 !s108 1777450671.000000
-Z28 !s90 -reportprogress|300|-work|work|tb_fcs_check_parallel.vhd|
-!s107 tb_fcs_check_parallel.vhd|
+R11
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
+Z26 !s107 /home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel/tb_fcs_check_parallel.vhd|
 !i113 1
-R23
+R14
 R15
 Asim
+R1
 R2
 R3
 R4
 R5
-R6
-DEx4 work 4 test 0 22 ;]HMhjf;:8X2E8zR24]]]3
-!i122 77
-l62
-Z29 L9 117
-VJF=zOo6<PNRcR?2B><z:E1
-Z30 !s100 Hf8;maHohG;RWCJo13<PJ0
+Z27 DEx4 work 4 test 0 22 iVNZB]7DOK<oMk7o1K@c?0
+!i122 415
+l60
+Z28 L9 121
+Z29 VRPk_kIb7lnMjQ94fNW;RD0
+Z30 !s100 `B=Rl4G>LDQMUn54n@Z2]3
 R9
 32
-R19
+R24
 !i10b 1
-R27
-R28
-Z31 !s107 tb_fcs_check_parallel.vhd|
+R11
+R25
+R26
 !i113 1
-R23
+R14
 R15
