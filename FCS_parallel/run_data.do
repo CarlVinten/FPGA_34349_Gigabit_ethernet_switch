@@ -1,0 +1,51 @@
+# 1. Prepare the environment
+# Stop any active simulation
+quit -sim
+
+# Create and map the work library
+vlib work
+vmap work work
+
+# 2. Compile VHDL files
+# Adjust the filenames if they are different on your computer
+vcom -reportprogress 300 -work work fcs_check_parallel.vhd
+vcom -reportprogress 300 -work work data_input.vhd
+vcom -reportprogress 300 -work work tb_data_input.vhd
+
+# 3. Load the simulation
+# "work.test" refers to your ENTITY test. 
+# -voptargs="+acc" ensures internal signals are visible in the wave window.
+vsim -voptargs="+acc" work.test
+
+# 4. Add Waves
+# --- Top Level Testbench Signals ---
+add wave -noupdate -divider "TESTBENCH (STIMULUS)"
+add wave -hex /test/s_clk
+add wave -hex /test/s_rst
+add wave -hex /test/u_data_in
+add wave -hex /test/u_valid
+add wave -hex /test/s_data_to_fcs
+
+# --- The Bridge (The Connection) ---
+add wave -noupdate -divider "THE BRIDGE"
+add wave -hex /test/f_fcs_data_bridge
+add wave -hex /test/f_start_of_frame
+add wave -color "Cyan" -hex /test/s_is_data_valid
+
+# --- Internal Parser (data_input) ---
+add wave -noupdate -divider "INTERNAL PARSER"
+add wave -hex /test/u_parser/state
+add wave -hex /test/u_parser/preamble_cnt
+add wave -hex /test/u_parser/data_cnt
+
+# --- Internal Checker (fcs_check_parallel) ---
+# Check if your internal signal is named sum_reg
+add wave -noupdate -divider "INTERNAL CHECKER"
+add wave -hex /test/u_checker/sum_reg
+
+# 5. Run simulation
+# Based on your 8ns clock, 1000ns should show several packets
+run 1000 ns
+
+# 6. Zoom to see the full picture
+wave zoom full

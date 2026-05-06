@@ -17,7 +17,7 @@ ARCHITECTURE sim OF test IS
             valid : IN STD_LOGIC;
 
             start_of_frame : IN STD_LOGIC;
-            end_of_frame : IN STD_LOGIC;
+            -- end_of_frame : IN STD_LOGIC;
 
             is_data_valid : OUT STD_LOGIC
         );
@@ -37,6 +37,8 @@ ARCHITECTURE sim OF test IS
     -- Change this to test different packet lengths (or make it empty)
     CONSTANT TEST_PACKET : byte_array := (
         -- Destination & Source MAC Addresses
+        -- x"11", -- garbage -- !!!!!!!!!!!!!!!! kom tilbage for at spørge
+
         x"00", x"10", x"A4", x"7B", x"EA", x"80",
         x"00", x"12", x"34", x"56", x"78", x"90",
         -- Type/Length (IPv4)
@@ -66,8 +68,8 @@ BEGIN
             data_in => s_data_in,
             valid => s_valid,
             is_data_valid => s_is_data_valid,
-            start_of_frame => s_start_of_frame,
-            end_of_frame => s_end_of_frame
+            start_of_frame => s_start_of_frame
+            --end_of_frame => s_end_of_frame
         );
 
         clock_process : PROCESS
