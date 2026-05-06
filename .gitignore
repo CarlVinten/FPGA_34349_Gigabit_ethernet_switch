@@ -17,3 +17,4 @@ output_files/
 *.jdi
 *.pin
 *.qws
+*.vsim

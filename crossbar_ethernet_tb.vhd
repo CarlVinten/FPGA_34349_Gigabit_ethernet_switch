@@ -106,7 +106,7 @@ begin
 
     -- Main stimulus process
     -- This process feeds the ethernet frame into input port 0
-    -- and routes it to output port 1 (using dstport encoding: 0010 for port 1)
+    -- and routes it to output port 1 (using dstport encoding: 0001 for port 1)
     stimulus : process
         variable byte_idx : integer;
         variable is_eop   : std_logic;
@@ -118,18 +118,14 @@ begin
         wait for CLK_PERIOD;
         
         -- Send ethernet frame byte by byte
-        -- Input 0 -> Output 1 (dstport = "0010")
-        report "========================================";
-        report "Starting Ethernet Frame Transmission Test";
-        report "========================================";
-        report "Source: Input Port 0";
-        report "Destination: Output Port 1 (dstport code: 0010)";
+        -- Input 0 -> Output 1 (dstport = "0001")
+        report "Starting Ethernet frame transmission to crossbar...";
+        report "Source: Input 0, Destination: Output 1 (port code: 0001)";
         report "Frame size: " & integer'image(NUM_BYTES) & " bytes";
-        report "========================================";
         
         for byte_idx in 0 to NUM_BYTES - 1 loop
             -- Set the destination port for input 0 to output 1
-            dstport_in(0) <= "0010";  -- Route input 0 to output 1
+            dstport_in(0) <= "0001";  -- Route input 0 to output 1
             
             -- Set end-of-packet flag on last byte (bit 8 = 1)
             if byte_idx = NUM_BYTES - 1 then
@@ -151,8 +147,7 @@ begin
             
             -- Print progress every 8 bytes
             if (byte_idx + 1) mod 8 = 0 then
-                report "Transmitted " & integer'image(byte_idx + 1) & " bytes, " &
-                        "FIFO2 used: " & integer'image(to_integer(unsigned(debug_fifo2_usedw))) & " words";
+                report "Transmitted " & integer'image(byte_idx + 1) & " bytes";
             end if;
         end loop;
         
@@ -163,11 +158,9 @@ begin
         report "Transmission complete. Waiting for data to be read from output...";
         
         -- Wait for a reasonable amount of time for data to propagate through the crossbar
-        wait for 200 * CLK_PERIOD;
+        wait for 100 * CLK_PERIOD;
         
-        report "========================================";
-        report "Test completed successfully.";
-        report "========================================";
+        report "Test completed.";
         wait;
         
     end process stimulus;
@@ -178,9 +171,12 @@ begin
     begin
         if rising_edge(clk) then
             -- Check if there's valid data on output 1
-            if debug_fifo2_rdreq = '1' then
-                report "Output 1: Byte " & integer'image(byte_count) & 
-                        " received, EoP=" & std_logic'image(output1_data(8));
+            if output1_data(8) = '0' and output1_data(7 downto 0) /= x"00" then
+                report "Output 1: Received byte 0x" & to_hstring(output1_data(7 downto 0)) & 
+                        ", EoP=" & std_logic'image(output1_data(8)) & ", Byte #" & integer'image(byte_count);
+                byte_count := byte_count + 1;
+            elsif output1_data(8) = '1' then
+                report "Output 1: Received last byte (EoP) 0x" & to_hstring(output1_data(7 downto 0));
                 byte_count := byte_count + 1;
             end if;
         end if;
@@ -190,12 +186,8 @@ begin
     debug_monitor : process(clk)
     begin
         if rising_edge(clk) then
-            if debug_fifo2_wrreq = '1' and debug_fifo2_full = '0' then
+            if debug_fifo2_wrreq = '1' then
                 report "FIFO 2 Write: usedw=" & integer'image(to_integer(unsigned(debug_fifo2_usedw)));
-            end if;
-            
-            if debug_fifo2_full = '1' then
-                report "WARNING: FIFO 2 is full!";
             end if;
         end if;
     end process debug_monitor;
