@@ -31,6 +31,7 @@ ARCHITECTURE simData OF test IS
             -- inputs 
             data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             data_valid : IN STD_LOGIC;
+fcs_data_valid : out std_logic;
 
             -- outputs
             sof : OUT STD_LOGIC;
@@ -57,6 +58,7 @@ ARCHITECTURE simData OF test IS
     SIGNAL f_start_of_frame : STD_LOGIC := '0';
     SIGNAL f_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL f_sof_bridge : STD_LOGIC := '0';
+    signal f_valid_bridge : STD_LOGIC := '0';
     -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
     -- signals out of fcs check parallel (NOT USED)
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
@@ -92,13 +94,14 @@ ARCHITECTURE simData OF test IS
     );
 
 BEGIN
-
+ 
     u_parser : COMPONENT data_input
         PORT MAP(
             clk => s_clk,
             rst => s_rst,
             data_in => u_data_in,
             data_valid => u_valid,
+            fcs_data_valid => f_valid_bridge, 
             sof => f_sof_bridge,
             data_to_switch_core_fifo => OPEN,
             data_to_mac_fifo => OPEN,
@@ -112,7 +115,7 @@ BEGIN
                 clk => s_clk,
                 rst => s_rst,
                 data_in => f_fcs_data_bridge,
-                valid => u_valid,
+                valid => f_valid_bridge,
                 is_data_valid => s_is_data_valid,
                 start_of_frame => f_sof_bridge
                 -- end_of_frame => f_end_of_frame

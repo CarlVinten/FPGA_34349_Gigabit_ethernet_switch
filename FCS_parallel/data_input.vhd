@@ -18,6 +18,7 @@ ENTITY data_input IS
         -- outputs to fcs check parallel
         sof : OUT STD_LOGIC;
         data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        fcs_data_valid : OUT STD_LOGIC;
 
         -- outputs to switch core fifo, mac fifo, and ethertype
         data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
@@ -43,8 +44,6 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL s_data_valid : STD_LOGIC;
     SIGNAL s_start_of_frame : STD_LOGIC;
-
-
     SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0); -- not used
     SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
     SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
@@ -80,7 +79,7 @@ BEGIN
     -- data_to_fcs <= s_data_to_fcs; 
 
     sof <= s_start_of_frame;
-    data_to_fcs <= s_data_to_fcs;
+    -- data_to_fcs <= s_data_to_fcs;
 
     PROCESS (clk, rst)
     BEGIN
@@ -91,7 +90,8 @@ BEGIN
 
         ELSIF rising_edge(clk) THEN
 
-            -- data_temp <= data_in;
+            data_to_fcs <= (OTHERS => '0');
+            s_start_of_frame <= '0';
 
             CASE state IS
                 WHEN state_idle =>
@@ -101,7 +101,7 @@ BEGIN
                     data_cnt <= 0;
                     mac_addr_cnt <= 0;
                     ethertype_cnt <= 0;
- 
+
                     IF data_valid = '1' THEN
                         IF data_in = x"AA" THEN
                             preamble_cnt <= preamble_cnt + 1;
@@ -131,7 +131,12 @@ BEGIN
                     --     END IF;
 
                 WHEN state_data =>
-
+                    IF state = state_data AND data_valid = '1' THEN
+                        fcs_data_valid <= '1';
+                    ELSE
+                        fcs_data_valid <= '0';
+                    END IF;
+                    --       fcs_data_valid <= '1' WHEN state = state_data AND data_valid = '1' ELSE '0';
                     data_to_fcs <= data_in; -- Hooking up the internal signal to the output
                     s_data_to_fcs <= data_in;
                     data_cnt <= data_cnt + 1;

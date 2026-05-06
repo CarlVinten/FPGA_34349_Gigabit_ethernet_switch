@@ -18,11 +18,13 @@ ENTITY data_input IS
         -- outputs to fcs check parallel
         sof : OUT STD_LOGIC;
         data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        fcs_data_valid : OUT STD_LOGIC;
 
         -- outputs to switch core fifo, mac fifo, and ethertype
         data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
         data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
         data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+
 END data_input;
 
 ARCHITECTURE Behavioral OF data_input IS
@@ -42,7 +44,6 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL s_data_valid : STD_LOGIC;
     SIGNAL s_start_of_frame : STD_LOGIC;
-
     SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0); -- not used
     SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
     SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
@@ -69,13 +70,16 @@ BEGIN
         clk => clk,
         rst => rst,
         data_in => s_data_to_fcs,
-        valid => data_valid,
-        start_of_frame => sofs_start_of_frame,
+        valid => s_data_valid,
+        start_of_frame => s_start_of_frame,
         --end_of_frame => s_end_of_frame,
         is_data_valid => OPEN -- Or map to a signal if you need the result
     );
 
     -- data_to_fcs <= s_data_to_fcs; 
+
+    sof <= s_start_of_frame;
+    data_to_fcs <= s_data_to_fcs;
 
     PROCESS (clk, rst)
     BEGIN
@@ -86,11 +90,17 @@ BEGIN
 
         ELSIF rising_edge(clk) THEN
 
-            -- data_temp <= data_in;
+            data_to_fcs <= (OTHERS => '0');
+            s_start_of_frame <= '0';
 
             CASE state IS
                 WHEN state_idle =>
-                    sof <= '0';
+                    s_start_of_frame <= '0';
+                    s_data_to_fcs <= (OTHERS => '0');
+                    preamble_cnt <= 0;
+                    data_cnt <= 0;
+                    mac_addr_cnt <= 0;
+                    ethertype_cnt <= 0;
 
                     IF data_valid = '1' THEN
                         IF data_in = x"AA" THEN
@@ -108,7 +118,7 @@ BEGIN
 
                     IF preamble_cnt = 7 AND data_in = x"AB" THEN
                         state <= state_data;
-                        sof <= '1';
+                        s_start_of_frame <= '1';
                     ELSIF data_valid = '0' THEN
                         state <= state_idle;
                     END IF;
@@ -121,7 +131,7 @@ BEGIN
                     --     END IF;
 
                 WHEN state_data =>
-
+                    fcs_data_valid <= '1' WHEN state = state_data AND data_valid = '1' ELSE '0';
                     data_to_fcs <= data_in; -- Hooking up the internal signal to the output
                     s_data_to_fcs <= data_in;
                     data_cnt <= data_cnt + 1;

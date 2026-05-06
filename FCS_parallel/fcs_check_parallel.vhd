@@ -26,25 +26,29 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 BEGIN
 
+--data_temp <= NOT data_in WHEN (start_cnt > 0 OR start_of_frame = '1') ELSE data_in;
+
 	Frame_Process : PROCESS (clk, rst)
+
 	BEGIN
-		IF (start_cnt > 0 OR start_of_frame = '1') THEN
-			data_temp <= NOT data_in;
-		ELSE
-			data_temp <= data_in;
-		END IF;
+	
+	IF rst = '1' THEN
+	data_temp <= (OTHERS => '0');
+	sum_reg <= (OTHERS => '0');
+	is_data_valid <= '0';
+	start_cnt <= -1;
+	
+	ELSIF rising_edge(clk) THEN
+	IF (start_cnt > 0 OR start_of_frame = '1') THEN
+		data_temp <= NOT data_in;
+	ELSE
+		data_temp <= data_in;
+	END IF;
 
-		IF rst = '1' THEN
-			data_temp <= (OTHERS => '0');
-			sum_reg <= (OTHERS => '0');
-			is_data_valid <= '0';
-			start_cnt <= -1;
-
-
-		ELSIF rising_edge(clk) THEN
 			IF start_of_frame = '1' THEN
 				start_cnt <= 3;
 				is_data_valid <= '0';
+				-- sum_reg <= (OTHERS => '0');
 			ELSIF valid = '1' AND start_cnt > 0 THEN
 				start_cnt <= start_cnt - 1;
 			END IF;
