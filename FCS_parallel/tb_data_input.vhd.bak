@@ -3,39 +3,51 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE std.textio.ALL;
+
+
 ENTITY test IS
 END;
 
-ARCHITECTURE sim OF test IS
+ARCHITECTURE simData OF test IS
 
-    COMPONENT fcs_check_parallel
+    component data_input IS
         PORT (
             clk : IN STD_LOGIC;
             rst : IN STD_LOGIC;
 
+            -- inputs 
             data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-            valid : IN STD_LOGIC;
+            data_valid : IN STD_LOGIC;
 
-            start_of_frame : IN STD_LOGIC;
-            end_of_frame : IN STD_LOGIC;
+            -- outputs
+            data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+            data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+            data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+            data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 
-            is_data_valid : OUT STD_LOGIC
-        );
-    END COMPONENT;
+        -- data_to_valid_fifo : out  std_logic;
 
-    -- SIGNALS 
-
+        --    data_ready : out  std_logic);
+    END component;
+ 
+   -- SIGNALS 
     SIGNAL s_clk : STD_LOGIC := '0';
     SIGNAL s_rst : STD_LOGIC := '1';
     SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
     SIGNAL s_valid : STD_LOGIC := '0';
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
     SIGNAL s_start_of_frame : STD_LOGIC := '1';
-    SIGNAL s_end_of_frame : STD_LOGIC := '0';
+    
+    -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
+
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     -- Change this to test different packet lengths (or make it empty)
     CONSTANT TEST_PACKET : byte_array := (
+        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
+
+        x"AB", -- Start of Frame Delimiter
+
         -- Destination & Source MAC Addresses
         x"00", x"10", x"A4", x"7B", x"EA", x"80",
         x"00", x"12", x"34", x"56", x"78", x"90",
