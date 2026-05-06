@@ -40,8 +40,10 @@ ARCHITECTURE struc OF MAC_learning IS
 	SIGNAL port_to_check: integer range 0 to 3 := 0;
 	SIGNAL port_one_hot: std_logic_vector(3 downto 0) := "0000";
 	SIGNAL has_data: std_logic_vector(NUM_PORTS - 1 downto 0) := "0000";
-	SIGNAL d_mac: mac_input;
-	SIGNAL s_mac: mac_input; 
+	SIGNAL getting_mac: std_logic_vector(NUM_PORTS - 1 downto 0) := "0000";
+	SIGNAL mac_counter: mac_counter_type;
+	SIGNAL d_mac: mac_addr;
+	SIGNAL s_mac: mac_addr;
 	SIGNAL mac_check_state : integer range 0 to 2 := 0;
 	SIGNAL mac_check : std_logic_vector(63 downto 0) := x"0000000000000000";
 
@@ -75,26 +77,42 @@ BEGIN
 		end if;
 
 		if (rising_edge(clk)) then
-			if (valid(0) = '1') and (has_data(0) = '0') then
-				has_data(0) <= '1';
-				d_mac(0) <= mac_dst(0);
-				s_mac(0) <= mac_src(0);
-			end if;
-			if (valid(1) = '1') and (has_data(1) = '0') then
-				has_data(1) <= '1';
-				d_mac(1) <= mac_dst(1);
-				s_mac(1) <= mac_src(1);
-			end if;
-			if (valid(2) = '1') and (has_data(2) = '0') then
-				has_data(2) <= '1';
-				d_mac(2) <= mac_dst(2);
-				s_mac(2) <= mac_src(2);
-			end if;
-			if (valid(3) = '1') and (has_data(3) = '0') then
-				has_data(3) <= '1';
-				d_mac(3) <= mac_dst(3);
-				s_mac(3) <= mac_src(3);
-			end if;
+			for i in 0 to 3 loop
+				if (mac_counter(i) = 6) then
+					has_data(i) <= '1';
+					mac_counter(i) <= 0;
+				elsif (valid(i) = '1') and (has_data(i) = '0') then
+					-- has_data(0) <= '1';
+					d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_dst(i);
+					s_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_src(i);
+					mac_counter(i) <= mac_counter(i) + 1;
+				end if;
+			end loop;
+
+
+			--if (valid(0) = '1') and (has_data(0) = '0') then
+			--	-- has_data(0) <= '1';
+			--	mac_counter(0) <= mac_counter(0) + 1;
+			--	d_mac(0)(7 downto 0) <= mac_dst(0);
+			--	s_mac(0)(7 downto 0) <= mac_src(0);
+			--else 
+			--	mac_counter(0) <= 0;
+			--end if;
+			--if (valid(1) = '1') and (has_data(1) = '0') then
+			--	has_data(1) <= '1';
+			--	d_mac(1)(7 downto 0) <= mac_dst(1);
+			--	s_mac(1)(7 downto 0) <= mac_src(1);
+			--end if;
+			--if (valid(2) = '1') and (has_data(2) = '0') then
+			--	has_data(2) <= '1';
+			--	d_mac(2)(7 downto 0) <= mac_dst(2);
+			--	s_mac(2)(7 downto 0) <= mac_src(2);
+			--end if;
+			--if (valid(3) = '1') and (has_data(3) = '0') then
+			--	has_data(3) <= '1';
+			--	d_mac(3)(7 downto 0) <= mac_dst(3);
+			--	s_mac(3)(7 downto 0) <= mac_src(3);
+			--end if;
 
 
 		end if;
@@ -102,16 +120,16 @@ BEGIN
 		if (rising_edge(clk)) then
 			if(process_mac = '0') then
 				rr <= ((rr + 1) mod 4);
-				if(has_data(rr) = '1') then
+				if(has_data(rr mod 4) = '1') then
 					process_mac <= '1';
 					port_to_check <= rr;
-				elsif(has_data(rr + 1) = '1') then
+				elsif(has_data((rr + 1) mod 4) = '1') then
 					process_mac <= '1';
 					port_to_check <= rr + 1;
-				elsif(has_data(rr + 2) = '1') then
+				elsif(has_data((rr + 2) mod 4) = '1') then
 					process_mac <= '1';
 					port_to_check <= rr + 2;
-				elsif(has_data(rr + 3) = '1') then
+				elsif(has_data((rr + 3) mod 4) = '1') then
 					process_mac <= '1';
 					port_to_check <= rr + 3;
 				end if;
