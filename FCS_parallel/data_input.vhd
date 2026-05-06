@@ -48,6 +48,8 @@
         signal s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 downto 0);
         signal s_data_to_ethertype : STD_LOGIC_VECTOR(7 downto 0);
         
+		-- Ready signal for mac - dummy variable as it is probably not needed.
+		signal dummy_rdy_mac: std_logic_vector(3 downto 0);
 
         COMPONENT fcs_check_parallel
 	PORT (
