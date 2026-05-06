@@ -3,12 +3,25 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE std.textio.ALL;
-
-
 ENTITY test IS
 END;
 
 ARCHITECTURE simData OF test IS
+
+    COMPONENT fcs_check_parallel
+        PORT (
+            clk : IN STD_LOGIC;
+            rst : IN STD_LOGIC;
+
+            data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+            valid : IN STD_LOGIC;
+
+            start_of_frame : IN STD_LOGIC;
+            --end_of_frame : IN STD_LOGIC;
+
+            is_data_valid : OUT STD_LOGIC
+        );
+    END COMPONENT;
 
     COMPONENT data_input IS
         PORT (
@@ -33,30 +46,25 @@ ARCHITECTURE simData OF test IS
     -- general signals
     SIGNAL s_clk : STD_LOGIC := '0';
     SIGNAL s_rst : STD_LOGIC := '1';
-
-
     -- SIGNALS for data input
-    SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
-    SIGNAL s_valid : STD_LOGIC := '0';
-    
-    
+    SIGNAL u_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
+    SIGNAL u_valid : STD_LOGIC := '0';
     -- signals for fcs check parallel
-    
+
     -- signals connecting fcs and data input
-    SIGNAL s_start_of_frame : STD_LOGIC := '1';
-    signal s_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL f_start_of_frame : STD_LOGIC := '0';
+    SIGNAL f_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
     -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
-
-
     -- signals out of fcs check parallel (NOT USED)
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
-
-
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     -- Change this to test different packet lengths (or make it empty)
     CONSTANT TEST_PACKET : byte_array := (
-        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
+
+        x"11", -- garbage -- !!!!!!!!!!!!!!!! kom tilbage for at spørge
+
+        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
 
         x"AB", -- Start of Frame Delimiter
 
@@ -81,27 +89,27 @@ ARCHITECTURE simData OF test IS
 
 BEGIN
 
-    u_checker : COMPONENT data_input
+    u_parser : COMPONENT data_input
         PORT MAP(
             clk => s_clk,
             rst => s_rst,
-            data_in => s_data_in,
-            data_valid => s_valid,
+            data_in => u_data_in,
+            data_valid => u_valid,
             data_to_switch_core_fifo => OPEN,
             data_to_mac_fifo => OPEN,
             data_to_ethertype => OPEN,
-            data_to_fcs => OPEN
+            data_to_fcs => f_fcs_data_bridge
         );
 
-        u_parser : COMPONENT fcs_check_parallel
+        u_checker : COMPONENT fcs_check_parallel
             PORT MAP(
                 clk => s_clk,
                 rst => s_rst,
-                data_in => s_data_in,
-                valid => s_valid,
+                data_in => f_fcs_data_bridge,
+                valid => u_valid,
                 is_data_valid => s_is_data_valid,
-                start_of_frame => s_start_of_frame,
-                end_of_frame => s_end_of_frame
+                start_of_frame => f_start_of_frame
+                -- end_of_frame => f_end_of_frame
             );
 
             clock_process : PROCESS
@@ -119,45 +127,37 @@ BEGIN
                 s_rst <= '0';
                 WAIT;
             END PROCESS;
-
-            --  valid_signal : PROCESS
-            --BEGIN
-
-            --END PROCESS;
-
             stimulus_process : PROCESS
             BEGIN
 
-                s_data_in <= (OTHERS => '0');
-                s_valid <= '0';
-                s_start_of_frame <= '0';
-                s_end_of_frame <= '0';
+                u_data_in <= (OTHERS => '0');
+                u_valid <= '0';
+                f_start_of_frame <= '0';
+                -- s_end_of_frame <= '0';
 
                 WAIT FOR 15 ns;
 
                 WAIT UNTIL rising_edge(s_clk);
 
-                WAIT FOR 1 ns;
+                -- WAIT FOR 1 ns;
 
-                s_start_of_frame <= '1';
-
-                -- IF s_start_of_frame = '1' THEN
-                IF TEST_PACKET'LENGTH > 0 OR s_start_of_frame = '1' THEN
+                -- -- IF s_start_of_frame = '1' THEN
+                IF TEST_PACKET'LENGTH > 0 THEN
                     FOR i IN test_packet'RANGE LOOP
-                        s_valid <= '1';
-                        s_data_in <= TEST_PACKET(i);
+                        u_valid <= '1';
+                        u_data_in <= TEST_PACKET(i);
 
                         WAIT UNTIL rising_edge(s_clk);
-                        s_start_of_frame <= '0';
+                        f_start_of_frame <= '0';
                     END LOOP;
                 END IF;
-                -- END IF;
+                -- -- END IF;
 
-                s_end_of_frame <= '1';
-                s_valid <= '0'; -- single data
-                s_data_in <= (OTHERS => '0');
+                -- s_end_of_frame <= '1';
+                -- s_valid <= '0'; -- single data
+                -- s_data_in <= (OTHERS => '0');
 
-                WAIT FOR 100 ns;
+                -- WAIT FOR 100 ns;
             END PROCESS;
 
-        END sim;
+        END simData;
