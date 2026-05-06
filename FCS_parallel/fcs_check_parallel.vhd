@@ -6,13 +6,13 @@ USE std.textio.ALL;
 ENTITY fcs_check_parallel IS
 	PORT (
 		clk : IN STD_LOGIC; -- system clock
-		reset : IN STD_LOGIC; -- asynchronous reset
+		rst : IN STD_LOGIC; -- asynchronous rst
 
 		data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
 		valid : IN STD_LOGIC; -- indicates the validity of data_in.
 
 		start_of_frame : IN STD_LOGIC; -- indicates the start of a frame.
-		end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
+		--end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
 
 		is_data_valid : OUT STD_LOGIC -- indicates an error.
 	);
@@ -26,16 +26,21 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 BEGIN
 
-	Frame_Process : PROCESS (clk, reset)
+	Frame_Process : PROCESS (clk, rst)
 	BEGIN
 		IF (start_cnt > 0 OR start_of_frame = '1') THEN
 			data_temp <= NOT data_in;
 		ELSE
 			data_temp <= data_in;
 		END IF;
-		IF reset = '1' THEN
+
+		IF rst = '1' THEN
 			data_temp <= (OTHERS => '0');
 			sum_reg <= (OTHERS => '0');
+			is_data_valid <= '0';
+			start_cnt <= -1;
+
+
 		ELSIF rising_edge(clk) THEN
 			IF start_of_frame = '1' THEN
 				start_cnt <= 3;
@@ -82,7 +87,7 @@ BEGIN
 				sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
 			END IF;
 
-			IF end_of_frame = '1' THEN
+			IF valid = '0' THEN
 				IF sum_reg = x"FF_FF_FF_FF" THEN
 					is_data_valid <= '1';
 					sum_reg <= (OTHERS => '0');

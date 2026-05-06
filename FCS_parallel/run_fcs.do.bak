@@ -16,7 +16,7 @@ add wave -hex /test/s_data_in
 add wave -hex /test/s_valid
 add wave -hex /test/s_start_of_frame
 add wave -hex /test/s_end_of_frame
-add wave -color "Yellow" -hex /test/s_is_data_valid
+add wave -color "Cyan" -hex /test/s_is_data_valid
 
 # 5. Add Internal Signals from the DUT
 add wave -noupdate -divider "DUT INTERNAL"
