@@ -2,6 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
+use ieee.std_logic_textio.all;
 use std.textio.all;
 
 library work;
@@ -23,6 +24,11 @@ architecture tb of crossbar_ethernet_tb is
             output2         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
             output3         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
             output4         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            -- TX control signals
+            tx_ctrl0        : OUT STD_LOGIC;
+            tx_ctrl1        : OUT STD_LOGIC;
+            tx_ctrl2        : OUT STD_LOGIC;
+            tx_ctrl3        : OUT STD_LOGIC;
             -- Debug ports
             debug_fifo2_wrreq  : OUT STD_LOGIC;
             debug_fifo2_rdreq  : OUT STD_LOGIC;
@@ -45,6 +51,12 @@ architecture tb of crossbar_ethernet_tb is
     signal output2_data         : std_logic_vector(8 downto 0);
     signal output3_data         : std_logic_vector(8 downto 0);
     signal output4_data         : std_logic_vector(8 downto 0);
+    
+    -- TX control signals
+    signal tx_ctrl0             : std_logic;
+    signal tx_ctrl1             : std_logic;
+    signal tx_ctrl2             : std_logic;
+    signal tx_ctrl3             : std_logic;
     
     -- Debug signals
     signal debug_fifo2_wrreq    : std_logic;
@@ -78,8 +90,7 @@ architecture tb of crossbar_ethernet_tb is
 begin
 
     -- Instantiate DUT
-    dut : crossbar
-    PORT MAP (
+    dut : crossbar PORT MAP (
         clock              => clk,
         rst                => rst,
         data               => data_in,
@@ -88,6 +99,10 @@ begin
         output2            => output2_data,
         output3            => output3_data,
         output4            => output4_data,
+        tx_ctrl0           => tx_ctrl0,
+        tx_ctrl1           => tx_ctrl1,
+        tx_ctrl2           => tx_ctrl2,
+        tx_ctrl3           => tx_ctrl3,
         debug_fifo2_wrreq  => debug_fifo2_wrreq,
         debug_fifo2_rdreq  => debug_fifo2_rdreq,
         debug_fifo2_empty  => debug_fifo2_empty,
@@ -233,15 +248,57 @@ begin
         if rising_edge(clk) then
             -- Check if there's valid data on output 1
             if output1_data(8) = '0' and output1_data(7 downto 0) /= x"00" then
-                report "Output 1: Received byte 0x" & to_hstring(output1_data(7 downto 0)) & 
-                        ", EoP=" & std_logic'image(output1_data(8)) & ", Byte #" & integer'image(byte_count);
+                report "Output 1: Received byte (decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & 
+                        "), EoP=" & std_logic'image(output1_data(8)) & ", Byte #" & integer'image(byte_count);
                 byte_count := byte_count + 1;
             elsif output1_data(8) = '1' then
-                report "Output 1: Received last byte (EoP) 0x" & to_hstring(output1_data(7 downto 0));
+                report "Output 1: Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & ")";
                 byte_count := byte_count + 1;
             end if;
         end if;
     end process output_monitor;
+
+    -- Monitor TX control signals (edge detection)
+    tx_ctrl_monitor : process(clk)
+        variable prev_tx_ctrl0 : std_logic := '0';
+        variable prev_tx_ctrl1 : std_logic := '0';
+        variable prev_tx_ctrl2 : std_logic := '0';
+        variable prev_tx_ctrl3 : std_logic := '0';
+    begin
+        if rising_edge(clk) then
+            -- Output 0 (tx_ctrl0)
+            if tx_ctrl0 = '1' and prev_tx_ctrl0 = '0' then
+                report "TX_CTRL0: Output 1 TRANSMISSION STARTED";
+            elsif tx_ctrl0 = '0' and prev_tx_ctrl0 = '1' then
+                report "TX_CTRL0: Output 1 TRANSMISSION ENDED";
+            end if;
+            prev_tx_ctrl0 := tx_ctrl0;
+            
+            -- Output 1 (tx_ctrl1)
+            if tx_ctrl1 = '1' and prev_tx_ctrl1 = '0' then
+                report "TX_CTRL1: Output 2 TRANSMISSION STARTED";
+            elsif tx_ctrl1 = '0' and prev_tx_ctrl1 = '1' then
+                report "TX_CTRL1: Output 2 TRANSMISSION ENDED";
+            end if;
+            prev_tx_ctrl1 := tx_ctrl1;
+            
+            -- Output 2 (tx_ctrl2)
+            if tx_ctrl2 = '1' and prev_tx_ctrl2 = '0' then
+                report "TX_CTRL2: Output 3 TRANSMISSION STARTED";
+            elsif tx_ctrl2 = '0' and prev_tx_ctrl2 = '1' then
+                report "TX_CTRL2: Output 3 TRANSMISSION ENDED";
+            end if;
+            prev_tx_ctrl2 := tx_ctrl2;
+            
+            -- Output 3 (tx_ctrl3)
+            if tx_ctrl3 = '1' and prev_tx_ctrl3 = '0' then
+                report "TX_CTRL3: Output 4 TRANSMISSION STARTED";
+            elsif tx_ctrl3 = '0' and prev_tx_ctrl3 = '1' then
+                report "TX_CTRL3: Output 4 TRANSMISSION ENDED";
+            end if;
+            prev_tx_ctrl3 := tx_ctrl3;
+        end if;
+    end process tx_ctrl_monitor;
 
     -- Debug monitor for FIFO 2 (output 2, input 0)
     debug_monitor : process(clk)
