@@ -18,7 +18,7 @@ ENTITY top_module IS
     -- outputs
 
     -- outputs to fcs check parallel
-
+    );
 END top_module;
 
 ARCHITECTURE Behavioral OF top_module IS
