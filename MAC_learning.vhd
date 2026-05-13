@@ -11,10 +11,10 @@ entity MAC_learning is
 port (
 	rst : in std_logic;
 	clk : in std_logic;
-	mac_dst : in mac_input;
-	mac_src : in mac_input;
+	mac_in : in mac_input;
+	--mac_src : in mac_input;
 	valid : in std_logic_vector(NUM_PORTS - 1 downto 0);
-	ready: out std_logic_vector(NUM_PORTS - 1 downto 0);
+	ready: out std_logic_vector(NUM_PORTS - 1 downto 0); -- Might be deleted
 	port_output : out mac_output;
 	output_valid : out std_logic_vector(NUM_PORTS - 1 downto 0);
 	output_ready : in std_logic_vector(NUM_PORTS - 1 downto 0)
@@ -62,29 +62,38 @@ BEGIN
 		begin
 		if(rising_edge(clk)) then
 		ready <= "0000";
-			if has_data(0) = '0' then
-				ready(0) <= '1';
+		for i in 0 to 3 loop
+			if has_data(i) = '0' then
+				ready(i) <= '1';
 			end if;
-			if has_data(1) = '0' then
-				ready(1) <= '1';
-			end if;
-			if has_data(2) = '0' then
-				ready(2) <= '1';
-			end if;
-			if has_data(3) = '0' then
-				ready(3) <= '1';
-			end if;
+		end loop;
+
+			--if has_data(0) = '0' then
+			--	ready(0) <= '1';
+			--end if;
+			--if has_data(1) = '0' then
+			--	ready(1) <= '1';
+			--end if;
+			--if has_data(2) = '0' then
+			--	ready(2) <= '1';
+			--end if;
+			--if has_data(3) = '0' then
+			--	ready(3) <= '1';
+			--end if;
 		end if;
 
 		if (rising_edge(clk)) then
 			for i in 0 to 3 loop
-				if (mac_counter(i) = 6) then
+				if (mac_counter(i) = 12) then
 					has_data(i) <= '1';
 					mac_counter(i) <= 0;
-				elsif (valid(i) = '1') and (has_data(i) = '0') then
-					-- has_data(0) <= '1';
-					d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_dst(i);
-					s_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_src(i);
+				elsif (valid(i) = '1') and (has_data(i) = '0') and (mac_counter(i) < 6)then
+					
+					d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
+					mac_counter(i) <= mac_counter(i) + 1;
+
+				elsif (valid(i) = '1') and (has_data(i) = '0') then	
+					s_mac(i)((8 * (mac_counter(i) - 5) - 1) downto (8 * (mac_counter(i) - 6))) <= mac_in(i);
 					mac_counter(i) <= mac_counter(i) + 1;
 				end if;
 			end loop;
@@ -125,13 +134,13 @@ BEGIN
 					port_to_check <= rr;
 				elsif(has_data((rr + 1) mod 4) = '1') then
 					process_mac <= '1';
-					port_to_check <= rr + 1;
+					port_to_check <= (rr + 1) mod 4;
 				elsif(has_data((rr + 2) mod 4) = '1') then
 					process_mac <= '1';
-					port_to_check <= rr + 2;
+					port_to_check <= (rr + 2) mod 4;
 				elsif(has_data((rr + 3) mod 4) = '1') then
 					process_mac <= '1';
-					port_to_check <= rr + 3;
+					port_to_check <= (rr + 3) mod 4;
 				end if;
 			end if;
 		end if;
