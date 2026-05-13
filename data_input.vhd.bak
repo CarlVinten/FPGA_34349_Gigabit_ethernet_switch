@@ -3,6 +3,8 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE std.textio.ALL;
+LIBRARY work;
+USE work.global_var.ALL;
 
 ENTITY data_input IS
     PORT (
@@ -17,12 +19,13 @@ ENTITY data_input IS
 
         -- outputs to fcs check parallel
         sof : OUT STD_LOGIC;
-        data_to_fcs : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        data_to_fcs : OUT fcs_data_input;
         fcs_data_valid : OUT STD_LOGIC;
 
         -- outputs to switch core fifo, mac fifo, and ethertype
-        data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
-        data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        data_to_switch_core_fifo : OUT crossbar_input_array;
+
+        data_to_mac_fifo : OUT mac_input;
         data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 
 END data_input;
@@ -44,8 +47,12 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL s_data_valid : STD_LOGIC;
     SIGNAL s_start_of_frame : STD_LOGIC;
-    SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0); -- not used
-    SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
+    SIGNAL s_data_to_switch_core_fifo : crossbar_input_array;
+
+signal dead1 : std_logic_vector(3 downto 0);
+
+signal s_data_valid_mac : std_logic_vector(3 downto 0);
+    SIGNAL s_data_to_mac_fifo : mac_input;
     SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
 
     COMPONENT fcs_check_parallel
@@ -63,7 +70,31 @@ ARCHITECTURE Behavioral OF data_input IS
         );
     END COMPONENT;
 
+    COMPONENT MAC_learning
+        PORT (
+            rst : IN STD_LOGIC;
+            clk : IN STD_LOGIC;
+            mac_in : IN mac_input;
+            valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            port_output : OUT mac_output;
+            output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
+        );
+    END COMPONENT;
+
 BEGIN
+    mac_l : MAC_learning
+    PORT MAP(
+        clk => clk,
+        rst => rst,
+        mac_in => s_data_to_mac_fifo,
+        valid => s_data_valid_mac,
+        ready => dead1,
+        port_output => open,
+        output_valid => dead1,
+        output_ready => dead1
+    );
 
     u_fcs : fcs_check_parallel
     PORT MAP(
@@ -90,7 +121,7 @@ BEGIN
 
         ELSIF rising_edge(clk) THEN
 
-            data_to_fcs <= (OTHERS => '0');
+            -- data_to_fcs <= (OTHERS => '0');
             s_start_of_frame <= '0';
 
             CASE state IS

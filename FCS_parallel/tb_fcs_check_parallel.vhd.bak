@@ -11,13 +11,13 @@ ARCHITECTURE sim OF test IS
     COMPONENT fcs_check_parallel
         PORT (
             clk : IN STD_LOGIC;
-            reset : IN STD_LOGIC;
+            rst : IN STD_LOGIC;
 
             data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             valid : IN STD_LOGIC;
 
             start_of_frame : IN STD_LOGIC;
-            end_of_frame : IN STD_LOGIC;
+            -- end_of_frame : IN STD_LOGIC;
 
             is_data_valid : OUT STD_LOGIC
         );
@@ -26,7 +26,7 @@ ARCHITECTURE sim OF test IS
     -- SIGNALS 
 
     SIGNAL s_clk : STD_LOGIC := '0';
-    SIGNAL s_reset : STD_LOGIC := '1';
+    SIGNAL s_rst : STD_LOGIC := '1';
     SIGNAL s_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
     SIGNAL s_valid : STD_LOGIC := '0';
     SIGNAL s_is_data_valid : STD_LOGIC := '0';
@@ -55,19 +55,19 @@ ARCHITECTURE sim OF test IS
         x"E6", x"C5", x"3D", x"B2"
     );
 
-    --
+
 
 BEGIN
 
     dut : COMPONENT fcs_check_parallel
         PORT MAP(
             clk => s_clk,
-            reset => s_reset,
+            rst => s_rst,
             data_in => s_data_in,
             valid => s_valid,
             is_data_valid => s_is_data_valid,
             start_of_frame => s_start_of_frame,
-            end_of_frame => s_end_of_frame
+            --end_of_frame => s_end_of_frame
         );
 
         clock_process : PROCESS
@@ -78,11 +78,11 @@ BEGIN
             WAIT FOR 4 ns;
         END PROCESS;
 
-        reset_on_start : PROCESS
+        rst_on_start : PROCESS
         BEGIN
-            s_reset <= '1';
+            s_rst <= '1';
             WAIT FOR 10 ns;
-            s_reset <= '0';
+            s_rst <= '0';
             WAIT;
         END PROCESS;
 
