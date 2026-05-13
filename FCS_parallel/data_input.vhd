@@ -90,7 +90,7 @@ BEGIN
 
         ELSIF rising_edge(clk) THEN
 
-            data_to_fcs <= (OTHERS => '0');
+            -- data_to_fcs <= (OTHERS => '0');
             s_start_of_frame <= '0';
 
             CASE state IS

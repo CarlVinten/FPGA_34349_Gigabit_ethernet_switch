@@ -26,24 +26,26 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 BEGIN
 
---data_temp <= NOT data_in WHEN (start_cnt > 0 OR start_of_frame = '1') ELSE data_in;
+	--data_temp <= NOT data_in WHEN (start_cnt > 0 OR start_of_frame = '1') ELSE data_in;
 
 	Frame_Process : PROCESS (clk, rst)
 
 	BEGIN
-	
-	IF rst = '1' THEN
-	data_temp <= (OTHERS => '0');
-	sum_reg <= (OTHERS => '0');
-	is_data_valid <= '0';
-	start_cnt <= -1;
-	
-	ELSIF rising_edge(clk) THEN
-	IF (start_cnt > 0 OR start_of_frame = '1') THEN
-		data_temp <= NOT data_in;
-	ELSE
-		data_temp <= data_in;
-	END IF;
+
+		IF rst = '1' THEN
+			data_temp <= (OTHERS => '0');
+			sum_reg <= (OTHERS => '0');
+			is_data_valid <= '0';
+			start_cnt <= - 1;
+
+		ELSIF rising_edge(clk) THEN
+
+			-- IF (start_cnt > 0 OR start_of_frame = '1') THEN
+			if (start_cnt > 0) THEN
+				data_temp <= NOT data_in;
+			ELSE
+				data_temp <= data_in;
+			END IF;
 
 			IF start_of_frame = '1' THEN
 				start_cnt <= 3;
@@ -52,7 +54,7 @@ BEGIN
 			ELSIF valid = '1' AND start_cnt > 0 THEN
 				start_cnt <= start_cnt - 1;
 			END IF;
--- potential optimize is use valid below rising edge and check when it is low
+			-- potential optimize is use valid below rising edge and check when it is low
 			IF valid = '1' OR start_of_frame = '1' THEN
 				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
