@@ -12,6 +12,7 @@ PACKAGE global_var IS
 	TYPE valid_signals IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC;
 
 	-- input 
+	-- unsure about subtype yet, may need to change to a record type if we want to include more information like start_of_frame, end_of_frame, etc.
 	SUBTYPE rx_ctrl IS STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
 	TYPE rx_in IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(BUS_WIDTH - 1 DOWNTO 0);
 	TYPE tx_out IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC;
