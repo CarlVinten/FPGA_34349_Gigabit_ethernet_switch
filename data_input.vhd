@@ -21,8 +21,8 @@ ENTITY data_input IS
         fcs_data_valid : OUT STD_LOGIC;
 
         -- outputs to switch core fifo, mac fifo, and ethertype
-        data_to_switch_core_fifo : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
-        data_to_mac_fifo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+        data_to_switch_core_fifo : OUT crossbar_input_array;
+        data_to_mac_fifo : OUT mac_input;
         data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 
 END data_input;
@@ -44,8 +44,8 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL s_data_valid : STD_LOGIC;
     SIGNAL s_start_of_frame : STD_LOGIC;
-    SIGNAL s_data_to_switch_core_fifo : STD_LOGIC_VECTOR(8 DOWNTO 0); -- not used
-    SIGNAL s_data_to_mac_fifo : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
+    SIGNAL s_data_to_switch_core_fifo : crossbar_input_array; 
+    SIGNAL s_data_to_mac_fifo : mac_input; 
     SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
 
     COMPONENT fcs_check_parallel

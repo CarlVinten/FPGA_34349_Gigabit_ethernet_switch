@@ -10,6 +10,8 @@ package global_var is
 	CONSTANT BUS_WIDTH : integer := 8;
 	CONSTANT MAC_ADDR_LEN : integer := 48;
 
+	
+	type fcs_data_input is array (NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
 	type mac_input is array (NUM_PORTS - 1 downto 0) of std_logic_vector(MAC_ADDR_LEN - 1 downto 0);
 	type mac_output is array (NUM_PORTS - 1 downto 0) of std_logic_vector(NUM_PORTS - 1 downto 0);
 	type crossbar_input_array is array(3 DOWNTO 0) of STD_LOGIC_VECTOR (8 DOWNTO 0);
