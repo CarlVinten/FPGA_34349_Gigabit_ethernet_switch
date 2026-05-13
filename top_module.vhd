@@ -22,7 +22,7 @@ ENTITY top_module IS
 END top_module;
 
 ARCHITECTURE Behavioral OF top_module IS
-	component crossbar
+	component data_input
 		port(
 			clk : IN STD_LOGIC;
 		    rst : IN STD_LOGIC;
