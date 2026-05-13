@@ -11,6 +11,7 @@ PACKAGE global_var IS
 	-- input 
 	TYPE rx_ctrl IS array (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
 	TYPE rx_in is array(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
+	TYPE tx_out is array(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
 
 	--fcs
 	TYPE fcs_data_input IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(BUS_WIDTH - 1 DOWNTO 0);
