@@ -13,17 +13,79 @@ ENTITY top_module IS
 
     -- inputs 
     data_in : IN rx_in;
-    data_valid : IN rx_ctrl;
+    data_in_valid : IN std_logic_vector(NUM_PORTS - 1 downto 0);;
 
     -- outputs
-
-    -- outputs to fcs check parallel
+	data_out : OUT tx_out;
+	data_out_valid : std_logic_vector(NUM_PORTS - 1 downto 0);
     );
 END top_module;
 
 ARCHITECTURE Behavioral OF top_module IS
+	component crossbar
+		port(
+			clk : IN STD_LOGIC;
+		    rst : IN STD_LOGIC;
 
+		    data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		    data_valid : IN STD_LOGIC;
+
+		    data_to_crossbar : OUT crossbar_input_array;
+		    dst_port : OUT crossbar_dstport_array
+		);
+	end component;
+	component crossbar
+		port(
+			clock		: IN STD_LOGIC ;
+            data		: IN crossbar_input_array;
+            dstport 	: IN crossbar_dstport_array;
+            output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            -- Debug ports
+            debug_fifo2_wrreq : OUT STD_LOGIC;
+            debug_fifo2_rdreq : OUT STD_LOGIC;
+            debug_fifo2_empty : OUT STD_LOGIC;
+            debug_fifo2_full : OUT STD_LOGIC;
+            debug_fifo2_usedw : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+            -- Debug arbiter state signals
+            debug_tx_state_1 : OUT STD_LOGIC;
+            debug_tx_src_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+        );
+	end component;
+
+	SIGNAL data_input_to_crossbar : crossbar_input_array := (others =>(others => '0'));
+	SIGNAL dst_input_to_crossbar : crossbar_dstport_array := (others => (others => '0'));
 BEGIN
-
-
+	data_handling : data_input
+		port map(
+			clk => clk,
+		    rst => rst,
+		    data_in    => data_in,
+		    data_valid => data_in_valid,
+		    data_to_crossbar => data_input_to_crossbar,
+		    dst_port 		 => dst_input_to_crossbar
+		);
+	cross : crossbar
+		port map(
+			clock	=>	clock,
+            data	=>	data_input_to_crossbar,
+            dstport =>	dst_input_to_crossbar,
+            output1	=>	data_out(0),
+            output2	=>	data_out(1),
+            output3	=>	data_out(2),
+            output4	=>  data_out(3),
+            -- Debug port
+            debug_fifo2_wrreq => OPEN;
+            debug_fifo2_rdreq => OPEN;
+            debug_fifo2_empty => OPEN;
+            debug_fifo2_full => OPEN;
+            debug_fifo2_usedw => OPEN;
+            -- Debug arbiter sta
+            debug_tx_state_1 => OPEN;
+			debug_tx_src_1 => OPEN;
+            debug_rr_turn_tx_1 => OPEN;
+		);
 END Behavioral;
