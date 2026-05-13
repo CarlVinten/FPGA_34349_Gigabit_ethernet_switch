@@ -40,22 +40,21 @@ BEGIN
 
 		ELSIF rising_edge(clk) THEN
 
-			-- IF (start_cnt > 0 OR start_of_frame = '1') THEN
-			if (start_cnt > 0) THEN
-				data_temp <= NOT data_in;
-			ELSE
-				data_temp <= data_in;
-			END IF;
+			IF valid = '1' THEN
+				IF start_of_frame = '1' THEN
+					data_temp <= NOT data_in;
+					is_data_valid <= '0';
+					start_cnt <= 3;
+					sum_reg <= (OTHERS => '0');
 
-			IF start_of_frame = '1' THEN
-				start_cnt <= 3;
-				is_data_valid <= '0';
-				-- sum_reg <= (OTHERS => '0');
-			ELSIF valid = '1' AND start_cnt > 0 THEN
-				start_cnt <= start_cnt - 1;
-			END IF;
-			-- potential optimize is use valid below rising edge and check when it is low
-			IF valid = '1' OR start_of_frame = '1' THEN
+				ELSIF start_of_frame = '0' AND start_cnt > 0 THEN
+					data_temp <= NOT data_in;
+					start_cnt <= start_cnt - 1;
+				ELSE
+					data_temp <= data_in;
+
+				END IF;
+				-- potential optimize is use valid below rising edge and check when it is low
 				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
 				sum_reg(2) <= data_temp(2) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
@@ -91,7 +90,6 @@ BEGIN
 				sum_reg(29) <= sum_reg(21) XOR sum_reg(27) XOR sum_reg(30) XOR sum_reg(31);
 				sum_reg(30) <= sum_reg(22) XOR sum_reg(28) XOR sum_reg(31);
 				sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
-			END IF;
 
 			IF valid = '0' THEN
 				IF sum_reg = x"FF_FF_FF_FF" THEN
@@ -104,7 +102,7 @@ BEGIN
 			END IF;
 
 		END IF;
-		--END IF;
+
 	END PROCESS;
 
 END struc;
