@@ -233,3 +233,19 @@ vsim -gui work.crossbar_ethernet_tb(tb)
 # Compile of MAC_learning_tb.vhd was successful.
 # 7 compiles, 0 failed with no errors.
 # Load canceled
+# Compile of global.vhd failed with 1 errors.
+# Compile of crossbarfifo.vhd was successful.
+# Compile of crossbar.vhd was successful.
+# Compile of FCS_1.vhd was successful.
+# Compile of MAC_learning.vhd failed with 4 errors.
+# Compile of mac_learning_mem.vhd was successful.
+# Compile of MAC_learning_tb.vhd was successful.
+# 7 compiles, 2 failed with 5 errors.
+# Compile of global.vhd was successful.
+# Compile of crossbarfifo.vhd was successful.
+# Compile of crossbar.vhd was successful.
+# Compile of FCS_1.vhd was successful.
+# Compile of MAC_learning.vhd failed with 4 errors.
+# Compile of mac_learning_mem.vhd was successful.
+# Compile of MAC_learning_tb.vhd was successful.
+# 7 compiles, 1 failed with 4 errors.
