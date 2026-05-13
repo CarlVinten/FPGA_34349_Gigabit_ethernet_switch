@@ -14,13 +14,18 @@
         port
         (
             clock		: IN STD_LOGIC ;
-            rst		: IN STD_LOGIC ;
+            rst	    	: IN STD_LOGIC ;
             data		: IN crossbar_input_array;
             dstport 	: IN crossbar_dstport_array;
             output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
             output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
             output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
             output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            -- TX control signals (1 when transmitting, 0 when idle)
+            tx_ctrl0    : OUT STD_LOGIC;
+            tx_ctrl1    : OUT STD_LOGIC;
+            tx_ctrl2    : OUT STD_LOGIC;
+            tx_ctrl3    : OUT STD_LOGIC;
             -- Debug ports
             debug_fifo2_wrreq : OUT STD_LOGIC;
             debug_fifo2_rdreq : OUT STD_LOGIC;
@@ -811,10 +816,17 @@ case tx_state(1) is
             when others =>
                 tx_state(0) <= '0';
         end case;
+        
         end if;
 
     end if;
 end process;
+
+-- Set TX control signals based on transmission state (concurrent assignments outside process)
+tx_ctrl0 <= '1' when tx_state(0) = '1' else '0';
+tx_ctrl1 <= '1' when tx_state(1) = '1' else '0';
+tx_ctrl2 <= '1' when tx_state(2) = '1' else '0';
+tx_ctrl3 <= '1' when tx_state(3) = '1' else '0';
 
 
 

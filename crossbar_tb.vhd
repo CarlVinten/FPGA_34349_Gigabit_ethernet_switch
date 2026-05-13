@@ -7,10 +7,10 @@ use std.textio.all;
 library work;
 use work.global_var.all;
 
-entity crossbar_ethernet_tb is
-end crossbar_ethernet_tb;
+entity crossbar_tb is
+end crossbar_tb;
 
-architecture tb of crossbar_ethernet_tb is
+architecture tb of crossbar_tb is
 
     -- Component declaration
     COMPONENT crossbar
