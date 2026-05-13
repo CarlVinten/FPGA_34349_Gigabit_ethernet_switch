@@ -13,7 +13,7 @@ port (
 	clk : in std_logic;
 	mac_in : in mac_input;
 	--mac_src : in mac_input;
-	valid : in valid_signals;
+	valid : in std_logic_vector(NUM_PORTS - 1 downto 0);
 	--ready: out std_logic_vector(NUM_PORTS - 1 downto 0); -- Might be deleted
 	port_output : out mac_output;
 	output_valid : out std_logic_vector(NUM_PORTS - 1 downto 0);
@@ -191,8 +191,3 @@ BEGIN
 
 
 END struc;
-
-
-
-
-

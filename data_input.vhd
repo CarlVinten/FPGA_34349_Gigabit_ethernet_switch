@@ -83,12 +83,12 @@ ARCHITECTURE Behavioral OF data_input IS
 
     -- mac input signals
     SIGNAL mac_data_in : mac_input;
-    SIGNAL mac_data_valid : valid_signals;
-    SIGNAL mac_rdy : valid_signals; -- not used, but needed for the component
+    SIGNAL mac_data_valid : valid_signals_vector;
+    SIGNAL mac_rdy : valid_signals_vector; -- not used, but needed for the component
 
     -- mac output signals
     SIGNAL mac_data_to_fsm : mac_output; -- used
-    SIGNAL mac_valid : valid_signals; -- not used, but needed for the component
+    SIGNAL mac_valid : valid_signals_vector; -- not used, but needed for the component
 
     -- crossbar
     SIGNAL data_in_to_fifo : crossbar_input_array; -- used
