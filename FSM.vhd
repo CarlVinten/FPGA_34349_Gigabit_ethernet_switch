@@ -1,4 +1,60 @@
 
+    COMPONENT fcs_check_parallel
+        PORT (
+            clk : IN STD_LOGIC; -- system clock
+            rst : IN STD_LOGIC; -- asynchronous rst
+
+            data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
+            valid : IN STD_LOGIC; -- indicates the validity of data_in.
+
+            start_of_frame : IN STD_LOGIC; -- indicates the start of a frame.
+            --end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
+
+            is_data_valid : OUT STD_LOGIC -- indicates an error.
+        );
+    END COMPONENT;
+    COMPONENT MAC_learning
+        PORT (
+            rst : IN STD_LOGIC;
+            clk : IN STD_LOGIC;
+            mac_in : IN mac_input;
+            valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            port_output : OUT mac_output;
+            output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
+        );
+    END COMPONENT;
+
+
+
+    COMPONENT fcs_check_parallel
+        PORT (
+            clk : IN STD_LOGIC; -- system clock
+            rst : IN STD_LOGIC; -- asynchronous rst
+
+            data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
+            valid : IN STD_LOGIC; -- indicates the validity of data_in.
+
+            start_of_frame : IN STD_LOGIC; -- indicates the start of a frame.
+            --end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
+
+            is_data_valid : OUT STD_LOGIC -- indicates an error.
+        );
+    END COMPONENT;
+    COMPONENT MAC_learning
+        PORT (
+            rst : IN STD_LOGIC;
+            clk : IN STD_LOGIC;
+            mac_in : IN mac_input;
+            valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            port_output : OUT mac_output;
+            output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
+        );
+    END COMPONENT;
+
    
     -- states
 
