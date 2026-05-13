@@ -23,44 +23,6 @@ END top_module;
 
 ARCHITECTURE Behavioral OF top_module IS
 
-    -- states
-
-    TYPE state_type IS (state_idle, state_preamble, state_data);
-    -- SIGNAL state : state_type := state_idle;
-
-    TYPE state_array IS ARRAY (0 TO NUM_PORTS - 1) OF state_type;
-    SIGNAL state : state_array := (OTHERS => state_idle);
-    -- subtype arrays
-    SUBTYPE preamble_range IS INTEGER RANGE 0 TO 7;
-    SUBTYPE data_cnt_range IS INTEGER RANGE 0 TO 1514;
-    SUBTYPE mac_addr_cnt_range IS INTEGER RANGE 0 TO 12;
-    SUBTYPE ethertype_cnt_range IS INTEGER RANGE 0 TO 2;
-
-    -- type arrays
-    TYPE preamble_array IS ARRAY (0 TO NUM_PORTS - 1) OF INTEGER;
-    TYPE data_cnt_array IS ARRAY (0 TO NUM_PORTS - 1) OF INTEGER;
-    TYPE mac_addr_cnt_array IS ARRAY (0 TO NUM_PORTS - 1) OF INTEGER;
-    TYPE ethertype_cnt_array IS ARRAY (0 TO NUM_PORTS - 1) OF INTEGER;
-
-    -- signal / internal counters
-    SIGNAL preamble_cnt : preamble_array := (OTHERS => 0);
-    SIGNAL data_cnt : data_cnt_array := (OTHERS => 0);
-    SIGNAL mac_addr_cnt : mac_addr_cnt_array := (OTHERS => 0);
-    SIGNAL ethertype_cnt : ethertype_cnt_array := (OTHERS => 0);
-    --SIGNAL start_of_frame : STD_LOGIC := '0';
-
-    -- fcs signals
-    SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL s_data_valid : STD_LOGIC;
-    SIGNAL s_start_of_frame : STD_LOGIC;
-    SIGNAL s_data_to_switch_core_fifo : crossbar_input_array;
-
-    SIGNAL dead1 : STD_LOGIC_VECTOR(3 DOWNTO 0);
-
-    SIGNAL s_data_valid_mac : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    SIGNAL s_data_to_mac_fifo : mac_input;
-    SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
-
     COMPONENT fcs_check_parallel
         PORT (
             clk : IN STD_LOGIC; -- system clock
