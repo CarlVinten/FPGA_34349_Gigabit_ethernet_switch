@@ -19,8 +19,8 @@ architecture only of test_mac_learning is
 		port(
 			rst : in std_logic;
 			clk : in std_logic;
-			mac_dst : in mac_input;
-			mac_src : in mac_input;
+			mac_in : in mac_input;
+			--mac_src : in mac_input;
 			valid: in std_logic_vector(NUM_PORTS - 1 downto 0);
 			ready: out std_logic_vector(NUM_PORTS - 1 downto 0);
 			port_output : out mac_output;
@@ -40,8 +40,8 @@ begin
 		port map(
 			rst => rst,
 			clk => clk,
-			mac_dst => tb_dmac,
-			mac_src => tb_smac,
+			mac_in => tb_dmac,
+			--mac_src => tb_smac,
 			valid => tb_valid,
 			ready => tb_ready,
 			port_output => port_output,
@@ -66,7 +66,6 @@ end PROCESS clock;
 stimulus : PROCESS(clk)
    	begin
       	if rising_edge(clk) then
-
       	end if;  
 end PROCESS stimulus;
 end only;

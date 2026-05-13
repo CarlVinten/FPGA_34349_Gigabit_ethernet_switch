@@ -3,6 +3,8 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE std.textio.ALL;
+library work;
+use work.global_var.all;
 
 ENTITY data_input IS
     PORT (
@@ -63,7 +65,30 @@ ARCHITECTURE Behavioral OF data_input IS
         );
     END COMPONENT;
 
+	COMPONENT MAC_learning
+		port(
+			rst: in std_logic;
+			clk: in std_logic
+			mac_in: in mac_input;
+			valid: in std_logic_vector(NUM_PORTS - 1 downto 0);
+			ready: out std_logic_vector(NUM_PORTS - 1 downto 0);
+			port_output: out mac_output;
+			output_valid: out std_logic_vector(NUM_PORTS - 1 downto 0);
+			output_ready: in std_logic_vector(NUM_PORTS - 1 downto 0)
+		);
+	END COMPONENT;
 BEGIN
+	mac_l : MAC_learning
+	PORT MAP(
+		clk => clk,
+		rst => rst,
+		mac_in => (data_in & data_in & data_in & data_in),
+		valid => OPEN,
+		ready => OPEN,
+		port_output => OPEN,
+		output_valid => OPEN,
+		output_ready => OPEN
+	);
 
     u_fcs : fcs_check_parallel
     PORT MAP(
