@@ -1,1843 +1,480 @@
+# Loading project top level
 # Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
+# Compile of data_input.vhd was successful.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of tb_data_input.vhd was successful.
 # Compile of MAC_learning.vhd was successful.
 # Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 2 failed with no errors.
-vsim -gui work.crossbar_tb(tb)
-# vsim -gui work.crossbar_tb(tb) 
-# Start time: 20:55:27 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 20:55:27 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 2 failed with no errors.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 2 failed with no errors.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 20:59:23 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 20:59:24 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 7
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-# Errors: 0, Warnings: 0
-# Compile of global.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of crossbar.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of crossbar_tb.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of crossbarfifo.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of FCS_1.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of MAC_learning.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of mac_learning_mem.vhd was successful.
-# Errors: 0, Warnings: 0
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 21:04:09 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:04:10 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 5
-vsim -gui work.crossbar_tb(tb)
-# vsim -gui work.crossbar_tb(tb) 
-# Start time: 21:04:18 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:04:19 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 1
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 21:05:10 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:05:10 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 3
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 21:05:35 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:05:35 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 2
-vsim -gui work.crossbar_tb(tb)
-# vsim -gui work.crossbar_tb(tb) 
-# Start time: 21:05:44 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:05:45 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 1
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 21:09:23 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_tb(tb) after work.crossbar_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_tb(tb) because work.global_var, work.crossbar have changed.
-# Error loading design
-# End time: 21:09:23 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 4
-vdel -all
-vlib work
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 0 failed with no errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 21:10:48 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:10:49 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd failed with 8 errors.
-# 9 compiles, 1 failed with 8 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 7 compiles, 0 failed with no errors.
-# Load canceled
-# Compile of global.vhd failed with 1 errors.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 7 compiles, 2 failed with 5 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 7 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 21:17:20 on May 13,2026
-# Loading std.standard
-# ** Error: (vsim-13) Recompile work.crossbar_ethernet_tb because work.global_var has changed.
-# ** Error (suppressible): (vsim-12) Recompile work.crossbar_ethernet_tb(tb) after work.crossbar_ethernet_tb is recompiled.
-# ** Error: (vsim-13) Recompile work.crossbar_ethernet_tb(tb) because work.global_var has changed.
-# Error loading design
-# End time: 21:17:20 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 8
-# Load canceled
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-# Load canceled
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 21:21:38 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:21:39 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 7
-vsim -gui work.crossbar_tb(tb)
-# vsim -gui work.crossbar_tb(tb) 
-# Start time: 21:21:48 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:21:48 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 1
-vsim -gui work.crossbar_ethernet_tb
-# vsim -gui work.crossbar_ethernet_tb 
-# Start time: 21:22:31 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:22:31 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 1
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb
-# vsim -gui work.crossbar_ethernet_tb 
-# Start time: 21:23:42 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:23:42 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb
-# vsim -gui work.crossbar_ethernet_tb 
-# Start time: 21:28:37 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:28:37 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 21:30:02 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:30:03 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 21:32:52 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:32:52 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 21:35:27 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:35:28 on May 13,2026, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 2
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb
-# vsim -gui work.crossbar_ethernet_tb 
-# Start time: 21:35:44 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# ** Fatal: (vsim-3817) Port "rst" of entity "crossbar" is not in the component being instantiated.
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_ethernet_tb/dut File: C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/crossbar.vhd Line: 17
-# FATAL ERROR while loading design
-# Error loading design
-# End time: 21:35:44 on May 13,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 2
-vdel -all -lib work
-vlib work
-vmap work work
+# 6 compiles, 0 failed with no errors.
+do run_data_input.do
+# ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
 # vmap work work 
-# Modifying C:/Users/meier/Desktop/FPGA_GIGABIT/FPGA_34349_Gigabit_ethernet_switch/JMproject.mpf
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# 8 compiles, 1 failed with 4 errors.
-# Load canceled
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of crossbar_ethernet_tb.vhd failed with 8 errors.
-# 2 compiles, 2 failed with 12 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd failed with 8 errors.
-# 9 compiles, 2 failed with 12 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd failed with 8 errors.
-# 9 compiles, 2 failed with 12 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd was successful.
-# 9 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb
-# vsim -gui work.crossbar_ethernet_tb 
-# Start time: 21:41:55 on May 13,2026
+# Modifying /home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/top level.mpf
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:53:46 on May 14,2026
+# vcom -reportprogress 300 -work work global.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling package global_var
+# -- Compiling package body global_var
+# -- Loading package global_var
+# End time: 00:53:46 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:53:46 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 00:53:46 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:53:46 on May 14,2026
+# vcom -reportprogress 300 -work work MAC_learning.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package global_var
+# -- Compiling entity MAC_learning
+# -- Compiling architecture struc of MAC_learning
+# End time: 00:53:46 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:53:46 on May 14,2026
+# vcom -reportprogress 300 -work work data_input.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package global_var
+# -- Compiling entity data_input
+# -- Compiling architecture Behavioral of data_input
+# End time: 00:53:47 on May 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:53:47 on May 14,2026
+# vcom -reportprogress 300 -work work tb_data_input.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package global_var
+# -- Compiling entity test
+# -- Compiling architecture simData of test
+# End time: 00:53:47 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.test 
+# Start time: 00:53:47 on May 14,2026
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading ieee.std_logic_arith(body)
 # Loading ieee.std_logic_unsigned(body)
-# Loading ieee.std_logic_textio(body)
 # Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
+# Loading work.test(simdata)
+# Loading work.data_input(behavioral)
+# Loading work.mac_learning(struc)
 # Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
+# Loading work.mac_learning_mem(syn)
+# Loading altera_mf.altera_common_conversion(body)
 # Loading altera_mf.altera_device_families(body)
-# Loading altera_mf.scfifo(behavior)
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-add wave -position insertpoint  \
-sim:/crossbar_ethernet_tb/rst \
-sim:/crossbar_ethernet_tb/output4_data \
-sim:/crossbar_ethernet_tb/output3_data \
-sim:/crossbar_ethernet_tb/output2_data \
-sim:/crossbar_ethernet_tb/output1_data \
-sim:/crossbar_ethernet_tb/NUM_BYTES \
-sim:/crossbar_ethernet_tb/ETHERNET_FRAME \
-sim:/crossbar_ethernet_tb/dstport_in \
-sim:/crossbar_ethernet_tb/debug_tx_state_1 \
-sim:/crossbar_ethernet_tb/debug_tx_src_1 \
-sim:/crossbar_ethernet_tb/debug_rr_turn_tx_1 \
-sim:/crossbar_ethernet_tb/debug_fifo2_wrreq \
-sim:/crossbar_ethernet_tb/debug_fifo2_usedw \
-sim:/crossbar_ethernet_tb/debug_fifo2_rdreq \
-sim:/crossbar_ethernet_tb/debug_fifo2_full \
-sim:/crossbar_ethernet_tb/debug_fifo2_empty \
-sim:/crossbar_ethernet_tb/data_in \
-sim:/crossbar_ethernet_tb/CLK_PERIOD \
-sim:/crossbar_ethernet_tb/clk
-restart
-run
-# GetModuleFileName: The specified module could not be found.
-# 
-# 
-# ** Note: TEST 1: Starting frame transmission with reset in the middle...
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Frame size: 64 bytes
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #0
-#    Time: 85 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #1
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #2
-#    Time: 105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes before reset
-#    Time: 110 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #3
-#    Time: 115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #4
-#    Time: 125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #5
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #6
-#    Time: 155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #7
-#    Time: 165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #8
-#    Time: 175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #9
-#    Time: 185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes before reset
-#    Time: 190 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #10
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #11
-#    Time: 215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #12
-#    Time: 245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #13
-#    Time: 255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #14
-#    Time: 265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes before reset
-#    Time: 270 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #15
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #16
-#    Time: 305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #17
-#    Time: 315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #18
-#    Time: 325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #19
-#    Time: 335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #20
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes before reset
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: *** ASSERTING RESET at byte 32 ***
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: *** RESET DEASSERTED ***
-#    Time: 370 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Waiting for crossbar to settle after reset...
-#    Time: 380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TEST 2: Sending complete frame after reset to verify normal operation...
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #21
-#    Time: 1435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #22
-#    Time: 1445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #23
-#    Time: 1455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes
-#    Time: 1460 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #24
-#    Time: 1465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #25
-#    Time: 1475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #26
-#    Time: 1495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #27
-#    Time: 1505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #28
-#    Time: 1515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #29
-#    Time: 1525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #30
-#    Time: 1535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes
-#    Time: 1540 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #31
-#    Time: 1545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #32
-#    Time: 1565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #33
-#    Time: 1595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #34
-#    Time: 1605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #35
-#    Time: 1615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes
-#    Time: 1620 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #36
-#    Time: 1645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #37
-#    Time: 1655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #38
-#    Time: 1665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #39
-#    Time: 1675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #40
-#    Time: 1685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #41
-#    Time: 1695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes
-#    Time: 1700 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 44), EoP='0', Byte #42
-#    Time: 1715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #43
-#    Time: 1725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #44
-#    Time: 1735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #45
-#    Time: 1755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #46
-#    Time: 1765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 40 bytes
-#    Time: 1780 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #47
-#    Time: 1785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 26), EoP='0', Byte #48
-#    Time: 1815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 45), EoP='0', Byte #49
-#    Time: 1825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 232), EoP='0', Byte #50
-#    Time: 1835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 1), EoP='0', Byte #51
-#    Time: 1855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 48 bytes
-#    Time: 1860 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 2), EoP='0', Byte #52
-#    Time: 1865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 3), EoP='0', Byte #53
-#    Time: 1875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #54
-#    Time: 1885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #55
-#    Time: 1895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 6), EoP='0', Byte #56
-#    Time: 1905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 7), EoP='0', Byte #57
-#    Time: 1915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #58
-#    Time: 1925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 9), EoP='0', Byte #59
-#    Time: 1935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 56 bytes
-#    Time: 1940 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 10), EoP='0', Byte #60
-#    Time: 1945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 11), EoP='0', Byte #61
-#    Time: 1955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 12), EoP='0', Byte #62
-#    Time: 1965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 13), EoP='0', Byte #63
-#    Time: 1975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 14), EoP='0', Byte #64
-#    Time: 1985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 15), EoP='0', Byte #65
-#    Time: 1995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #66
-#    Time: 2005 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #67
-#    Time: 2015 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 64 bytes
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Transmission complete. Waiting for data to be read from output...
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 230), EoP='0', Byte #68
-#    Time: 2025 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 197), EoP='0', Byte #69
-#    Time: 2035 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 61), EoP='0', Byte #70
-#    Time: 2045 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2055 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2065 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2075 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2085 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2095 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2135 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2205 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2225 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2235 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2275 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2285 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2355 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2365 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2375 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2385 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2395 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2405 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2415 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2425 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2485 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2555 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2575 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2585 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2625 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2635 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2705 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2745 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2775 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2795 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2805 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2845 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd failed with 4 errors.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd was successful.
-# 9 compiles, 2 failed with 8 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd was successful.
-# 9 compiles, 1 failed with 4 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd was successful.
-# 9 compiles, 1 failed with 4 errors.
-vsim -gui work.crossbar_ethernet_tb(tb)
-# End time: 22:15:51 on May 13,2026, Elapsed time: 0:33:56
-# Errors: 0, Warnings: 4
-# vsim -gui work.crossbar_ethernet_tb(tb) 
-# Start time: 22:15:51 on May 13,2026
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.std_logic_arith(body)
-# Loading ieee.std_logic_unsigned(body)
-# Loading ieee.std_logic_textio(body)
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
-# Loading altera_mf.altera_device_families(body)
-# Loading altera_mf.scfifo(behavior)
-add wave -position insertpoint  \
-sim:/crossbar_ethernet_tb/tx_ctrl3 \
-sim:/crossbar_ethernet_tb/tx_ctrl2 \
-sim:/crossbar_ethernet_tb/tx_ctrl1 \
-sim:/crossbar_ethernet_tb/tx_ctrl0 \
-sim:/crossbar_ethernet_tb/rst \
-sim:/crossbar_ethernet_tb/output4_data \
-sim:/crossbar_ethernet_tb/output3_data \
-sim:/crossbar_ethernet_tb/output2_data \
-sim:/crossbar_ethernet_tb/output1_data \
-sim:/crossbar_ethernet_tb/NUM_BYTES \
-sim:/crossbar_ethernet_tb/ETHERNET_FRAME \
-sim:/crossbar_ethernet_tb/dstport_in \
-sim:/crossbar_ethernet_tb/debug_tx_state_1 \
-sim:/crossbar_ethernet_tb/debug_tx_src_1 \
-sim:/crossbar_ethernet_tb/debug_rr_turn_tx_1 \
-sim:/crossbar_ethernet_tb/debug_fifo2_wrreq \
-sim:/crossbar_ethernet_tb/debug_fifo2_usedw \
-sim:/crossbar_ethernet_tb/debug_fifo2_rdreq \
-sim:/crossbar_ethernet_tb/debug_fifo2_full \
-sim:/crossbar_ethernet_tb/debug_fifo2_empty \
-sim:/crossbar_ethernet_tb/data_in \
-sim:/crossbar_ethernet_tb/CLK_PERIOD \
-sim:/crossbar_ethernet_tb/clk
-restart
-run
-# ** Note: TEST 1: Starting frame transmission with reset in the middle...
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Frame size: 64 bytes
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #0
-#    Time: 85 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #1
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #2
-#    Time: 105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes before reset
-#    Time: 110 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #3
-#    Time: 115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #4
-#    Time: 125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #5
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #6
-#    Time: 155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #7
-#    Time: 165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #8
-#    Time: 175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #9
-#    Time: 185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes before reset
-#    Time: 190 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #10
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #11
-#    Time: 215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #12
-#    Time: 245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #13
-#    Time: 255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #14
-#    Time: 265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes before reset
-#    Time: 270 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #15
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #16
-#    Time: 305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #17
-#    Time: 315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #18
-#    Time: 325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #19
-#    Time: 335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #20
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes before reset
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: *** ASSERTING RESET at byte 32 ***
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: *** RESET DEASSERTED ***
-#    Time: 370 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Waiting for crossbar to settle after reset...
-#    Time: 380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TEST 2: Sending complete frame after reset to verify normal operation...
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #21
-#    Time: 1435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #22
-#    Time: 1445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #23
-#    Time: 1455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes
-#    Time: 1460 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #24
-#    Time: 1465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #25
-#    Time: 1475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #26
-#    Time: 1495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #27
-#    Time: 1505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #28
-#    Time: 1515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #29
-#    Time: 1525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #30
-#    Time: 1535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes
-#    Time: 1540 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #31
-#    Time: 1545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #32
-#    Time: 1565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #33
-#    Time: 1595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #34
-#    Time: 1605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #35
-#    Time: 1615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes
-#    Time: 1620 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #36
-#    Time: 1645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #37
-#    Time: 1655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #38
-#    Time: 1665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #39
-#    Time: 1675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #40
-#    Time: 1685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #41
-#    Time: 1695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes
-#    Time: 1700 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 44), EoP='0', Byte #42
-#    Time: 1715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #43
-#    Time: 1725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #44
-#    Time: 1735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #45
-#    Time: 1755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #46
-#    Time: 1765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 40 bytes
-#    Time: 1780 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #47
-#    Time: 1785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 26), EoP='0', Byte #48
-#    Time: 1815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 45), EoP='0', Byte #49
-#    Time: 1825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 232), EoP='0', Byte #50
-#    Time: 1835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 1), EoP='0', Byte #51
-#    Time: 1855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 48 bytes
-#    Time: 1860 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 2), EoP='0', Byte #52
-#    Time: 1865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 3), EoP='0', Byte #53
-#    Time: 1875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #54
-#    Time: 1885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #55
-#    Time: 1895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 6), EoP='0', Byte #56
-#    Time: 1905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 7), EoP='0', Byte #57
-#    Time: 1915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #58
-#    Time: 1925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 9), EoP='0', Byte #59
-#    Time: 1935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 56 bytes
-#    Time: 1940 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 10), EoP='0', Byte #60
-#    Time: 1945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 11), EoP='0', Byte #61
-#    Time: 1955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 12), EoP='0', Byte #62
-#    Time: 1965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 13), EoP='0', Byte #63
-#    Time: 1975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 14), EoP='0', Byte #64
-#    Time: 1985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 15), EoP='0', Byte #65
-#    Time: 1995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #66
-#    Time: 2005 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #67
-#    Time: 2015 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 64 bytes
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Transmission complete. Waiting for data to be read from output...
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 230), EoP='0', Byte #68
-#    Time: 2025 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 197), EoP='0', Byte #69
-#    Time: 2035 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 61), EoP='0', Byte #70
-#    Time: 2045 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2055 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2065 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2075 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2085 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2095 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2135 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2205 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2225 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2235 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2275 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2285 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2355 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2365 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2375 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2385 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2395 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2405 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2415 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2425 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2485 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2555 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2575 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2585 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2625 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2635 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2705 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2745 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2775 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2795 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2805 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2845 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# WARNING: No extended dataflow license exists
-# Compile of global.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd failed with 4 errors.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of crossbar_ethernet_tb.vhd was successful.
-# 9 compiles, 1 failed with 4 errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.global_var(body)
-# Loading work.crossbar_ethernet_tb(tb)
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
-run
-# GetModuleFileName: The specified module could not be found.
-# 
-# 
-# ** Note: TEST 1: Starting frame transmission with reset in the middle...
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Frame size: 64 bytes
-#    Time: 30 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TX_CTRL0: Output 1 TRANSMISSION STARTED
-#    Time: 65 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #0
-#    Time: 85 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #1
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #2
-#    Time: 105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes before reset
-#    Time: 110 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #3
-#    Time: 115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #4
-#    Time: 125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #5
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #6
-#    Time: 155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #7
-#    Time: 165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #8
-#    Time: 175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #9
-#    Time: 185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes before reset
-#    Time: 190 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #10
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #11
-#    Time: 215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #12
-#    Time: 245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #13
-#    Time: 255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #14
-#    Time: 265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes before reset
-#    Time: 270 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #15
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #16
-#    Time: 305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #17
-#    Time: 315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #18
-#    Time: 325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #19
-#    Time: 335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #20
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes before reset
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: *** ASSERTING RESET at byte 32 ***
-#    Time: 350 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TX_CTRL0: Output 1 TRANSMISSION ENDED
-#    Time: 365 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: *** RESET DEASSERTED ***
-#    Time: 370 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Waiting for crossbar to settle after reset...
-#    Time: 380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TEST 2: Sending complete frame after reset to verify normal operation...
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Source: Input 0, Destination: Output 1 (port code: 0001)
-#    Time: 1380 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: TX_CTRL0: Output 1 TRANSMISSION STARTED
-#    Time: 1415 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #21
-#    Time: 1435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 164), EoP='0', Byte #22
-#    Time: 1445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 123), EoP='0', Byte #23
-#    Time: 1455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 8 bytes
-#    Time: 1460 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 234), EoP='0', Byte #24
-#    Time: 1465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #25
-#    Time: 1475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 18), EoP='0', Byte #26
-#    Time: 1495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 52), EoP='0', Byte #27
-#    Time: 1505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 86), EoP='0', Byte #28
-#    Time: 1515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 120), EoP='0', Byte #29
-#    Time: 1525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 144), EoP='0', Byte #30
-#    Time: 1535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 16 bytes
-#    Time: 1540 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #31
-#    Time: 1545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 69), EoP='0', Byte #32
-#    Time: 1565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 46), EoP='0', Byte #33
-#    Time: 1595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 179), EoP='0', Byte #34
-#    Time: 1605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 254), EoP='0', Byte #35
-#    Time: 1615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 24 bytes
-#    Time: 1620 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 128), EoP='0', Byte #36
-#    Time: 1645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #37
-#    Time: 1655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #38
-#    Time: 1665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 64), EoP='0', Byte #39
-#    Time: 1675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #40
-#    Time: 1685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #41
-#    Time: 1695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 32 bytes
-#    Time: 1700 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 44), EoP='0', Byte #42
-#    Time: 1715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 192), EoP='0', Byte #43
-#    Time: 1725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 168), EoP='0', Byte #44
-#    Time: 1735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #45
-#    Time: 1755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #46
-#    Time: 1765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 40 bytes
-#    Time: 1780 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #47
-#    Time: 1785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 26), EoP='0', Byte #48
-#    Time: 1815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 45), EoP='0', Byte #49
-#    Time: 1825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 232), EoP='0', Byte #50
-#    Time: 1835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 1), EoP='0', Byte #51
-#    Time: 1855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 48 bytes
-#    Time: 1860 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 2), EoP='0', Byte #52
-#    Time: 1865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 3), EoP='0', Byte #53
-#    Time: 1875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 4), EoP='0', Byte #54
-#    Time: 1885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 5), EoP='0', Byte #55
-#    Time: 1895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 6), EoP='0', Byte #56
-#    Time: 1905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 7), EoP='0', Byte #57
-#    Time: 1915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 8), EoP='0', Byte #58
-#    Time: 1925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 9), EoP='0', Byte #59
-#    Time: 1935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 56 bytes
-#    Time: 1940 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 10), EoP='0', Byte #60
-#    Time: 1945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 11), EoP='0', Byte #61
-#    Time: 1955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 12), EoP='0', Byte #62
-#    Time: 1965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 13), EoP='0', Byte #63
-#    Time: 1975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 14), EoP='0', Byte #64
-#    Time: 1985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 15), EoP='0', Byte #65
-#    Time: 1995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 16), EoP='0', Byte #66
-#    Time: 2005 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 17), EoP='0', Byte #67
-#    Time: 2015 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Transmitted 64 bytes
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Transmission complete. Waiting for data to be read from output...
-#    Time: 2020 ns  Iteration: 0  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 230), EoP='0', Byte #68
-#    Time: 2025 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 197), EoP='0', Byte #69
-#    Time: 2035 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received byte (decimal: 61), EoP='0', Byte #70
-#    Time: 2045 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2055 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: TX_CTRL0: Output 1 TRANSMISSION ENDED
-#    Time: 2055 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2065 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2075 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2085 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2095 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2105 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2115 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2125 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2135 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2145 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2155 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2165 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2175 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2185 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2195 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2205 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2215 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2225 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2235 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2245 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2255 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2265 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2275 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2285 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2295 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2305 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2315 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2325 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2335 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2345 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2355 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2365 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2375 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2385 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2395 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2405 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2415 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2425 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2435 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2445 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2455 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2465 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2475 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2485 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2495 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2505 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2515 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2525 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2535 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2545 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2555 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2565 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2575 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2585 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2595 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2605 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2615 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2625 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2635 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2645 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2655 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2665 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2675 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2685 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2695 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2705 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2715 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2725 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2735 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2745 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2755 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2765 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2775 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2785 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2795 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2805 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2815 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2825 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2835 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2845 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2855 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2865 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2875 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2885 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2895 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2905 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2915 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2925 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2935 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2945 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2955 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2965 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2975 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2985 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
-# ** Note: Output 1: Received last byte (EoP, decimal: 178)
-#    Time: 2995 ns  Iteration: 1  Instance: /crossbar_ethernet_tb
+# Loading altera_mf.altsyncram(translated)
+# Loading work.fcs_check_parallel(struc)
+# ** Warning: (vsim-8683) Uninitialized out port /test/DUT/dst_port(3)(3 downto 0) has no driver.
+# This port will contribute value (UUUU) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test/DUT/dst_port(2)(3 downto 0) has no driver.
+# This port will contribute value (UUUU) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test/DUT/dst_port(1)(3 downto 0) has no driver.
+# This port will contribute value (UUUU) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test/DUT/dst_port(0)(3 downto 0) has no driver.
+# This port will contribute value (UUUU) to the signal network.
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 4 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 12 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 20 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 28 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 36 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 44 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 52 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 60 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 68 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 76 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 84 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 92 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 100 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 108 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 116 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 124 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 132 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 140 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 148 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 156 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 164 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 172 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 180 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 188 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 196 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 204 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 212 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 220 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 228 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 236 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 244 ns  Iteration: 1  Instance: /test/DUT/mac_l/mem/altsyncram_component
+# ** Note: Simulation Finished
+#    Time: 1500 ns  Iteration: 0  Instance: /test

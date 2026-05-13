@@ -48,7 +48,7 @@ add wave -position insertpoint sim:/test/DUT/state
 # -------------------------------------------------------------------------
 
 # Run until the report "Simulation Finished" is reached [cite: 167]
-run 100 ns
+run -all
 
 # Zoom to fit the entire simulation in the wave window
 wave zoom full
