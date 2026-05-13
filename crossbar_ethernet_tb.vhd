@@ -16,6 +16,7 @@ architecture tb of crossbar_ethernet_tb is
     COMPONENT crossbar
         PORT (
             clock           : IN STD_LOGIC;
+            rst             : IN STD_LOGIC;
             data            : IN crossbar_input_array;
             dstport         : IN crossbar_dstport_array;
             output1         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
@@ -36,6 +37,7 @@ architecture tb of crossbar_ethernet_tb is
 
     -- Test signals
     signal clk                  : std_logic := '0';
+    signal rst                  : std_logic := '0';
     signal data_in              : crossbar_input_array := (others => (others => '0'));
     signal dstport_in           : crossbar_dstport_array := (others => (others => '0'));
     
@@ -79,6 +81,7 @@ begin
     dut : crossbar
     PORT MAP (
         clock              => clk,
+        rst                => rst,
         data               => data_in,
         dstport            => dstport_in,
         output1            => output1_data,
@@ -114,14 +117,72 @@ begin
         -- Initialize
         data_in <= (others => (others => '0'));
         dstport_in <= (others => (others => '0'));
+        rst <= '1';  -- Assert reset initially
         
+        wait for 2 * CLK_PERIOD;
+        rst <= '0';  -- Release reset
         wait for CLK_PERIOD;
         
-        -- Send ethernet frame byte by byte
-        -- Input 0 -> Output 1 (dstport = "0001")
-        report "Starting Ethernet frame transmission to crossbar...";
+        -- ========================================
+        -- TEST 1: Send frame until halfway, then reset
+        -- ========================================
+        report "TEST 1: Starting frame transmission with reset in the middle...";
         report "Source: Input 0, Destination: Output 1 (port code: 0001)";
         report "Frame size: " & integer'image(NUM_BYTES) & " bytes";
+        
+        for byte_idx in 0 to NUM_BYTES - 1 loop
+            -- Stop transmission and assert reset halfway through the frame
+            if byte_idx = 32 then
+                report "*** ASSERTING RESET at byte " & integer'image(byte_idx) & " ***";
+                rst <= '1';
+                data_in <= (others => (others => '0'));
+                dstport_in <= (others => (others => '0'));
+                wait for 2 * CLK_PERIOD;
+                rst <= '0';
+                report "*** RESET DEASSERTED ***";
+                wait for CLK_PERIOD;
+                -- Exit this test after reset
+                exit;
+            end if;
+            
+            -- Set the destination port for input 0 to output 1
+            dstport_in(0) <= "0001";  -- Route input 0 to output 1
+            
+            -- Set end-of-packet flag on last byte (bit 8 = 1)
+            if byte_idx = NUM_BYTES - 1 then
+                is_eop := '1';
+            else
+                is_eop := '0';
+            end if;
+            
+            -- Load the byte into input 0 (data(0))
+            -- Format: [EoP][data(7..0)]
+            data_in(0) <= is_eop & ETHERNET_FRAME(byte_idx);
+            
+            -- Keep other inputs idle
+            data_in(1) <= "0" & x"00";
+            data_in(2) <= "0" & x"00";
+            data_in(3) <= "0" & x"00";
+            
+            wait for CLK_PERIOD;
+            
+            -- Print progress every 8 bytes
+            if (byte_idx + 1) mod 8 = 0 then
+                report "Transmitted " & integer'image(byte_idx + 1) & " bytes before reset";
+            end if;
+        end loop;
+        
+        -- Stop sending data and wait
+        data_in <= (others => (others => '0'));
+        dstport_in <= (others => (others => '0'));
+        report "Waiting for crossbar to settle after reset...";
+        wait for 100 * CLK_PERIOD;
+        
+        -- ========================================
+        -- TEST 2: Send complete frame after reset
+        -- ========================================
+        report "TEST 2: Sending complete frame after reset to verify normal operation...";
+        report "Source: Input 0, Destination: Output 1 (port code: 0001)";
         
         for byte_idx in 0 to NUM_BYTES - 1 loop
             -- Set the destination port for input 0 to output 1
