@@ -1,17 +1,7 @@
 
    
    
-    fcs_generate : FOR ii TO 0 TO 3 GENERATE
-        u_fcs : fcs_check_parallel
-        PORT MAP(
-            clk => clk,
-            rst => rst,
-            data_in => s_data_to_fcs(ii),
-            valid => s_data_valid(ii),
-            start_of_frame => s_start_of_frame(ii),
-            --end_of_frame => s_end_of_frame,
-            is_data_valid => OPEN -- Or map to a signal if you need the result
-        );
+
   
 
     -- data_to_fcs <= s_data_to_fcs; 

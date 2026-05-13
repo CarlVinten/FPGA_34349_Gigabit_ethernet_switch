@@ -8,25 +8,16 @@ USE work.global_var.ALL;
 
 ENTITY top_module IS
     PORT (
-        clk : IN STD_LOGIC;
-        rst : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
+    rst : IN STD_LOGIC;
 
-        -- inputs 
-        data_in : IN rx_in;
-        data_valid : IN rx_ctrl;
+    -- inputs 
+    data_in : IN rx_in;
+    data_valid : IN rx_ctrl;
 
-        -- outputs
+    -- outputs
 
-        -- outputs to fcs check parallel
-        sof : OUT STD_LOGIC;
-        data_to_fcs : OUT fcs_data_input;
-        fcs_data_valid : OUT STD_LOGIC;
-
-        -- outputs to switch core fifo, mac fifo, and ethertype
-        data_to_switch_core_fifo : OUT crossbar_input_array;
-
-        data_to_mac_fifo : OUT mac_input;
-        data_to_ethertype : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+    -- outputs to fcs check parallel
 
 END top_module;
 
@@ -69,6 +60,7 @@ ARCHITECTURE Behavioral OF top_module IS
     SIGNAL s_data_valid_mac : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL s_data_to_mac_fifo : mac_input;
     SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
+
     COMPONENT fcs_check_parallel
         PORT (
             clk : IN STD_LOGIC; -- system clock
@@ -108,5 +100,18 @@ BEGIN
         output_valid => OPEN,
         output_ready => dead1
     );
+
+    fcs_generate : FOR ii TO 0 TO 3 GENERATE
+        u_fcs : fcs_check_parallel
+        PORT MAP(
+            clk => clk,
+            rst => rst,
+            data_in => s_data_to_fcs(ii),
+            valid => s_data_valid(ii),
+            start_of_frame => s_start_of_frame(ii),
+            --end_of_frame => s_end_of_frame,
+            is_data_valid => OPEN -- Or map to a signal if you need the result
+        );
+    END GENERATE fcs_generate;
 
 END Behavioral;
