@@ -34,6 +34,7 @@ ARCHITECTURE Behavioral OF top_module IS
 		    dst_port : OUT crossbar_dstport_array
 		);
 	end component;
+    
 	component crossbar
 		port(
 			clock		: IN STD_LOGIC ;
