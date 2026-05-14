@@ -118,12 +118,9 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
-<<<<<<< HEAD
 	-- Seconf FSM
 	SIGNAL temp_dst_array: crossbar_dstport_array := (others => (others => '0'));
 	SIGNAL is_filling_crossbar : std_logic_vector := "0000";
-=======
->>>>>>> 1e728039178742b9dde1499849b23280b50851e5
 BEGIN
 
     mac_l : MAC_learning
