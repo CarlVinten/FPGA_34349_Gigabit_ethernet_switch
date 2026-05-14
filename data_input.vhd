@@ -286,8 +286,9 @@ BEGIN
 				end if;
 
 				if(data_out_to_fsm(8) = '1') then
+					is_filling_crossbar(i) <= '0';
+				end if;
 
-				
 				if (is_filling_crossbar(i) <= '1') then
 					dst_port(i) <= crossbar_dstport_array(i);
 				else
