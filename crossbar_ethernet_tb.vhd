@@ -20,10 +20,10 @@ architecture tb of crossbar_ethernet_tb is
             rst             : IN STD_LOGIC;
             data            : IN crossbar_input_array;
             dstport         : IN crossbar_dstport_array;
-            output1         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output2         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output3         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output4         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output1         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output2         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output3         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output4         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
             -- TX control signals
             tx_ctrl0        : OUT STD_LOGIC;
             tx_ctrl1        : OUT STD_LOGIC;
@@ -47,10 +47,10 @@ architecture tb of crossbar_ethernet_tb is
     signal data_in              : crossbar_input_array := (others => (others => '0'));
     signal dstport_in           : crossbar_dstport_array := (others => (others => '0'));
     
-    signal output1_data         : std_logic_vector(8 downto 0);
-    signal output2_data         : std_logic_vector(8 downto 0);
-    signal output3_data         : std_logic_vector(8 downto 0);
-    signal output4_data         : std_logic_vector(8 downto 0);
+    signal output1_data         : std_logic_vector(7 downto 0);
+    signal output2_data         : std_logic_vector(7 downto 0);
+    signal output3_data         : std_logic_vector(7 downto 0);
+    signal output4_data         : std_logic_vector(7 downto 0);
     
     -- TX control signals
     signal tx_ctrl0             : std_logic;
@@ -296,14 +296,12 @@ begin
         variable byte_count : integer := 0;
     begin
         if rising_edge(clk) then
-            -- Check if there's valid data on output 1
-            if output1_data(8) = '0' and output1_data(7 downto 0) /= x"00" then
-                report "Output 1: Received byte (decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & 
-                        "), EoP=" & std_logic'image(output1_data(8)) & ", Byte #" & integer'image(byte_count);
+            -- Check if there's valid data on output 1 (8-bit output, no EoP bit)
+            if output1_data /= x"00" then
+                report "Output 1: Received byte (decimal: " & integer'image(to_integer(unsigned(output1_data))) & 
+                        "), Byte #" & integer'image(byte_count);
                 byte_count := byte_count + 1;
-            elsif output1_data(8) = '1' then
-                report "Output 1: Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & ")";
-                byte_count := byte_count + 1;
+                -- Note: EoP detection is now done via tx_ctrl signals
             end if;
         end if;
     end process output_monitor;
@@ -313,16 +311,13 @@ begin
         variable byte_count : integer := 0;
     begin
         if rising_edge(clk) then
-            -- Check if there's valid data on output 2
-            if output2_data(8) = '0' and output2_data(7 downto 0) /= x"00" then
-                report "Output 2 (RR Test): Received byte (decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
-                        "), EoP=" & std_logic'image(output2_data(8)) & ", Byte #" & integer'image(byte_count);
+            -- Check if there's valid data on output 2 (8-bit output, no EoP bit)
+            if output2_data /= x"00" then
+                report "Output 2 (RR Test): Received byte (decimal: " & integer'image(to_integer(unsigned(output2_data))) & 
+                        "), Byte #" & integer'image(byte_count);
                 byte_count := byte_count + 1;
-            elsif output2_data(8) = '1' then
-                report "Output 2 (RR Test): Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
-                        "), Total bytes in frame: " & integer'image(byte_count + 1);
-                byte_count := 0;  -- Reset for next frame
             end if;
+            -- Frame completion is detected by tx_ctrl signal transitions
         end if;
     end process output2_monitor;
 
