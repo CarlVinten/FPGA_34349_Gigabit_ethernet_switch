@@ -120,6 +120,10 @@ BEGIN
             is_data_valid => fcs_valid_to_fsm(i)
         );
 
+        -- fcs_sof(i) <= '1' WHEN state(i) = state_data AND data_cnt(i) = 0 AND data_valid(i) = '1' ELSE '0';
+
+        -- fcs_data_valid(i) <= '1' WHEN (state(i) = state_data AND data_valid(i) = '1') ELSE '0';
+
         PROCESS (clk, rst)
         BEGIN
             -- data_fifo : 
@@ -128,8 +132,8 @@ BEGIN
             IF rst = '1' THEN
 
                 state(i) <= state_idle;
-                fcs_sof(i) <= '0';
-                fcs_data_valid(i) <= '0';
+                -- fcs_sof(i) <= '0';
+                -- fcs_data_valid(i) <= '0';
                 mac_data_valid(i) <= '0';
 
                 -- counters
@@ -176,19 +180,29 @@ BEGIN
                         END IF;
 
                         IF preamble_cnt(i) = 7 AND data_in(i) = x"AB" THEN
+                            IF data_in(i) = x"AB" THEN
+                                fcs_sof(i) <= '1';
+                                fcs_data_valid(i) <= '1';
+                            END IF;
+
                             state(i) <= state_data;
-                            fcs_sof(i) <= '1';
+                            -- fcs_data_in(i) <= data_in(i);
+                            -- data_cnt(i) <= data_cnt(i) + 1;
+                            -- data_cnt(i) <= 0;
+
+                            -- mac_data_valid(i) <= '1';
+                            -- mac_data_in(i) <= data_in(i);
+
+                            -- data_in_to_fifo(i) <= '1' & data_in(i);
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
                         END IF;
 
                     WHEN state_data =>
-                        fcs_sof(i) <= '0';
 
                         IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
                             fcs_data_in(i) <= data_in(i);
-                            fcs_data_valid(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
 
                             -- mac
@@ -196,11 +210,11 @@ BEGIN
                             mac_data_valid(i) <= '1';
 
                             -- crossbar / fifo
-                            data_in_to_fifo(i) <= '1' & data_in(i);
+                            -- fcs_sof(i) <= '0';
 
                         ELSIF state(i) = state_data AND data_valid(i) = '1' THEN
                             -- fcs
-                            fcs_data_valid(i) <= '1';
+                            -- fcs_data_valid(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
                             fcs_data_in(i) <= data_in(i);
 
@@ -219,7 +233,7 @@ BEGIN
 
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
-                            fcs_data_valid(i) <= '0';
+                            -- fcs_data_valid(i) <= '0';
                         END IF;
 
                 END CASE;
@@ -228,10 +242,10 @@ BEGIN
         END PROCESS;
     END GENERATE fcs_generate;
 
--- Connect internal "lane" arrays to the physical output ports 
+    -- Connect internal "lane" arrays to the physical output ports 
     data_to_crossbar <= data_in_to_fifo;
-  --  dst_port         <= mac_data_to_fsm; 
-    
+    --  dst_port         <= mac_data_to_fsm; 
+
     -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
-    mac_rdy <= (others => '1');
+    mac_rdy <= (OTHERS => '1');
 END Behavioral;

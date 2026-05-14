@@ -33,7 +33,8 @@ add wave                 sim:/test/tb_ctrl
 
 # 2. DUT Internal State [cite: 8, 28, 32]
 add wave -divider "DUT Port States"
-add wave -label "States" sim:/test/DUT/state
+add wave -label "State" sim:/test/DUT/state
+add wave -label "FCS Valid" sim:/test/DUT/fcs_data_valid
 
 # 3. FCS Internal sum_reg [cite: 25, 51]
 # We use the fcs_generate(i) label to reach inside the parallel instances
