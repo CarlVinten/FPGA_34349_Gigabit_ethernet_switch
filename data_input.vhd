@@ -49,6 +49,20 @@ ARCHITECTURE Behavioral OF data_input IS
     END COMPONENT;
     -- states
 
+	component crossbarfifo
+		port (
+			clock		: IN STD_LOGIC ;
+			data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+			rdreq		: IN STD_LOGIC ;
+			sclr		: IN STD_LOGIC ;
+			wrreq		: IN STD_LOGIC ;
+			empty		: OUT STD_LOGIC ;
+			full		: OUT STD_LOGIC ;
+			q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+			usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
+		);
+	end component
+
     TYPE state_type IS (state_idle, state_preamble, state_data);
     -- SIGNAL state : state_type := state_idle;
 
