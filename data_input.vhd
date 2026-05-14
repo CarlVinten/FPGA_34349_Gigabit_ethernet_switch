@@ -117,7 +117,7 @@ ARCHITECTURE Behavioral OF data_input IS
     signal rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     signal wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
-BEGIN
+BEGIN 
 
     mac_l : MAC_learning
     PORT MAP(
