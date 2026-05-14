@@ -28,47 +28,15 @@ architecture tb of ethernet_switch_4port_tb is
     -- Test signals
     signal clk          : std_logic := '0';
     signal rst          : std_logic := '0';
-    signal RX0          : std_logic_vector(7 downto 0) := (others => '0');
-    signal RX1          : std_logic_vector(7 downto 0) := (others => '0');
-    signal RX2          : std_logic_vector(7 downto 0) := (others => '0');
-    signal RX3          : std_logic_vector(7 downto 0) := (others => '0');
+	SIGNAL RX : rx_in := (others => (others => '0'));
     signal RX_control   : std_logic_vector(3 downto 0) := (others => '0');
+
+    SIGNAL TX : tx_out := (others => (others => '0'));
+	signal TX_control   : std_logic_vector(3 downto 0);
     
-    signal TX0          : std_logic_vector(7 downto 0);
-    signal TX1          : std_logic_vector(7 downto 0);
-    signal TX2          : std_logic_vector(7 downto 0);
-    signal TX3          : std_logic_vector(7 downto 0);
-    signal TX_control   : std_logic_vector(3 downto 0);
-    
+
     -- Clock period
     constant CLK_PERIOD : time := 10 ns;
-    
-begin
-    -- DUT instantiation
-    DUT : top_module
-        port map (
-            clk => clk,
-		    rst => rst,
-
-		    -- inputs 
-		    data_in => (RX0 & RX1 & RX2 & RX3),
-		    data_in_valid => RX_control,
-
-		    -- outputs
-			data_out =>	(TX0, TX1, TX2, TX3),
-			data_out_valid => TX_control
-        );
-    
-    -- Clock generation
-    clk_process : process
-    begin
-        clk <= '0';
-        wait for CLK_PERIOD / 2;
-        clk <= '1';
-        wait for CLK_PERIOD / 2;
-    end process clk_process;
-    
-    -- File I/O for packet data
     procedure read_packet_file(
         filename    : string;
         port_data   : out std_logic_vector(7 downto 0);
@@ -91,6 +59,34 @@ begin
             end if;
         end if;
     end procedure read_packet_file;
+
+begin
+    -- DUT instantiation
+    DUT : top_module
+        port map (
+            clk => clk,
+		    rst => rst,
+
+		    -- inputs 
+		    data_in => RX,
+		    data_in_valid => RX_control,
+
+		    -- outputs
+			data_out =>	TX,
+			data_out_valid => TX_control
+        );
+    
+    -- Clock generation
+    clk_process : process
+    begin
+        clk <= '0';
+        wait for CLK_PERIOD / 2;
+        clk <= '1';
+        wait for CLK_PERIOD / 2;
+    end process clk_process;
+    
+    -- File I/O for packet data
+    
     
     -- Test stimulus
     stimulus : process
@@ -115,10 +111,10 @@ begin
         -- Reset assertion
         rst <= '1';
         RX_control <= "0000";
-        RX0 <= (others => '0');
-        RX1 <= (others => '0');
-        RX2 <= (others => '0');
-        RX3 <= (others => '0');
+        RX(0) <= (others => '0');
+        RX(1) <= (others => '0');
+        RX(2) <= (others => '0');
+        RX(3) <= (others => '0');
         wait for 50 ns;
         rst <= '0';
         wait for 50 ns;
@@ -146,35 +142,53 @@ begin
             
             -- Apply data to ports
             if rx0_valid then
-                RX0 <= rx0_data;
+                RX(0) <= rx0_data;
             else
-                RX0 <= (others => '0');
+                RX(0) <= (others => '0');
             end if;
             
             if rx1_valid then
-                RX1 <= rx1_data;
+                RX(1) <= rx1_data;
             else
-                RX1 <= (others => '0');
+                RX(1) <= (others => '0');
             end if;
             
             if rx2_valid then
-                RX2 <= rx2_data;
+                RX(2) <= rx2_data;
             else
-                RX2 <= (others => '0');
+                RX(2) <= (others => '0');
             end if;
             
             if rx3_valid then
-                RX3 <= rx3_data;
+                RX(3) <= rx3_data;
             else
-                RX3 <= (others => '0');
+                RX(3) <= (others => '0');
             end if;
             
             -- Update control signal (active low for valid ports)
-            RX_control(0) <= '1' when rx0_valid else '0';
-            RX_control(1) <= '1' when rx1_valid else '0';
-            RX_control(2) <= '1' when rx2_valid else '0';
-            RX_control(3) <= '1' when rx3_valid else '0';
-            
+			if rx0_valid then
+            RX_control(0) <= '1';
+			else
+			RX_control(0) <= '0';
+            end if;
+			
+			if(rx1_valid) then
+			RX_control(1) <= '1';
+			else
+			RX_control(1) <= '0';
+            end if;
+
+			if(rx2_valid) then
+			RX_control(2) <= '1';
+			else
+			RX_control(2) <= '0';
+            end if;
+
+			if(rx3_valid) then
+			RX_control(3) <= '1';
+			else
+			RX_control(3) <= '0';
+            end if;
             wait for CLK_PERIOD;
         end loop;
         
@@ -186,10 +200,10 @@ begin
         
         -- Stop all signals
         RX_control <= "0000";
-        RX0 <= (others => '0');
-        RX1 <= (others => '0');
-        RX2 <= (others => '0');
-        RX3 <= (others => '0');
+        RX(0) <= (others => '0');
+        RX(1) <= (others => '0');
+        RX(2) <= (others => '0');
+        RX(3) <= (others => '0');
         wait for CLK_PERIOD * 10;
         
         -- End simulation

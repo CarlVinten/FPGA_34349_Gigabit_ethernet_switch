@@ -140,14 +140,14 @@ BEGIN
 
 		pack_fifo : crossbarfifo
 		PORT MAP(
-			clock => clk;
+			clock => clk,
 			data  => data_in_to_fifo(i),
-			rdreq => 
+			rdreq => open,
 			sclr  => rst,	
-			wrreq => 
-			empty => empty_fifo(i)
-			full  => full_fifo(i)
-			q	  => data_out_to_fsm(i)	
+			wrreq => open,
+			empty => empty_fifo(i),
+			full  => full_fifo(i),
+			q	  => data_out_to_fsm(i),	
 			usedw => used_words_fifo 
 		);
 

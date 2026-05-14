@@ -41,10 +41,10 @@ ARCHITECTURE Behavioral OF top_module IS
 			rst			: IN STD_LOGIC;
             data		: IN crossbar_input_array;
             dstport 	: IN crossbar_dstport_array;
-            output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output1		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output2		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output3		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output4		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			tx_ctrl0    : OUT STD_LOGIC;
             tx_ctrl1    : OUT STD_LOGIC;
             tx_ctrl2    : OUT STD_LOGIC;
