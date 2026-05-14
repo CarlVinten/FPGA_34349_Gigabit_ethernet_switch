@@ -256,7 +256,7 @@ BEGIN
                             mac_data_valid(i) <= '0';
 
                             -- crossbar / fifo
-                            delay_data_in_to_fifo(i) <= '0' & data_in(i);
+                            data_in_to_fifo(i) <= '0' & data_in(i);
 
                             -- -- a little weird. they should all be 1's in here
                             -- IF data_valid(i) = '1' THEN
@@ -266,7 +266,7 @@ BEGIN
                             -- END IF;
 
                         ELSIF data_valid(i) = '0' THEN
-                            delay_data_in_to_fifo(i) <= '1' & data_in(i);
+                            data_in_to_fifo(i) <= '1' & data_in(i);
 
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
