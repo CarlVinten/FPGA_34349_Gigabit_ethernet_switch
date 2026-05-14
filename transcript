@@ -1,576 +1,264 @@
-# Compile of crossbar.vhd failed with 3 errors.
-# Compile of crossbar_tb.vhd failed with 3 errors.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of data_input.vhd failed with 1 errors.
-# Compile of FCS_1.vhd was successful.
-# Compile of global.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of top.vhd failed with 1 errors.
-# 10 compiles, 4 failed with 8 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of data_input.vhd failed with 1 errors.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of top.vhd failed with 1 errors.
-# 10 compiles, 2 failed with 2 errors.
-vsim -gui work.crossbar_tb
-# vsim -gui work.crossbar_tb 
-# Start time: 13:55:27 on Apr 29,2026
+# Loading project sync_FIFO
+# 0 compiles, 2 failed with no errors.
+# Compile of data_input.vhd was successful.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of tb_fcs_check_parallel.vhd was successful.
+# 3 compiles, 0 failed with no errors.
+do run_fcs.do
+# Cannot open macro file: run_fcs.do
+cd {/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel}
+# reading /home/liou/4_Software_Programs/intelFPGA/20.1/modelsim_ase/linuxaloem/../modelsim.ini
+# reading modelsim.ini
+# Loading project fcs
+# 0 compiles, 3 failed with no errors.
+# Compile of data_input.vhd was successful.
+# Compile of fcs_check_parallel.vhd was successful.
+# Compile of tb_fcs_check_parallel.vhd was successful.
+# 3 compiles, 0 failed with no errors.
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:45:34 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:45:35 on May 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:45:35 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:45:35 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Resetting Simulation (Keeping Waves) ---
+# ** Error: No Design Loaded!
+# Error in macro ./run_fcs.do line 31
+# No Design Loaded!
+#     while executing
+# "restartCmd -f"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval restartCmd $args"
+#     (procedure "restart" line 18)
+#     invoked from within
+# "restart -f"
+#     invoked from within
+# "if {[runStatus] != "No Design Loaded"} {
+#     # If the simulation is already open, just reset the time.
+#     # This preserves your Wave window and zoom ..."
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:47:59 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:47:59 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:47:59 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:47:59 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Resetting Simulation (Keeping Waves) ---
+# ** Error: No Design Loaded!
+# Error in macro ./run_fcs.do line 30
+# No Design Loaded!
+#     while executing
+# "restartCmd -f"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval restartCmd $args"
+#     (procedure "restart" line 18)
+#     invoked from within
+# "restart -f"
+#     invoked from within
+# "if {[runStatus] != "none"} {
+#     echo "--- Resetting Simulation (Keeping Waves) ---"
+#     # Note: restart -f does NOT pick up VHDL code changes. 
+#     #..."
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:48:37 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:48:37 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:48:37 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:48:37 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Resetting Simulation (Keeping Waves) ---
+# ** Error: No Design Loaded!
+# Error in macro ./run_fcs.do line 31
+# No Design Loaded!
+#     while executing
+# "restartCmd -f"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval restartCmd $args"
+#     (procedure "restart" line 18)
+#     invoked from within
+# "restart -f"
+#     invoked from within
+# "if {[runStatus] != "none"} {
+#     echo "--- Resetting Simulation (Keeping Waves) ---"
+#     # Note: restart -f does NOT pick up VHDL code changes. 
+#     #..."
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:48:51 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:48:51 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:48:51 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:48:51 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Resetting Simulation (Keeping Waves) ---
+# ** Error: No Design Loaded!
+# Error in macro ./run_fcs.do line 31
+# No Design Loaded!
+#     while executing
+# "restartCmd -f"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval restartCmd $args"
+#     (procedure "restart" line 18)
+#     invoked from within
+# "restart -f"
+#     invoked from within
+# "if {[runStatus] != "none"} {
+#     echo "--- Resetting Simulation (Keeping Waves) ---"
+#     # Note: restart -f does NOT pick up VHDL code changes. 
+#     #..."
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:49:34 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:49:34 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:49:34 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:49:34 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Resetting Simulation (Keeping Waves) ---
+# ** Error: No Design Loaded!
+# Error in macro ./run_fcs.do line 31
+# No Design Loaded!
+#     while executing
+# "restartCmd -f"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval restartCmd $args"
+#     (procedure "restart" line 18)
+#     invoked from within
+# "restart -f"
+#     invoked from within
+# "if {[runStatus] != "none"} {
+#     echo "--- Resetting Simulation (Keeping Waves) ---"
+#     # Note: restart -f does NOT pick up VHDL code changes. 
+#     #..."
+do run_fcs.do
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:50:06 on May 14,2026
+# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fcs_check_parallel
+# -- Compiling architecture struc of fcs_check_parallel
+# End time: 11:50:06 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:50:06 on May 14,2026
+# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity test
+# -- Compiling architecture sim of test
+# End time: 11:50:06 on May 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# --- Loading Latest Compiled Design ---
+# vsim -voptargs=""+acc"" work.test 
+# Start time: 11:50:06 on May 14,2026
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading ieee.std_logic_arith(body)
 # Loading ieee.std_logic_unsigned(body)
-# Loading work.global_var(body)
-# Loading altera_mf.altera_mf_components
-# Loading work.crossbar_tb(tb)
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
-# Loading altera_mf.altera_device_families(body)
-# Loading altera_mf.scfifo(behavior)
-# WARNING: No extended dataflow license exists
-add wave -position insertpoint  \
-sim:/crossbar_tb/ZERO_WORD \
-sim:/crossbar_tb/ZERO_PORT \
-sim:/crossbar_tb/stop_clock \
-sim:/crossbar_tb/PORT3 \
-sim:/crossbar_tb/PORT2 \
-sim:/crossbar_tb/PORT1 \
-sim:/crossbar_tb/PORT0 \
-sim:/crossbar_tb/output4 \
-sim:/crossbar_tb/output3 \
-sim:/crossbar_tb/output2 \
-sim:/crossbar_tb/output1 \
-sim:/crossbar_tb/INVALID \
-sim:/crossbar_tb/dstport \
-sim:/crossbar_tb/data \
-sim:/crossbar_tb/clock \
-sim:/crossbar_tb/CLK_PERIOD \
-sim:/crossbar_tb/BCAST
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd failed with 27 errors.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of data_input.vhd failed with 1 errors.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of top.vhd failed with 1 errors.
-# 10 compiles, 3 failed with 29 errors.
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of data_input.vhd failed with 1 errors.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of top.vhd failed with 1 errors.
-# 10 compiles, 2 failed with 2 errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.global_var(body)
-# Loading work.crossbar_tb(tb)
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
-# Compile of global.vhd was successful.
-# Compile of crossbar.vhd was successful.
-# Compile of crossbar_tb.vhd was successful.
-# Compile of crossbarfifo.vhd was successful.
-# Compile of data_input.vhd failed with 1 errors.
-# Compile of FCS_1.vhd was successful.
-# Compile of MAC_learning.vhd was successful.
-# Compile of mac_learning_mem.vhd was successful.
-# Compile of MAC_learning_tb.vhd was successful.
-# Compile of top.vhd failed with 1 errors.
-# 10 compiles, 2 failed with 2 errors.
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# Loading work.global_var(body)
-# Loading work.crossbar_tb(tb)
-# Loading work.crossbar(struc1)
-# Loading work.crossbarfifo(syn)
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-run
-run
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-run
-run
-restart
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-add wave -position insertpoint  \
-sim:/crossbar_tb/ZERO_PORT \
-sim:/crossbar_tb/stop_clock
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-run
-# ** Note: Starting crossbar testbench
-#    Time: 0 ps  Iteration: 0  Instance: /crossbar_tb
-# ** Error: Idle reset: output1 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output2 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output3 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Idle reset: output4 mismatch
-#    Time: 45 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 95 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 145 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 195 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 295 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 345 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 395 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 445 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 495 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 545 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 595 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 645 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output1 mismatch
-#    Time: 695 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output2 mismatch
-#    Time: 745 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output3 mismatch
-#    Time: 795 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Unicast routing: output4 mismatch
-#    Time: 845 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output1 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Invalid destination ports: output2 mismatch
-#    Time: 895 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output2 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output3 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Error: Concurrent independent routes: output4 mismatch
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
-# ** Note: Crossbar testbench completed
-#    Time: 995 ns  Iteration: 1  Instance: /crossbar_tb
+# Loading work.test(sim)
+# Loading work.fcs_check_parallel(struc)
+# 0 ps
+# 630 ns

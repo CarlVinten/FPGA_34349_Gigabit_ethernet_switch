@@ -1,35 +1,37 @@
-# Create the work library if it doesn't exist
-vlib work
-
-# Compile the VHDL source files
-# Note: Ensure the entity is compiled before the testbench
+# 1. Compile the source files
 vcom -reportprogress 300 -work work fcs_check_parallel.vhd
 vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd
 
-# Load the simulation
-# 'test' is the name of the entity in your testbench file
-vsim work.test
+# 2. Manage Simulation State
+# We check if the status is NOT "none". If it's "ready", "break", etc., we restart.
+if {[runStatus] != "none"} {
+    echo "--- Resetting Simulation (Keeping Waves) ---"
+    # Note: restart -f does NOT pick up VHDL code changes. 
+    # If you changed your logic, you actually need to call 'vsim' again.
+    restart -f
 
-# Add signals to the waveform viewer
-add wave -divider "System Signals"
-add wave -format Logic /test/s_clk
-add wave -format Logic /test/s_reset
+} else {
+    echo "--- Starting New Simulation Session ---"
+    vsim -voptargs="+acc" work.test
+    
+    # 3. Add waves ONLY on the first load to avoid duplicates
+    add wave -noupdate -divider "Top Level Signals"
+    add wave -hex /test/s_clk
+    add wave -hex /test/s_reset
+    add wave -hex /test/s_data_in
+    add wave -hex /test/s_valid
+    add wave -hex /test/s_start_of_frame
+    add wave -hex /test/s_end_of_frame
+    add wave -hex /test/s_is_data_valid
 
-add wave -divider "Input Data"
-add wave -format Literal -radix hexadecimal /test/s_data_in
-add wave -format Logic /test/s_valid
-add wave -format Logic /test/s_start_of_frame
-add wave -format Logic /test/s_end_of_frame
+    add wave -noupdate -divider "Internal DUT Logic"
+    add wave -hex /test/dut/sum_reg
+    add wave -hex /test/dut/start_cnt
+    add wave -hex /test/dut/data_temp
+}
 
-add wave -divider "Internal DUT State"
-add wave -format Literal -radix hexadecimal /test/dut/sum_reg
-add wave -format Literal -radix decimal /test/dut/start_cnt
+# 4. Run the simulation
+run 600 ns
 
-add wave -divider "Output"
-add wave -format Logic -color "Yellow" /test/s_is_data_valid
-
-# Set simulation time
-run 650 ns
-
-# Zoom to fit the window
+# 5. Zoom to fit
 wave zoom full
