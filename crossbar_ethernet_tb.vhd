@@ -236,7 +236,57 @@ begin
         -- Wait for a reasonable amount of time for data to propagate through the crossbar
         wait for 100 * CLK_PERIOD;
         
-        report "Test completed.";
+        -- ========================================
+        -- TEST 3: Two inputs sending to same output (Round Robin test)
+        -- ========================================
+        report "TEST 3: Testing Round Robin - Two inputs sending to the same output...";
+        report "Source 1: Input 0 -> Output 2 (port code: 0010)";
+        report "Source 2: Input 1 -> Output 2 (port code: 0010)";
+        report "Expected: Both frames should queue and be transmitted in round-robin order";
+        
+        -- Send frame from input 0 to output 2
+        for byte_idx in 0 to NUM_BYTES - 1 loop
+            -- Set the destination port for input 0 to output 2
+            dstport_in(0) <= "0010";  -- Route input 0 to output 2
+            
+            -- Set end-of-packet flag on last byte (bit 8 = 1)
+            if byte_idx = NUM_BYTES - 1 then
+                is_eop := '1';
+            else
+                is_eop := '0';
+            end if;
+            
+            -- Load the byte into input 0
+            data_in(0) <= is_eop & ETHERNET_FRAME(byte_idx);
+            
+            -- Also send the same frame from input 1 to the same output (output 2)
+            -- This creates contention - both inputs want to send to the same output
+            dstport_in(1) <= "0010";  -- Route input 1 to output 2
+            data_in(1) <= is_eop & ETHERNET_FRAME(byte_idx);
+            
+            -- Keep other inputs idle
+            data_in(2) <= "0" & x"00";
+            data_in(3) <= "0" & x"00";
+            
+            wait for CLK_PERIOD;
+            
+            -- Print progress every 8 bytes
+            if (byte_idx + 1) mod 8 = 0 then
+                report "Round-robin test: Transmitted " & integer'image(byte_idx + 1) & " bytes from both inputs";
+            end if;
+        end loop;
+        
+        -- Stop sending data
+        data_in <= (others => (others => '0'));
+        dstport_in <= (others => (others => '0'));
+        
+        report "Round-robin test: Both frames sent. Waiting for transmission to complete...";
+        
+        -- Wait for frames to be processed through the crossbar and output
+        -- Should see both frames appear at output 2, one from each input in sequence
+        wait for 100 * CLK_PERIOD;
+        
+        report "Test 3 completed.";
         wait;
         
     end process stimulus;
@@ -257,6 +307,24 @@ begin
             end if;
         end if;
     end process output_monitor;
+
+    -- Monitor output 2 (used in round-robin test - TEST 3)
+    output2_monitor : process(clk)
+        variable byte_count : integer := 0;
+    begin
+        if rising_edge(clk) then
+            -- Check if there's valid data on output 2
+            if output2_data(8) = '0' and output2_data(7 downto 0) /= x"00" then
+                report "Output 2 (RR Test): Received byte (decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
+                        "), EoP=" & std_logic'image(output2_data(8)) & ", Byte #" & integer'image(byte_count);
+                byte_count := byte_count + 1;
+            elsif output2_data(8) = '1' then
+                report "Output 2 (RR Test): Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
+                        "), Total bytes in frame: " & integer'image(byte_count + 1);
+                byte_count := 0;  -- Reset for next frame
+            end if;
+        end if;
+    end process output2_monitor;
 
     -- Monitor TX control signals (edge detection)
     tx_ctrl_monitor : process(clk)
