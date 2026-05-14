@@ -200,10 +200,7 @@ begin
         
         -- Stop all signals
         RX_control <= "0000";
-        RX(0) <= (others => '0');
-        RX(1) <= (others => '0');
-        RX(2) <= (others => '0');
-        RX(3) <= (others => '0');
+		RX <= (others => (others => '0'));
         wait for CLK_PERIOD * 10;
         
         -- End simulation

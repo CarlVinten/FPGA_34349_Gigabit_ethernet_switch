@@ -48,17 +48,7 @@ ARCHITECTURE Behavioral OF top_module IS
 			tx_ctrl0    : OUT STD_LOGIC;
             tx_ctrl1    : OUT STD_LOGIC;
             tx_ctrl2    : OUT STD_LOGIC;
-            tx_ctrl3    : OUT STD_LOGIC;
-            -- Debug ports
-            debug_fifo2_wrreq : OUT STD_LOGIC;
-            debug_fifo2_rdreq : OUT STD_LOGIC;
-            debug_fifo2_empty : OUT STD_LOGIC;
-            debug_fifo2_full : OUT STD_LOGIC;
-            debug_fifo2_usedw : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-            -- Debug arbiter state signals
-            debug_tx_state_1 : OUT STD_LOGIC;
-            debug_tx_src_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+            tx_ctrl3    : OUT STD_LOGIC
         );
 	end component;
 
@@ -87,16 +77,6 @@ BEGIN
 			tx_ctrl0 => data_out_valid(0),
 			tx_ctrl1 => data_out_valid(1),
 			tx_ctrl2 => data_out_valid(2),
-			tx_ctrl3 => data_out_valid(3),
-            -- Debug port
-            debug_fifo2_wrreq => OPEN,
-            debug_fifo2_rdreq => OPEN,
-            debug_fifo2_empty => OPEN,
-            debug_fifo2_full => OPEN,
-            debug_fifo2_usedw => OPEN,
-            -- Debug arbiter st
-            debug_tx_state_1 => OPEN,
-			debug_tx_src_1 => OPEN,
-            debug_rr_turn_tx_1 => OPEN
+			tx_ctrl3 => data_out_valid(3)
 		);
 END Behavioral;
