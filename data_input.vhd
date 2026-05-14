@@ -117,6 +117,9 @@ ARCHITECTURE Behavioral OF data_input IS
     signal rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     signal wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
+	-- Seconf FSM
+	SIGNAL temp_dst_array: crossbar_dstport_array := (others => (others => '0'));
+	SIGNAL is_filling_crossbar : std_logic_vector := "0000";
 BEGIN
 
     mac_l : MAC_learning
@@ -229,7 +232,6 @@ BEGIN
                         END IF;
 
                     WHEN state_data =>
-
                         IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
                             fcs_data_in(i) <= data_in(i);
@@ -271,6 +273,31 @@ BEGIN
             END IF;
 
         END PROCESS;
+
+
+		PROCESS(clk) -- FSM to put data into crossbar from fifo.
+		begin
+			if(rising_edge(clock)) then
+				temp_dst_array(i) <= temp_dst_array(i);
+				crossbar_dstport_array(i) <= crossbar_dstport_array(i);
+
+				if (is_data_valid(i) = '1') then
+					is_filling_crossbar(i) <= '1';
+				end if;
+
+				if(data_out_to_fsm(8) = '1') then
+
+				
+				if (is_filling_crossbar(i) <= '1') then
+					dst_port(i) <= crossbar_dstport_array(i);
+				else
+					dst_port(i) <= (others => '0');
+				end if;
+
+
+
+			end if;
+		end process; 
     END GENERATE fcs_generate;
 
     -- Connect internal "lane" arrays to the physical output ports 
