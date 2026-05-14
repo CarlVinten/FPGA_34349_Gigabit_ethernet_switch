@@ -24,6 +24,8 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
 	SIGNAL start_cnt : INTEGER := - 1;
 	SIGNAL delay_SOF : STD_LOGIC := '0';
+	SIGNAL delay_valid : STD_LOGIC := '0';
+	signal delay_SR : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
 	data_temp <= NOT data_in WHEN (start_cnt > 0 OR delay_SOF = '1') ELSE
@@ -42,6 +44,9 @@ BEGIN
 		ELSIF rising_edge(clk) THEN
 
 			delay_SOF <= start_of_frame;
+	
+			delay_SR <= sum_reg;
+
 			IF delay_SOF = '1' THEN
 				-- data_temp <= NOT data_in; 
 				is_data_valid <= '0';
@@ -92,15 +97,16 @@ BEGIN
 			sum_reg(29) <= sum_reg(21) XOR sum_reg(27) XOR sum_reg(30) XOR sum_reg(31);
 			sum_reg(30) <= sum_reg(22) XOR sum_reg(28) XOR sum_reg(31);
 			sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
+		END IF;
 
-			-- ELSIF valid = '0' THEN
-			-- 	IF sum_reg = x"FF_FF_FF_FF" THEN
-			-- 		is_data_valid <= '1';
-			-- 		sum_reg <= (OTHERS => '0');
-			-- 	ELSE
-			-- 		sum_reg <= (OTHERS => '0');
-			-- 		is_data_valid <= '0';
-			-- 	END IF;
+		IF valid = '0' THEN
+			IF delay_SR = x"FF_FF_FF_FF" THEN
+				is_data_valid <= '1';
+				sum_reg <= (OTHERS => '0');
+			ELSE
+				sum_reg <= (OTHERS => '0');
+				is_data_valid <= '0';
+			END IF;
 			-- END IF;
 			-- data_temp <= data_in;
 
