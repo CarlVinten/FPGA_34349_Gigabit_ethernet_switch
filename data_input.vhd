@@ -49,6 +49,20 @@ ARCHITECTURE Behavioral OF data_input IS
     END COMPONENT;
     -- states
 
+	component crossbarfifo
+		port (
+			clock		: IN STD_LOGIC ;
+			data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+			rdreq		: IN STD_LOGIC ;
+			sclr		: IN STD_LOGIC ;
+			wrreq		: IN STD_LOGIC ;
+			empty		: OUT STD_LOGIC ;
+			full		: OUT STD_LOGIC ;
+			q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+			usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
+		);
+	end component;
+
     TYPE state_type IS (state_idle, state_preamble, state_data);
     -- SIGNAL state : state_type := state_idle;
 
@@ -96,6 +110,10 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
     SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
 
+	-- deadsignals
+	SIGNAL used_words_fifo : std_logic_vector(11 downto 0);
+	SIGNAL empty_fifo : std_logic_vector(3 downto 0);
+	SIGNAL full_fifo : std_logic_vector(3 downto 0);
 BEGIN
 
     mac_l : MAC_learning
@@ -123,6 +141,18 @@ BEGIN
         -- fcs_sof(i) <= '1' WHEN state(i) = state_data AND data_cnt(i) = 0 AND data_valid(i) = '1' ELSE '0';
 
         -- fcs_data_valid(i) <= '1' WHEN (state(i) = state_data AND data_valid(i) = '1') ELSE '0';
+		pack_fifo : crossbarfifo
+		PORT MAP(
+			clock => clk,
+			data  => data_in_to_fifo(i),
+			rdreq => open,
+			sclr  => rst,	
+			wrreq => open,
+			empty => empty_fifo(i),
+			full  => full_fifo(i),
+			q	  => data_out_to_fsm(i),	
+			usedw => used_words_fifo 
+		);
 
         PROCESS (clk, rst)
         BEGIN

@@ -17,25 +17,15 @@
             rst	    	: IN STD_LOGIC ;
             data		: IN crossbar_input_array;
             dstport 	: IN crossbar_dstport_array;
-            output1		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output2		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output3		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output4		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output1		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output2		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output3		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output4		: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
             -- TX control signals (1 when transmitting, 0 when idle)
             tx_ctrl0    : OUT STD_LOGIC;
             tx_ctrl1    : OUT STD_LOGIC;
             tx_ctrl2    : OUT STD_LOGIC;
-            tx_ctrl3    : OUT STD_LOGIC;
-            -- Debug ports
-            debug_fifo2_wrreq : OUT STD_LOGIC;
-            debug_fifo2_rdreq : OUT STD_LOGIC;
-            debug_fifo2_empty : OUT STD_LOGIC;
-            debug_fifo2_full : OUT STD_LOGIC;
-            debug_fifo2_usedw : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-            -- Debug arbiter state signals
-            debug_tx_state_1 : OUT STD_LOGIC;
-            debug_tx_src_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+            tx_ctrl3    : OUT STD_LOGIC
         );
     end crossbar;
 
@@ -621,26 +611,26 @@ begin
                 
                 -- Route the correct mux to Output 1 based on who we locked onto
                 if tx_src(0) = 0 then 
-                    output1 <= output1_mux(8 downto 0);
+                    output1 <= output1_mux(7 downto 0);
                     if output1_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(0) <= '0';                 -- Go back to IDLE
                         rr_turn_tx(0)  <= 1;                   -- Pass turn to Input 2
                     end if;
                     
                 elsif tx_src(0) = 1 then 
-                    output1 <= output1_mux(17 downto 9);
+                    output1 <= output1_mux(16 downto 9);
                     if output1_mux(17) = '1' then 
                         tx_state(0) <= '0'; rr_turn_tx(0) <= 2; 
                     end if;
                     
                 elsif tx_src(0) = 2 then 
-                    output1 <= output1_mux(26 downto 18);
+                    output1 <= output1_mux(25 downto 18);
                     if output1_mux(26) = '1' then 
                         tx_state(0) <= '0'; rr_turn_tx(0) <= 3; 
                     end if;
                     
                 elsif tx_src(0) = 3 then 
-                    output1 <= output1_mux(35 downto 27);
+                    output1 <= output1_mux(34 downto 27);
                     if output1_mux(35) = '1' then 
                         tx_state(0) <= '0'; rr_turn_tx(0) <= 0; 
                     end if;
@@ -677,26 +667,26 @@ case tx_state(1) is
                 
                 -- Route the correct mux to Output 2 based on who we locked onto
                 if tx_src(1) = 0 then 
-                    output2 <= output2_mux(8 downto 0);
+                    output2 <= output2_mux(7 downto 0);
                     if output2_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(1) <= '0';                 -- Go back to IDLE
                         rr_turn_tx(1)  <= 1;                   -- Pass turn to Input 2
                     end if;
                     
                 elsif tx_src(1) = 1 then 
-                    output2 <= output2_mux(17 downto 9);
+                    output2 <= output2_mux(16 downto 9);
                     if output2_mux(17) = '1' then 
                         tx_state(1) <= '0'; rr_turn_tx(1) <= 2; 
                     end if;
                     
                 elsif tx_src(1) = 2 then 
-                    output2 <= output2_mux(26 downto 18);
+                    output2 <= output2_mux(25 downto 18);
                     if output2_mux(26) = '1' then 
                         tx_state(1) <= '0'; rr_turn_tx(1) <= 3; 
                     end if;
                     
                 elsif tx_src(1) = 3 then 
-                    output2 <= output2_mux(35 downto 27);
+                    output2 <= output2_mux(34 downto 27);
                     if output2_mux(35) = '1' then 
                         tx_state(1) <= '0'; rr_turn_tx(1) <= 0; 
                     end if;
@@ -732,25 +722,25 @@ case tx_state(1) is
                 
                 -- Route the correct mux to Output 3 based on who we locked onto
                 if tx_src(2) = 0 then 
-                    output3 <= output3_mux(8 downto 0);
+                    output3 <= output3_mux(7 downto 0);
                     if output3_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(2) <= '0';                 -- Go back to IDLE
                         rr_turn_tx(2)  <= 1;                   -- Pass turn to Input 2
                     end if;
                     
                 elsif tx_src(2) = 1 then 
-                    output3 <= output3_mux(17 downto 9);
+                    output3 <= output3_mux(16 downto 9);
                     if output3_mux(17) = '1' then 
                         tx_state(2) <= '0'; rr_turn_tx(2) <= 2; 
                     end if;
                     
                 elsif tx_src(2) = 2 then 
-                    output3 <= output3_mux(26 downto 18);
+                    output3 <= output3_mux(25 downto 18);
                     if output3_mux(26) = '1' then 
                         tx_state(2) <= '0'; rr_turn_tx(2) <= 3; 
                     end if;
                 elsif tx_src(2) = 3 then
-                    output3 <= output3_mux(35 downto 27);
+                    output3 <= output3_mux(34 downto 27);
                     if output3_mux(35) = '1' then
                         tx_state(2) <= '0'; rr_turn_tx(2) <= 0;
                     end if;
@@ -788,25 +778,25 @@ case tx_state(1) is
                 
                 -- Route the correct mux to Output 4 based on who we locked onto
                 if tx_src(3) = 0 then 
-                    output4 <= output4_mux(8 downto 0);
+                    output4 <= output4_mux(7 downto 0);
                     if output4_mux(8) = '1' then            -- End of Packet Detected!
                         tx_state(3) <= '0';                 -- Go back to IDLE
                         rr_turn_tx(3)  <= 1;                   -- Pass turn to Input 2
                     end if;
                     
                 elsif tx_src(3) = 1 then 
-                    output4 <= output4_mux(17 downto 9);
+                    output4 <= output4_mux(16 downto 9);
                     if output4_mux(17) = '1' then 
                         tx_state(3) <= '0'; rr_turn_tx(3) <= 2; 
                     end if;
                     
                 elsif tx_src(3) = 2 then 
-                    output4 <= output4_mux(26 downto 18);
+                    output4 <= output4_mux(25 downto 18);
                     if output4_mux(26) = '1' then 
                         tx_state(3) <= '0'; rr_turn_tx(3) <= 3; 
                     end if;
                 elsif tx_src(3) = 3 then
-                    output4 <= output4_mux(35 downto 27);
+                    output4 <= output4_mux(34 downto 27);
                     if output4_mux(35) = '1' then
                         tx_state(3) <= '0'; rr_turn_tx(3) <= 0;
                     end if;
@@ -833,16 +823,5 @@ tx_ctrl3 <= '1' when tx_state(3) = '1' else '0';
 
 
 
-
--- Debug signal assignments for FIFO 2 (output2) monitoring
-debug_fifo2_wrreq <= dstport(0)(1);
-debug_fifo2_rdreq <= rdreq(1);
-debug_fifo2_empty <= empty(1);
-debug_fifo2_full <= full(1);
-debug_fifo2_usedw <= usedw(1);
--- Debug arbiter state signals for OUTPUT 2
-debug_tx_state_1 <= tx_state(1);
-debug_tx_src_1 <= std_logic_vector(to_unsigned(tx_src(1), 2));
-debug_rr_turn_tx_1 <= std_logic_vector(to_unsigned(rr_turn_tx(1), 2));
 
 END struc1;

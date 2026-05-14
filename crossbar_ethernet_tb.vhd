@@ -20,24 +20,15 @@ architecture tb of crossbar_ethernet_tb is
             rst             : IN STD_LOGIC;
             data            : IN crossbar_input_array;
             dstport         : IN crossbar_dstport_array;
-            output1         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output2         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output3         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-            output4         : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            output1         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output2         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output3         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+            output4         : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
             -- TX control signals
             tx_ctrl0        : OUT STD_LOGIC;
             tx_ctrl1        : OUT STD_LOGIC;
             tx_ctrl2        : OUT STD_LOGIC;
-            tx_ctrl3        : OUT STD_LOGIC;
-            -- Debug ports
-            debug_fifo2_wrreq  : OUT STD_LOGIC;
-            debug_fifo2_rdreq  : OUT STD_LOGIC;
-            debug_fifo2_empty  : OUT STD_LOGIC;
-            debug_fifo2_full   : OUT STD_LOGIC;
-            debug_fifo2_usedw  : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-            debug_tx_state_1   : OUT STD_LOGIC;
-            debug_tx_src_1     : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+            tx_ctrl3        : OUT STD_LOGIC
         );
     END COMPONENT;
 
@@ -47,10 +38,10 @@ architecture tb of crossbar_ethernet_tb is
     signal data_in              : crossbar_input_array := (others => (others => '0'));
     signal dstport_in           : crossbar_dstport_array := (others => (others => '0'));
     
-    signal output1_data         : std_logic_vector(8 downto 0);
-    signal output2_data         : std_logic_vector(8 downto 0);
-    signal output3_data         : std_logic_vector(8 downto 0);
-    signal output4_data         : std_logic_vector(8 downto 0);
+    signal output1_data         : std_logic_vector(7 downto 0);
+    signal output2_data         : std_logic_vector(7 downto 0);
+    signal output3_data         : std_logic_vector(7 downto 0);
+    signal output4_data         : std_logic_vector(7 downto 0);
     
     -- TX control signals
     signal tx_ctrl0             : std_logic;
@@ -58,16 +49,6 @@ architecture tb of crossbar_ethernet_tb is
     signal tx_ctrl2             : std_logic;
     signal tx_ctrl3             : std_logic;
     
-    -- Debug signals
-    signal debug_fifo2_wrreq    : std_logic;
-    signal debug_fifo2_rdreq    : std_logic;
-    signal debug_fifo2_empty    : std_logic;
-    signal debug_fifo2_full     : std_logic;
-    signal debug_fifo2_usedw    : std_logic_vector(11 downto 0);
-    signal debug_tx_state_1     : std_logic;
-    signal debug_tx_src_1       : std_logic_vector(1 downto 0);
-    signal debug_rr_turn_tx_1   : std_logic_vector(1 downto 0);
-
     -- Ethernet frame: 64 bytes = 512 bits
     -- Frame: 00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2
     
@@ -102,15 +83,7 @@ begin
         tx_ctrl0           => tx_ctrl0,
         tx_ctrl1           => tx_ctrl1,
         tx_ctrl2           => tx_ctrl2,
-        tx_ctrl3           => tx_ctrl3,
-        debug_fifo2_wrreq  => debug_fifo2_wrreq,
-        debug_fifo2_rdreq  => debug_fifo2_rdreq,
-        debug_fifo2_empty  => debug_fifo2_empty,
-        debug_fifo2_full   => debug_fifo2_full,
-        debug_fifo2_usedw  => debug_fifo2_usedw,
-        debug_tx_state_1   => debug_tx_state_1,
-        debug_tx_src_1     => debug_tx_src_1,
-        debug_rr_turn_tx_1 => debug_rr_turn_tx_1
+        tx_ctrl3           => tx_ctrl3
     );
 
     -- Clock generation
@@ -296,14 +269,12 @@ begin
         variable byte_count : integer := 0;
     begin
         if rising_edge(clk) then
-            -- Check if there's valid data on output 1
-            if output1_data(8) = '0' and output1_data(7 downto 0) /= x"00" then
-                report "Output 1: Received byte (decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & 
-                        "), EoP=" & std_logic'image(output1_data(8)) & ", Byte #" & integer'image(byte_count);
+            -- Check if there's valid data on output 1 (8-bit output, no EoP bit)
+            if output1_data /= x"00" then
+                report "Output 1: Received byte (decimal: " & integer'image(to_integer(unsigned(output1_data))) & 
+                        "), Byte #" & integer'image(byte_count);
                 byte_count := byte_count + 1;
-            elsif output1_data(8) = '1' then
-                report "Output 1: Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output1_data(7 downto 0)))) & ")";
-                byte_count := byte_count + 1;
+                -- Note: EoP detection is now done via tx_ctrl signals
             end if;
         end if;
     end process output_monitor;
@@ -313,16 +284,13 @@ begin
         variable byte_count : integer := 0;
     begin
         if rising_edge(clk) then
-            -- Check if there's valid data on output 2
-            if output2_data(8) = '0' and output2_data(7 downto 0) /= x"00" then
-                report "Output 2 (RR Test): Received byte (decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
-                        "), EoP=" & std_logic'image(output2_data(8)) & ", Byte #" & integer'image(byte_count);
+            -- Check if there's valid data on output 2 (8-bit output, no EoP bit)
+            if output2_data /= x"00" then
+                report "Output 2 (RR Test): Received byte (decimal: " & integer'image(to_integer(unsigned(output2_data))) & 
+                        "), Byte #" & integer'image(byte_count);
                 byte_count := byte_count + 1;
-            elsif output2_data(8) = '1' then
-                report "Output 2 (RR Test): Received last byte (EoP, decimal: " & integer'image(to_integer(unsigned(output2_data(7 downto 0)))) & 
-                        "), Total bytes in frame: " & integer'image(byte_count + 1);
-                byte_count := 0;  -- Reset for next frame
             end if;
+            -- Frame completion is detected by tx_ctrl signal transitions
         end if;
     end process output2_monitor;
 
@@ -367,15 +335,5 @@ begin
             prev_tx_ctrl3 := tx_ctrl3;
         end if;
     end process tx_ctrl_monitor;
-
-    -- Debug monitor for FIFO 2 (output 2, input 0)
-    debug_monitor : process(clk)
-    begin
-        if rising_edge(clk) then
-            if debug_fifo2_wrreq = '1' then
-                report "FIFO 2 Write: usedw=" & integer'image(to_integer(unsigned(debug_fifo2_usedw)));
-            end if;
-        end if;
-    end process debug_monitor;
 
 end tb;
