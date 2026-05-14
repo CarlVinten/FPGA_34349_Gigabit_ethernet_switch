@@ -23,85 +23,96 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '1');
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
 	SIGNAL start_cnt : INTEGER := - 1;
-
+	SIGNAL delay_SOF : STD_LOGIC := '0';
+	SIGNAL delay_valid : STD_LOGIC := '0';
+	signal delay_SR : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 
-	--data_temp <= NOT data_in WHEN (start_cnt > 0 OR start_of_frame = '1') ELSE data_in;
+	data_temp <= NOT data_in WHEN (start_cnt > 0 OR delay_SOF = '1') ELSE
+		data_in;
 
 	Frame_Process : PROCESS (clk, rst)
 
 	BEGIN
 
 		IF rst = '1' THEN
-			data_temp <= (OTHERS => '0');
+			-- data_temp <= (OTHERS => '0');
 			sum_reg <= (OTHERS => '0');
 			is_data_valid <= '0';
 			start_cnt <= - 1;
 
 		ELSIF rising_edge(clk) THEN
 
-			IF valid = '1' THEN
-				IF start_of_frame = '1' THEN
-					data_temp <= NOT data_in;
-					is_data_valid <= '0';
-					start_cnt <= 3;
-					sum_reg <= (OTHERS => '0');
+			delay_SOF <= start_of_frame;
+	
+			delay_SR <= sum_reg;
 
-				ELSIF start_of_frame = '0' AND start_cnt > 0 THEN
-					data_temp <= NOT data_in;
-					start_cnt <= start_cnt - 1;
-				ELSE
-					data_temp <= data_in;
+			IF delay_SOF = '1' THEN
+				-- data_temp <= NOT data_in; 
+				is_data_valid <= '0';
+				start_cnt <= 3;
+				sum_reg <= (OTHERS => '0');
 
-				END IF;
-				-- potential optimize is use valid below rising edge and check when it is low
-				sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
-				sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(2) <= data_temp(2) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(3) <= data_temp(3) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(31);
-				sum_reg(4) <= data_temp(4) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30);
-				sum_reg(5) <= data_temp(5) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(6) <= data_temp(6) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(7) <= data_temp(7) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29) XOR sum_reg(31);
+			ELSIF start_cnt > 0 THEN
 
-				sum_reg(8) <= sum_reg(0) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28);
-				sum_reg(9) <= sum_reg(1) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29);
-				sum_reg(10) <= sum_reg(2) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29);
-				sum_reg(11) <= sum_reg(3) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28);
-				sum_reg(12) <= sum_reg(4) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30);
-				sum_reg(13) <= sum_reg(5) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(14) <= sum_reg(6) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(15) <= sum_reg(7) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(31);
+				start_cnt <= start_cnt - 1;
 
-				sum_reg(16) <= sum_reg(8) XOR sum_reg(24) XOR sum_reg(28) XOR sum_reg(29);
-				sum_reg(17) <= sum_reg(9) XOR sum_reg(25) XOR sum_reg(29) XOR sum_reg(30);
-				sum_reg(18) <= sum_reg(10) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(19) <= sum_reg(11) XOR sum_reg(27) XOR sum_reg(31);
-				sum_reg(20) <= sum_reg(12) XOR sum_reg(28);
-				sum_reg(21) <= sum_reg(13) XOR sum_reg(29);
-				sum_reg(22) <= sum_reg(14) XOR sum_reg(24);
-				sum_reg(23) <= sum_reg(15) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30);
-
-				sum_reg(24) <= sum_reg(16) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(31);
-				sum_reg(25) <= sum_reg(17) XOR sum_reg(26) XOR sum_reg(27);
-				sum_reg(26) <= sum_reg(18) XOR sum_reg(24) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30);
-				sum_reg(27) <= sum_reg(19) XOR sum_reg(25) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(31);
-				sum_reg(28) <= sum_reg(20) XOR sum_reg(26) XOR sum_reg(29) XOR sum_reg(30);
-				sum_reg(29) <= sum_reg(21) XOR sum_reg(27) XOR sum_reg(30) XOR sum_reg(31);
-				sum_reg(30) <= sum_reg(22) XOR sum_reg(28) XOR sum_reg(31);
-				sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
-
-			IF valid = '0' THEN
-				IF sum_reg = x"FF_FF_FF_FF" THEN
-					is_data_valid <= '1';
-					sum_reg <= (OTHERS => '0');
-				ELSE
-					sum_reg <= (OTHERS => '0');
-					is_data_valid <= '0';
-				END IF;
 			END IF;
-end if;
+
+			-- IF delay_SOF = '0' AND start_cnt > 0 THEN
+			-- data_temp <= NOT data_in;
+
+			sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
+			sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(2) <= data_temp(2) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(3) <= data_temp(3) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(31);
+			sum_reg(4) <= data_temp(4) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30);
+			sum_reg(5) <= data_temp(5) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(6) <= data_temp(6) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(7) <= data_temp(7) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29) XOR sum_reg(31);
+
+			sum_reg(8) <= sum_reg(0) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28);
+			sum_reg(9) <= sum_reg(1) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29);
+			sum_reg(10) <= sum_reg(2) XOR sum_reg(24) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29);
+			sum_reg(11) <= sum_reg(3) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(27) XOR sum_reg(28);
+			sum_reg(12) <= sum_reg(4) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(30);
+			sum_reg(13) <= sum_reg(5) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(29) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(14) <= sum_reg(6) XOR sum_reg(26) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(15) <= sum_reg(7) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(31);
+
+			sum_reg(16) <= sum_reg(8) XOR sum_reg(24) XOR sum_reg(28) XOR sum_reg(29);
+			sum_reg(17) <= sum_reg(9) XOR sum_reg(25) XOR sum_reg(29) XOR sum_reg(30);
+			sum_reg(18) <= sum_reg(10) XOR sum_reg(26) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(19) <= sum_reg(11) XOR sum_reg(27) XOR sum_reg(31);
+			sum_reg(20) <= sum_reg(12) XOR sum_reg(28);
+			sum_reg(21) <= sum_reg(13) XOR sum_reg(29);
+			sum_reg(22) <= sum_reg(14) XOR sum_reg(24);
+			sum_reg(23) <= sum_reg(15) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30);
+
+			sum_reg(24) <= sum_reg(16) XOR sum_reg(25) XOR sum_reg(26) XOR sum_reg(31);
+			sum_reg(25) <= sum_reg(17) XOR sum_reg(26) XOR sum_reg(27);
+			sum_reg(26) <= sum_reg(18) XOR sum_reg(24) XOR sum_reg(27) XOR sum_reg(28) XOR sum_reg(30);
+			sum_reg(27) <= sum_reg(19) XOR sum_reg(25) XOR sum_reg(28) XOR sum_reg(29) XOR sum_reg(31);
+			sum_reg(28) <= sum_reg(20) XOR sum_reg(26) XOR sum_reg(29) XOR sum_reg(30);
+			sum_reg(29) <= sum_reg(21) XOR sum_reg(27) XOR sum_reg(30) XOR sum_reg(31);
+			sum_reg(30) <= sum_reg(22) XOR sum_reg(28) XOR sum_reg(31);
+			sum_reg(31) <= sum_reg(23) XOR sum_reg(29);
 		END IF;
+
+		IF valid = '0' THEN
+			IF delay_SR = x"FF_FF_FF_FF" THEN
+				is_data_valid <= '1';
+				sum_reg <= (OTHERS => '0');
+			ELSE
+				sum_reg <= (OTHERS => '0');
+				is_data_valid <= '0';
+			END IF;
+			-- END IF;
+			-- data_temp <= data_in;
+
+			-- potential optimize is use valid below rising edge and check when it is low
+		END IF;
+		--END IF;
 
 	END PROCESS;
 

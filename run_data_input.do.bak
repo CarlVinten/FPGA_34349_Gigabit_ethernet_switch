@@ -33,7 +33,8 @@ add wave                 sim:/test/tb_ctrl
 
 # 2. DUT Internal State [cite: 8, 28, 32]
 add wave -divider "DUT Port States"
-add wave -hex sim:/test/DUT/state
+add wave -label "State" sim:/test/DUT/state
+add wave -label "FCS Valid" sim:/test/DUT/fcs_data_valid
 
 # 3. FCS Internal sum_reg [cite: 25, 51]
 # We use the fcs_generate(i) label to reach inside the parallel instances
@@ -47,12 +48,16 @@ add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
 add wave -divider "FCS Status"
 add wave sim:/test/DUT/fcs_sof
 add wave sim:/test/DUT/fcs_valid_to_fsm
+add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp 
+add wave -hex sim:/test/DUT/data_in 
+
+
 
 # -------------------------------------------------------------------------
 # RUN SIMULATION
 # -------------------------------------------------------------------------
 
 # Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
-run 400 ns
+run 1200 ns
 
 wave zoom full

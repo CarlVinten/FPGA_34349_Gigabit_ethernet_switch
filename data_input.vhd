@@ -49,19 +49,19 @@ ARCHITECTURE Behavioral OF data_input IS
     END COMPONENT;
     -- states
 
-	component crossbarfifo
-		port (
-			clock		: IN STD_LOGIC ;
-			data		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
-			rdreq		: IN STD_LOGIC ;
-			sclr		: IN STD_LOGIC ;
-			wrreq		: IN STD_LOGIC ;
-			empty		: OUT STD_LOGIC ;
-			full		: OUT STD_LOGIC ;
-			q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
-			usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
-		);
-	end component;
+    COMPONENT crossbarfifo
+        PORT (
+            clock : IN STD_LOGIC;
+            data : IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+            rdreq : IN STD_LOGIC;
+            sclr : IN STD_LOGIC;
+            wrreq : IN STD_LOGIC;
+            empty : OUT STD_LOGIC;
+            full : OUT STD_LOGIC;
+            q : OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
+            usedw : OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
+        );
+    END COMPONENT;
 
     TYPE state_type IS (state_idle, state_preamble, state_data);
     -- SIGNAL state : state_type := state_idle;
@@ -110,10 +110,13 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
     SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
 
-	-- deadsignals
-	SIGNAL used_words_fifo : std_logic_vector(11 downto 0);
-	SIGNAL empty_fifo : std_logic_vector(3 downto 0);
-	SIGNAL full_fifo : std_logic_vector(3 downto 0);
+    -- deadsignals
+    SIGNAL used_words_fifo : STD_LOGIC_VECTOR(11 DOWNTO 0);
+    SIGNAL empty_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL full_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    signal rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    signal wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
 BEGIN
 
     mac_l : MAC_learning
@@ -138,18 +141,18 @@ BEGIN
             is_data_valid => fcs_valid_to_fsm(i)
         );
 
-		pack_fifo : crossbarfifo
-		PORT MAP(
-			clock => clk,
-			data  => data_in_to_fifo(i),
-			rdreq => open,
-			sclr  => rst,	
-			wrreq => open,
-			empty => empty_fifo(i),
-			full  => full_fifo(i),
-			q	  => data_out_to_fsm(i),	
-			usedw => used_words_fifo 
-		);
+        pack_fifo : crossbarfifo
+        PORT MAP(
+            clock => clk,
+            data => data_in_to_fifo(i),
+            rdreq => rdreq_fifo(i),
+            sclr => rst,
+            wrreq => wrreq_fifo(i),
+            empty => empty_fifo(i),
+            full => full_fifo(i),
+            q => data_out_to_fsm(i),
+            usedw => used_words_fifo
+        );
 
         PROCESS (clk, rst)
         BEGIN
@@ -159,8 +162,8 @@ BEGIN
             IF rst = '1' THEN
 
                 state(i) <= state_idle;
-                fcs_sof(i) <= '0';
-                fcs_data_valid(i) <= '0';
+                -- fcs_sof(i) <= '0';
+                -- fcs_data_valid(i) <= '0';
                 mac_data_valid(i) <= '0';
 
                 -- counters
@@ -207,30 +210,42 @@ BEGIN
                         END IF;
 
                         IF preamble_cnt(i) = 7 AND data_in(i) = x"AB" THEN
+                            IF data_in(i) = x"AB" THEN
+                                fcs_sof(i) <= '1';
+                                fcs_data_valid(i) <= '1';
+                            END IF;
+
                             state(i) <= state_data;
-                            fcs_sof(i) <= '1';
+                            -- fcs_data_in(i) <= data_in(i);
+                            -- data_cnt(i) <= data_cnt(i) + 1;
+                            -- data_cnt(i) <= 0;
+
+                            -- mac_data_valid(i) <= '1';
+                            -- mac_data_in(i) <= data_in(i);
+
+                            -- data_in_to_fifo(i) <= '1' & data_in(i);
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
                         END IF;
 
                     WHEN state_data =>
 
-                        IF state(i) = state_data AND data_valid(i) = '1' AND data_cnt(i) < 13 THEN
+                        IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
                             fcs_data_in(i) <= data_in(i);
-                            fcs_data_valid(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
+                            fcs_sof(i) <= '0';
 
                             -- mac
                             mac_data_in(i) <= data_in(i);
                             mac_data_valid(i) <= '1';
 
                             -- crossbar / fifo
-                            data_in_to_fifo(i) <= '1' & data_in(i);
+                            -- fcs_sof(i) <= '0';
 
                         ELSIF state(i) = state_data AND data_valid(i) = '1' THEN
                             -- fcs
-                            fcs_data_valid(i) <= '1';
+                            -- fcs_data_valid(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
                             fcs_data_in(i) <= data_in(i);
 
@@ -249,7 +264,7 @@ BEGIN
 
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
-                            fcs_data_valid(i) <= '0';
+                            -- fcs_data_valid(i) <= '0';
                         END IF;
 
                 END CASE;
@@ -258,10 +273,10 @@ BEGIN
         END PROCESS;
     END GENERATE fcs_generate;
 
--- Connect internal "lane" arrays to the physical output ports 
+    -- Connect internal "lane" arrays to the physical output ports 
     data_to_crossbar <= data_in_to_fifo;
-  --  dst_port         <= mac_data_to_fsm; 
-    
+    --  dst_port         <= mac_data_to_fsm; 
+
     -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
-    mac_rdy <= (others => '1');
+    mac_rdy <= (OTHERS => '1');
 END Behavioral;
