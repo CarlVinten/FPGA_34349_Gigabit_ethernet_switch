@@ -22,7 +22,7 @@ ENTITY top_module IS
 END top_module;
 
 ARCHITECTURE Behavioral OF top_module IS
-	component crossbar
+	component data_input
 		port(
 			clk : IN STD_LOGIC;
 		    rst : IN STD_LOGIC;
@@ -34,6 +34,7 @@ ARCHITECTURE Behavioral OF top_module IS
 		    dst_port : OUT crossbar_dstport_array
 		);
 	end component;
+    
 	component crossbar
 		port(
 			clock		: IN STD_LOGIC ;

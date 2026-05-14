@@ -8,19 +8,20 @@ LIBRARY work;
 USE work.global_var.ALL;
 
 ENTITY data_input IS
+    PORT (
+        clk : IN STD_LOGIC;
+        rst : IN STD_LOGIC;
 
-    clk : IN STD_LOGIC;
-    rst : IN STD_LOGIC;
+        data_in : IN rx_in;
+        data_valid : IN rx_ctrl;
 
-    data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    data_valid : IN STD_LOGIC;
-
-    data_to_crossbar : OUT crossbar_input_array;
-    dst_port : OUT crossbar_dstport_array;
+        data_to_crossbar : OUT crossbar_input_array;
+        dst_port : OUT crossbar_dstport_array
+    );
 
 END ENTITY data_input;
 
-ARCHITECTURE Behavioral OF top_module IS
+ARCHITECTURE Behavioral OF data_input IS
 
     COMPONENT fcs_check_parallel
         PORT (
@@ -40,42 +41,13 @@ ARCHITECTURE Behavioral OF top_module IS
             clk : IN STD_LOGIC;
             mac_in : IN mac_input;
             valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-            port_output : OUT mac_output;
-            output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-            output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
-        );
-    END COMPONENT;
-
-    COMPONENT fcs_check_parallel
-        PORT (
-            clk : IN STD_LOGIC; -- system clock
-            rst : IN STD_LOGIC; -- asynchronous rst
-
-            data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0); -- serial input data.
-            valid : IN STD_LOGIC; -- indicates the validity of data_in.
-
-            start_of_frame : IN STD_LOGIC; -- indicates the start of a frame.
-            --end_of_frame : IN STD_LOGIC; -- indicates the end of a frame.
-
-            is_data_valid : OUT STD_LOGIC -- indicates an error.
-        );
-    END COMPONENT;
-    COMPONENT MAC_learning
-        PORT (
-            rst : IN STD_LOGIC;
-            clk : IN STD_LOGIC;
-            mac_in : IN mac_input;
-            valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            --ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0); 
             port_output : OUT mac_output;
             output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
             output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
         );
     END COMPONENT;
     -- states
-
-BEGIN
 
     TYPE state_type IS (state_idle, state_preamble, state_data);
     -- SIGNAL state : state_type := state_idle;
@@ -101,135 +73,164 @@ BEGIN
     SIGNAL ethertype_cnt : ethertype_cnt_array := (OTHERS => 0);
     --SIGNAL start_of_frame : STD_LOGIC := '0';
 
-    -- fcs signals
-    SIGNAL s_data_to_fcs : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL s_valid_to_fcs : STD_LOGIC;
-    SIGNAL s_sof_to_fcs : STD_LOGIC;
+    -- fcs input signals
+    SIGNAL fcs_data_in : fcs_data_input;
+    SIGNAL fcs_sof : valid_signals;
+    SIGNAL fcs_data_valid : valid_signals;
+
+    -- fcs output signals
+    SIGNAL fcs_valid_to_fsm : valid_signals;
+
+    -- mac input signals
+    SIGNAL mac_data_in : mac_input;
+    SIGNAL mac_data_valid : valid_signals_vector;
+    SIGNAL mac_rdy : valid_signals_vector; -- not used, but needed for the component
+
+    -- mac output signals
+    SIGNAL mac_data_to_fsm : mac_output; -- used
+    SIGNAL mac_valid : valid_signals_vector; -- not used, but needed for the component
 
     -- crossbar
-    signal dst_to_crossbar : crossbar_dstport_array;
-    SIGNAL data_to_crossbar : crossbar_input_array;
+    SIGNAL data_in_to_fifo : crossbar_input_array; -- used
+    SIGNAL data_out_to_fsm : crossbar_input_array;
+    SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
+    SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
 
+BEGIN
 
-    SIGNAL dead1 : STD_LOGIC_VECTOR(3 DOWNTO 0);
-
-    -- mac
-    SIGNAL s_data_to_mac : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    -- SIGNAL s_data_to_mac_fifo : mac_input;
-    -- SIGNAL s_data_to_ethertype : STD_LOGIC_VECTOR(7 DOWNTO 0); -- not used
-
-
-    
-    PROCESS (clk, rst)
-    BEGIN
-
-        mac_l : MAC_learning
+    mac_l : MAC_learning
     PORT MAP(
         clk => clk,
         rst => rst,
-        mac_in => s_data_to_mac_fifo,
-        valid => s_data_valid_mac,
-        ready => dead1,
-        port_output => open,
-        output_valid => dead1,
-        output_ready => dead1
+        mac_in => mac_data_in,
+        valid => mac_data_valid,
+        port_output => mac_data_to_fsm,
+        output_valid => mac_valid,
+        output_ready => mac_rdy
     );
 
-    u_fcs : fcs_check_parallel
-    PORT MAP(
-        clk => clk,
-        rst => rst,
-        data_in => s_data_to_fcs,
-        valid => s_data_valid,
-        start_of_frame => s_start_of_frame,
-        --end_of_frame => s_end_of_frame,
-        is_data_valid => OPEN -- Or map to a signal if you need the result
-    );
-    
-    sof <= s_start_of_frame;
-    
+    fcs_generate : FOR i IN 0 TO NUM_PORTS - 1 GENERATE
+        u_fcs : fcs_check_parallel
+        PORT MAP(
+            clk => clk,
+            rst => rst,
+            data_in => fcs_data_in(i),
+            valid => fcs_data_valid(i),
+            start_of_frame => fcs_sof(i),
+            is_data_valid => fcs_valid_to_fsm(i)
+        );
 
-        IF rst = '1' THEN
+        PROCESS (clk, rst)
+        BEGIN
+            -- data_fifo : 
+            -- sof <= fcs_sof(i);
 
-            state(ii) <= state_idle;
-            preamble_cnt(ii) <= 0;
-            data_cnt(ii) <= 0;
-            mac_addr_cnt(ii) <= 0;
-            ethertype_cnt(ii) <= 0;
+            IF rst = '1' THEN
 
-        ELSIF rising_edge(clk) THEN
-            -- data_to_fcs <= (OTHERS => '0');
-            s_start_of_frame(ii) <= '0';
-            CASE state(ii) IS
-                WHEN state_idle =>
-                    s_start_of_frame(ii) <= '0';
-                    s_data_to_fcs(ii) <= (OTHERS => '0');
-                    preamble_cnt(ii) <= 0;
-                    data_cnt(ii) <= 0;
-                    mac_addr_cnt(ii) <= 0;
-                    ethertype_cnt(ii) <= 0;
+                state(i) <= state_idle;
+                fcs_sof(i) <= '0';
+                fcs_data_valid(i) <= '0';
+                mac_data_valid(i) <= '0';
 
-                    IF data_valid = '1' THEN
-                        IF data_in = x"AA" THEN
-                            preamble_cnt(ii) <= preamble_cnt(ii) + 1;
+                -- counters
+                preamble_cnt(i) <= 0;
+                data_cnt(i) <= 0;
+                mac_addr_cnt(i) <= 0;
+                ethertype_cnt(i) <= 0;
+
+                -- data 
+                fcs_data_in(i) <= (OTHERS => '0');
+                data_in_to_fifo(i) <= (OTHERS => '0');
+                mac_data_in(i) <= (OTHERS => '0');
+
+            ELSIF rising_edge(clk) THEN
+                CASE state(i) IS
+                    WHEN state_idle =>
+                        -- valid signals
+                        fcs_sof(i) <= '0';
+                        fcs_data_valid(i) <= '0';
+                        mac_data_valid(i) <= '0';
+
+                        -- counters
+                        preamble_cnt(i) <= 0;
+                        data_cnt(i) <= 0;
+                        mac_addr_cnt(i) <= 0;
+                        ethertype_cnt(i) <= 0;
+
+                        -- data 
+                        fcs_data_in(i) <= (OTHERS => '0');
+                        data_in_to_fifo(i) <= (OTHERS => '0');
+                        mac_data_in(i) <= (OTHERS => '0');
+
+                        IF data_valid(i) = '1' THEN
+                            IF data_in(i) = x"AA" THEN
+                                preamble_cnt(i) <= preamble_cnt(i) + 1;
+                            END IF;
+                            state(i) <= state_preamble;
+
                         END IF;
-                        state(ii) <= state_preamble;
 
-                    END IF;
+                    WHEN state_preamble =>
+                        IF data_in(i) = x"AA" AND data_valid(i) = '1' THEN
+                            preamble_cnt(i) <= preamble_cnt(i) + 1;
+                        END IF;
 
-                WHEN state_preamble =>
+                        IF preamble_cnt(i) = 7 AND data_in(i) = x"AB" THEN
+                            state(i) <= state_data;
+                            fcs_sof(i) <= '1';
+                        ELSIF data_valid(i) = '0' THEN
+                            state(i) <= state_idle;
+                        END IF;
 
-                    IF data_in = x"AA" AND data_valid = '1' THEN
-                        preamble_cnt(ii) <= preamble_cnt(ii) + 1;
-                    END IF;
+                    WHEN state_data =>
 
-                    IF preamble_cnt(ii) = 7 AND data_in = x"AB" THEN
-                        state(ii) <= state_data;
-                        s_start_of_frame(ii) <= '1';
-                    ELSIF data_valid = '0' THEN
-                        state(ii) <= state_idle;
-                    END IF;
+                        IF state(i) = state_data AND data_valid(i) = '1' AND data_cnt(i) < 13 THEN
+                            -- fcs
+                            fcs_data_in(i) <= data_in(i);
+                            fcs_data_valid(i) <= '1';
+                            data_cnt(i) <= data_cnt(i) + 1;
 
-                    -- WHEN state_SOF =>
-                    --     IF data_in = x"AB" AND data_valid = '1' THEN
-                    --         state(ii) <= state_data;
-                    --     ELSIF data_valid = '0' THEN
-                    --         state(ii) <= state_idle;
-                    --     END IF;
+                            -- mac
+                            mac_data_in(i) <= data_in(i);
+                            mac_data_valid(i) <= '1';
 
-                WHEN state_data =>
-                    IF state(ii) = state_data AND data_valid = '1' THEN
-                        fcs_data_valid <= '1';
-                    ELSE
-                        fcs_data_valid <= '0';
-                    END IF;
-                    --       fcs_data_valid <= '1' WHEN state(ii) = state_data AND data_valid = '1' ELSE '0';
-                    data_to_fcs <= data_in; -- Hooking up the internal signal to the output
-                    s_data_to_fcs <= data_in;
-                    data_cnt(ii) <= data_cnt(ii) + 1;
+                            -- crossbar / fifo
+                            data_in_to_fifo(i) <= '1' & data_in(i);
 
-                    -- a little weird. they should all be 1's in here
-                    IF data_valid = '1' THEN
-                        s_data_to_switch_core_fifo <= '1' & data_in;
-                    ELSE
-                        s_data_to_switch_core_fifo <= '0' & data_in;
-                    END IF;
+                        ELSIF state(i) = state_data AND data_valid(i) = '1' THEN
+                            -- fcs
+                            fcs_data_valid(i) <= '1';
+                            data_cnt(i) <= data_cnt(i) + 1;
+                            fcs_data_in(i) <= data_in(i);
 
-                    IF data_cnt(ii) < 13 THEN
-                        s_data_to_mac_fifo <= data_in;
-                        -- mac addr_cnt <= mac_addr_cnt + 1;
+                            -- mac
+                            mac_data_valid(i) <= '0';
 
-                    ELSIF data_cnt(ii) < 15 THEN
-                        s_data_to_ethertype <= data_in;
-                        -- ethertype_cnt <= ethertype_cnt + 1;
+                            -- crossbar / fifo
+                            data_in_to_fifo(i) <= '1' & data_in(i);
 
-                    ELSIF data_valid = '0' THEN
-                        state(ii) <= state_idle;
-                    END IF;
+                            -- -- a little weird. they should all be 1's in here
+                            -- IF data_valid(i) = '1' THEN
 
-            END CASE;
-        END IF;
+                            -- ELSE
+                            --     s_data_to_switch_core_fifo(i) <= '0' & data_in(i);
+                            -- END IF;
 
-    END PROCESS;
-END GENERATE fcs_generate;
+                        ELSIF data_valid(i) = '0' THEN
+                            state(i) <= state_idle;
+                            fcs_data_valid(i) <= '0';
+                        END IF;
+
+                END CASE;
+            END IF;
+
+        END PROCESS;
+    END GENERATE fcs_generate;
+
+-- Connect internal "lane" arrays to the physical output ports 
+    data_to_crossbar <= data_in_to_fifo;
+  --  dst_port         <= mac_data_to_fsm; 
+    
+    -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
+    mac_rdy <= (others => '1');
 END Behavioral;

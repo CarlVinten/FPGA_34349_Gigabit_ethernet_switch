@@ -199,8 +199,3 @@ BEGIN
 
 
 END struc;
-
-
-
-
-

@@ -8,23 +8,28 @@ PACKAGE global_var IS
 	CONSTANT BUS_WIDTH : INTEGER := 8;
 	CONSTANT MAC_ADDR_LEN : INTEGER := 48;
 
+	-- general
+	TYPE valid_signals IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC;
+	SUBTYPE valid_signals_vector IS STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+
 	-- input 
-	TYPE rx_ctrl IS array (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-	TYPE rx_in is array(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
-	TYPE tx_out is array(NUM_PORTS - 1 downto 0) of std_logic_vector(BUS_WIDTH - 1 downto 0);
+	-- unsure about subtype yet, may need to change to a record type if we want to include more information like start_of_frame, end_of_frame, etc.
+	SUBTYPE rx_ctrl IS STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+	TYPE rx_in IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(BUS_WIDTH - 1 DOWNTO 0);
+	TYPE tx_out IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC;
 
 	--fcs
 	TYPE fcs_data_input IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(BUS_WIDTH - 1 DOWNTO 0);
-	
+
 	-- mac
 	TYPE mac_input IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 	TYPE mac_addr IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(MAC_ADDR_LEN - 1 DOWNTO 0);
 	TYPE mac_output IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
 	TYPE mac_counter_type IS ARRAY (NUM_PORTS - 1 DOWNTO 0) OF INTEGER RANGE 0 TO 12;
-	
+
 	--crossbar
-	TYPE crossbar_input_array IS ARRAY(3 DOWNTO 0) OF STD_LOGIC_VECTOR (8 DOWNTO 0);
-	TYPE crossbar_dstport_array IS ARRAY(3 DOWNTO 0) OF STD_LOGIC_VECTOR (3 DOWNTO 0);
+	TYPE crossbar_input_array IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR (8 DOWNTO 0);
+	TYPE crossbar_dstport_array IS ARRAY(NUM_PORTS - 1 DOWNTO 0) OF STD_LOGIC_VECTOR (NUM_PORTS - 1 DOWNTO 0);
 
 	FUNCTION hash_mac_addr(
 		mac_addr_in : STD_LOGIC_VECTOR(MAC_ADDR_LEN - 1 DOWNTO 0)
