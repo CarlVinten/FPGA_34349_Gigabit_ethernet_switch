@@ -48,6 +48,11 @@ add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
 add wave -divider "FCS Status"
 add wave sim:/test/DUT/fcs_sof
 add wave sim:/test/DUT/fcs_valid_to_fsm
+add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp 
+add wave -hex sim:/test/DUT/data_in 
+add wave sim:/test/DUT/fcs_generate(0)/u_fcs/start_cnt 
+
+
 
 # -------------------------------------------------------------------------
 # RUN SIMULATION

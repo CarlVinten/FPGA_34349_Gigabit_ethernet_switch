@@ -204,6 +204,7 @@ BEGIN
                             -- fcs
                             fcs_data_in(i) <= data_in(i);
                             data_cnt(i) <= data_cnt(i) + 1;
+                            fcs_sof(i) <= '0';
 
                             -- mac
                             mac_data_in(i) <= data_in(i);
