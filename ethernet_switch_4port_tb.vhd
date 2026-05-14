@@ -8,24 +8,18 @@ end ethernet_switch_4port_tb;
 
 architecture tb of ethernet_switch_4port_tb is
     -- Component declaration for the 4-port ethernet switch
-    component ethernet_switch_4port
+    component top_module
         port (
-            clk         : in  std_logic;
-            rst         : in  std_logic;
-            
-            -- RX ports
-            RX0         : in  std_logic_vector(7 downto 0);
-            RX1         : in  std_logic_vector(7 downto 0);
-            RX2         : in  std_logic_vector(7 downto 0);
-            RX3         : in  std_logic_vector(7 downto 0);
-            RX_control  : in  std_logic_vector(3 downto 0);
-            
-            -- TX ports
-            TX0         : out std_logic_vector(7 downto 0);
-            TX1         : out std_logic_vector(7 downto 0);
-            TX2         : out std_logic_vector(7 downto 0);
-            TX3         : out std_logic_vector(7 downto 0);
-            TX_control  : out std_logic_vector(3 downto 0)
+            clk : IN STD_LOGIC;
+		    rst : IN STD_LOGIC;
+
+		    -- inputs 
+		    data_in : IN rx_in;
+		    data_in_valid : IN std_logic_vector(NUM_PORTS - 1 downto 0);
+
+		    -- outputs
+			data_out : OUT tx_out;
+			data_out_valid : std_logic_vector(NUM_PORTS - 1 downto 0);
         );
     end component;
     
@@ -49,20 +43,18 @@ architecture tb of ethernet_switch_4port_tb is
     
 begin
     -- DUT instantiation
-    DUT : ethernet_switch_4port
+    DUT : top_module
         port map (
-            clk         => clk,
-            rst         => rst,
-            RX0         => RX0,
-            RX1         => RX1,
-            RX2         => RX2,
-            RX3         => RX3,
-            RX_control  => RX_control,
-            TX0         => TX0,
-            TX1         => TX1,
-            TX2         => TX2,
-            TX3         => TX3,
-            TX_control  => TX_control
+            clk => clk,
+		    rst => rst,
+
+		    -- inputs 
+		    data_in => (RX0, RX1, RX2, RX3)
+		    data_in_valid => RX_control
+
+		    -- outputs
+			data_out =>	(TX0, TX1, TX2, TX3)
+			data_out_valid => TX_control
         );
     
     -- Clock generation

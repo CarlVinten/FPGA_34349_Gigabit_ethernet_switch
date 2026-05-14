@@ -88,8 +88,11 @@ BEGIN
 					has_data(i) <= '1';
 					mac_counter(i) <= 0;
 				elsif (valid(i) = '1') and (has_data(i) = '0') and (mac_counter(i) < 6)then
-					
-					d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
+					if(mac_counter(i) < 4) then
+						d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= not(mac_in(i));
+					else
+						d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
+					end if;
 					mac_counter(i) <= mac_counter(i) + 1;
 
 				elsif (valid(i) = '1') and (has_data(i) = '0') then	
