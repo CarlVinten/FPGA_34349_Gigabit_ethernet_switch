@@ -61,7 +61,7 @@ ARCHITECTURE Behavioral OF data_input IS
 			q		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
 			usedw		: OUT STD_LOGIC_VECTOR (11 DOWNTO 0)
 		);
-	end component
+	end component;
 
     TYPE state_type IS (state_idle, state_preamble, state_data);
     -- SIGNAL state : state_type := state_idle;
@@ -110,6 +110,10 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
     SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
 
+	-- deadsignals
+	SIGNAL used_words_fifo : std_logic_vector(11 downto 0);
+	SIGNAL empty_fifo : std_logic_vector(3 downto 0);
+	SIGNAL full_fifo : std_logic_vector(3 downto 0);
 BEGIN
 
     mac_l : MAC_learning
@@ -133,6 +137,19 @@ BEGIN
             start_of_frame => fcs_sof(i),
             is_data_valid => fcs_valid_to_fsm(i)
         );
+
+		pack_fifo : crossbarfifo
+		PORT MAP(
+			clock => clk;
+			data  => data_in_to_fifo(i),
+			rdreq => 
+			sclr  => rst,	
+			wrreq => 
+			empty => empty_fifo(i)
+			full  => full_fifo(i)
+			q	  => data_out_to_fsm(i)	
+			usedw => used_words_fifo 
+		);
 
         PROCESS (clk, rst)
         BEGIN

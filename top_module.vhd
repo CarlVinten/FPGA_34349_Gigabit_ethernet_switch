@@ -17,7 +17,7 @@ ENTITY top_module IS
 
     -- outputs
 	data_out : OUT tx_out;
-	data_out_valid : std_logic_vector(NUM_PORTS - 1 downto 0);
+	data_out_valid : OUT std_logic_vector(NUM_PORTS - 1 downto 0)
     );
 END top_module;
 
@@ -27,8 +27,8 @@ ARCHITECTURE Behavioral OF top_module IS
 			clk : IN STD_LOGIC;
 		    rst : IN STD_LOGIC;
 
-		    data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		    data_valid : IN STD_LOGIC;
+		    data_in : IN rx_in;
+		    data_valid : IN std_logic_vector(3 downto 0);
 
 		    data_to_crossbar : OUT crossbar_input_array;
 		    dst_port : OUT crossbar_dstport_array
@@ -76,7 +76,7 @@ BEGIN
 		);
 	cross : crossbar
 		port map(
-			clock	=>	clock,
+			clock	=>	clk,
 			rst     =>  rst,
             data	=>	data_input_to_crossbar,
             dstport =>	dst_input_to_crossbar,
@@ -89,14 +89,14 @@ BEGIN
 			tx_ctrl2 => data_out_valid(2),
 			tx_ctrl3 => data_out_valid(3),
             -- Debug port
-            debug_fifo2_wrreq => OPEN;
-            debug_fifo2_rdreq => OPEN;
-            debug_fifo2_empty => OPEN;
-            debug_fifo2_full => OPEN;
-            debug_fifo2_usedw => OPEN;
-            -- Debug arbiter sta
-            debug_tx_state_1 => OPEN;
-			debug_tx_src_1 => OPEN;
-            debug_rr_turn_tx_1 => OPEN;
+            debug_fifo2_wrreq => OPEN,
+            debug_fifo2_rdreq => OPEN,
+            debug_fifo2_empty => OPEN,
+            debug_fifo2_full => OPEN,
+            debug_fifo2_usedw => OPEN,
+            -- Debug arbiter st
+            debug_tx_state_1 => OPEN,
+			debug_tx_src_1 => OPEN,
+            debug_rr_turn_tx_1 => OPEN
 		);
 END Behavioral;

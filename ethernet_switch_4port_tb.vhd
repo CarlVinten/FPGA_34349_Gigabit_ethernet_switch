@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
+LIBRARY work;
+USE work.global_var.ALL;
 
 entity ethernet_switch_4port_tb is
 end ethernet_switch_4port_tb;
@@ -19,7 +21,7 @@ architecture tb of ethernet_switch_4port_tb is
 
 		    -- outputs
 			data_out : OUT tx_out;
-			data_out_valid : std_logic_vector(NUM_PORTS - 1 downto 0);
+			data_out_valid : OUT std_logic_vector(NUM_PORTS - 1 downto 0)
         );
     end component;
     
