@@ -51,11 +51,11 @@ begin
 		    rst => rst,
 
 		    -- inputs 
-		    data_in => (RX0, RX1, RX2, RX3)
-		    data_in_valid => RX_control
+		    data_in => (RX0 & RX1 & RX2 & RX3),
+		    data_in_valid => RX_control,
 
 		    -- outputs
-			data_out =>	(TX0, TX1, TX2, TX3)
+			data_out =>	(TX0, TX1, TX2, TX3),
 			data_out_valid => TX_control
         );
     
