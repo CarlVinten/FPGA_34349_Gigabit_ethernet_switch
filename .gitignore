@@ -18,6 +18,5 @@ output_files/
 *.pin
 *.qws
 *.wlf
-transcript
-
+*.transcript
 transcript
