@@ -60,13 +60,13 @@ BEGIN
 
 	process(clk)
 		begin
-		if(rising_edge(clk)) then
+		--if(rising_edge(clk)) then
 		--ready <= "0000";
-		for i in 0 to 3 loop
-			if has_data(i) = '0' then
-			--	ready(i) <= '1';
-			end if;
-		end loop;
+		--for i in 0 to 3 loop
+		--	if has_data(i) = '0' then
+				--ready(i) <= '1';
+		--	end if;
+		--end loop;
 
 			--if has_data(0) = '0' then
 			--	ready(0) <= '1';
@@ -80,7 +80,7 @@ BEGIN
 			--if has_data(3) = '0' then
 			--	ready(3) <= '1';
 			--end if;
-		end if;
+		--end if;
 
 		if (rising_edge(clk)) then
 			for i in 0 to 3 loop
@@ -158,8 +158,16 @@ BEGIN
 			if(process_mac = '1') then
 				case mac_check_state is
 					when 0 =>
+						if(d_mac(port_to_check) = x"ffffff") then
+							port_output(port_to_check) <= not(port_one_hot);
+							output_valid(port_to_check) <= '1';
+							if(output_ready(port_to_check) = '1') then
+								mac_check_state <= 2;
+							end if;
+						else
 						address <= hash_mac_addr(d_mac(port_to_check));
 						mac_check_state <= 1;
+						end if;
 
 					when 1 =>
 						if(m_out(47 downto 0) = d_mac(port_to_check))then
