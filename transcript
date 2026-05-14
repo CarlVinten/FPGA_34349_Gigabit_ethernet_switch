@@ -1,23 +1,15 @@
-# Loading project sync_FIFO
-# 0 compiles, 2 failed with no errors.
-# Compile of data_input.vhd was successful.
-# Compile of fcs_check_parallel.vhd was successful.
-# Compile of tb_fcs_check_parallel.vhd was successful.
-# 3 compiles, 0 failed with no errors.
-do run_fcs.do
-# Cannot open macro file: run_fcs.do
+# Loading project top level
 cd {/home/liou/1_University/2. semester/34349 FPGA design communication systems/FPGA_34349_Gigabit_ethernet_switch/FCS_parallel}
 # reading /home/liou/4_Software_Programs/intelFPGA/20.1/modelsim_ase/linuxaloem/../modelsim.ini
 # reading modelsim.ini
 # Loading project fcs
-# 0 compiles, 3 failed with no errors.
 # Compile of data_input.vhd was successful.
 # Compile of fcs_check_parallel.vhd was successful.
 # Compile of tb_fcs_check_parallel.vhd was successful.
 # 3 compiles, 0 failed with no errors.
 do run_fcs.do
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:45:34 on May 14,2026
+# Start time: 13:37:51 on May 14,2026
 # vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -25,10 +17,10 @@ do run_fcs.do
 # -- Loading package NUMERIC_STD
 # -- Compiling entity fcs_check_parallel
 # -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:45:35 on May 14,2026, Elapsed time: 0:00:01
+# End time: 13:37:51 on May 14,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:45:35 on May 14,2026
+# Start time: 13:37:51 on May 14,2026
 # vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -38,220 +30,11 @@ do run_fcs.do
 # -- Loading package STD_LOGIC_UNSIGNED
 # -- Compiling entity test
 # -- Compiling architecture sim of test
-# End time: 11:45:35 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# --- Resetting Simulation (Keeping Waves) ---
-# ** Error: No Design Loaded!
-# Error in macro ./run_fcs.do line 31
-# No Design Loaded!
-#     while executing
-# "restartCmd -f"
-#     ("eval" body line 1)
-#     invoked from within
-# "eval restartCmd $args"
-#     (procedure "restart" line 18)
-#     invoked from within
-# "restart -f"
-#     invoked from within
-# "if {[runStatus] != "No Design Loaded"} {
-#     # If the simulation is already open, just reset the time.
-#     # This preserves your Wave window and zoom ..."
-do run_fcs.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:47:59 on May 14,2026
-# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fcs_check_parallel
-# -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:47:59 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:47:59 on May 14,2026
-# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_arith
-# -- Loading package STD_LOGIC_UNSIGNED
-# -- Compiling entity test
-# -- Compiling architecture sim of test
-# End time: 11:47:59 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# --- Resetting Simulation (Keeping Waves) ---
-# ** Error: No Design Loaded!
-# Error in macro ./run_fcs.do line 30
-# No Design Loaded!
-#     while executing
-# "restartCmd -f"
-#     ("eval" body line 1)
-#     invoked from within
-# "eval restartCmd $args"
-#     (procedure "restart" line 18)
-#     invoked from within
-# "restart -f"
-#     invoked from within
-# "if {[runStatus] != "none"} {
-#     echo "--- Resetting Simulation (Keeping Waves) ---"
-#     # Note: restart -f does NOT pick up VHDL code changes. 
-#     #..."
-do run_fcs.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:48:37 on May 14,2026
-# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fcs_check_parallel
-# -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:48:37 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:48:37 on May 14,2026
-# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_arith
-# -- Loading package STD_LOGIC_UNSIGNED
-# -- Compiling entity test
-# -- Compiling architecture sim of test
-# End time: 11:48:37 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# --- Resetting Simulation (Keeping Waves) ---
-# ** Error: No Design Loaded!
-# Error in macro ./run_fcs.do line 31
-# No Design Loaded!
-#     while executing
-# "restartCmd -f"
-#     ("eval" body line 1)
-#     invoked from within
-# "eval restartCmd $args"
-#     (procedure "restart" line 18)
-#     invoked from within
-# "restart -f"
-#     invoked from within
-# "if {[runStatus] != "none"} {
-#     echo "--- Resetting Simulation (Keeping Waves) ---"
-#     # Note: restart -f does NOT pick up VHDL code changes. 
-#     #..."
-do run_fcs.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:48:51 on May 14,2026
-# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fcs_check_parallel
-# -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:48:51 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:48:51 on May 14,2026
-# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_arith
-# -- Loading package STD_LOGIC_UNSIGNED
-# -- Compiling entity test
-# -- Compiling architecture sim of test
-# End time: 11:48:51 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# --- Resetting Simulation (Keeping Waves) ---
-# ** Error: No Design Loaded!
-# Error in macro ./run_fcs.do line 31
-# No Design Loaded!
-#     while executing
-# "restartCmd -f"
-#     ("eval" body line 1)
-#     invoked from within
-# "eval restartCmd $args"
-#     (procedure "restart" line 18)
-#     invoked from within
-# "restart -f"
-#     invoked from within
-# "if {[runStatus] != "none"} {
-#     echo "--- Resetting Simulation (Keeping Waves) ---"
-#     # Note: restart -f does NOT pick up VHDL code changes. 
-#     #..."
-do run_fcs.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:49:34 on May 14,2026
-# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fcs_check_parallel
-# -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:49:34 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:49:34 on May 14,2026
-# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_arith
-# -- Loading package STD_LOGIC_UNSIGNED
-# -- Compiling entity test
-# -- Compiling architecture sim of test
-# End time: 11:49:34 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# --- Resetting Simulation (Keeping Waves) ---
-# ** Error: No Design Loaded!
-# Error in macro ./run_fcs.do line 31
-# No Design Loaded!
-#     while executing
-# "restartCmd -f"
-#     ("eval" body line 1)
-#     invoked from within
-# "eval restartCmd $args"
-#     (procedure "restart" line 18)
-#     invoked from within
-# "restart -f"
-#     invoked from within
-# "if {[runStatus] != "none"} {
-#     echo "--- Resetting Simulation (Keeping Waves) ---"
-#     # Note: restart -f does NOT pick up VHDL code changes. 
-#     #..."
-do run_fcs.do
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:50:06 on May 14,2026
-# vcom -reportprogress 300 -work work fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fcs_check_parallel
-# -- Compiling architecture struc of fcs_check_parallel
-# End time: 11:50:06 on May 14,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 11:50:06 on May 14,2026
-# vcom -reportprogress 300 -work work tb_fcs_check_parallel.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_arith
-# -- Loading package STD_LOGIC_UNSIGNED
-# -- Compiling entity test
-# -- Compiling architecture sim of test
-# End time: 11:50:06 on May 14,2026, Elapsed time: 0:00:00
+# End time: 13:37:51 on May 14,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # --- Loading Latest Compiled Design ---
 # vsim -voptargs=""+acc"" work.test 
-# Start time: 11:50:06 on May 14,2026
+# Start time: 13:37:51 on May 14,2026
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
