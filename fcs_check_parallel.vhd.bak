@@ -100,7 +100,7 @@ BEGIN
 					is_data_valid <= '0';
 				END IF;
 			END IF;
-end if;
+
 		END IF;
 
 	END PROCESS;

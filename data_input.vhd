@@ -41,7 +41,7 @@ ARCHITECTURE Behavioral OF data_input IS
             clk : IN STD_LOGIC;
             mac_in : IN mac_input;
             valid : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
-            ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
+            --ready : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0); 
             port_output : OUT mac_output;
             output_valid : OUT STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0);
             output_ready : IN STD_LOGIC_VECTOR(NUM_PORTS - 1 DOWNTO 0)
@@ -227,4 +227,10 @@ BEGIN
         END PROCESS;
     END GENERATE fcs_generate;
 
+-- Connect internal "lane" arrays to the physical output ports 
+    data_to_crossbar <= data_in_to_fifo;
+  --  dst_port         <= mac_data_to_fsm; 
+    
+    -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
+    mac_rdy <= (others => '1');
 END Behavioral;

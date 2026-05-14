@@ -25,6 +25,7 @@ ARCHITECTURE simData OF test IS
     -- general signals
     SIGNAL s_clk : STD_LOGIC := '0';
     SIGNAL s_rst : STD_LOGIC := '1';
+    
     SIGNAL tb_in : rx_in := (OTHERS => (OTHERS => '0'));
     SIGNAL tb_ctrl : rx_ctrl := (OTHERS => '0');
 
