@@ -1,54 +1,58 @@
-# Create the work library if it doesn't already exist
+# Terminate any active simulation to reset the GUI state
+quit -sim
+
+# Create and map the work library
 vlib work
 vmap work work
 
 # -------------------------------------------------------------------------
-# COMPILE VHDL FILES IN DEPENDENCY ORDER
+# COMPILE VHDL FILES
 # -------------------------------------------------------------------------
-
-# 1. Compile Global Variables Package first (required by all other modules) [cite: 84]
 vcom -reportprogress 300 -work work global.vhd
-
-# 2. Compile independent sub-components [cite: 50, 106]
 vcom -reportprogress 300 -work work fcs_check_parallel.vhd
 vcom -reportprogress 300 -work work MAC_learning.vhd
-
-# 3. Compile the Data Input module (instantiates sub-components) [cite: 2]
 vcom -reportprogress 300 -work work data_input.vhd
-
-# 4. Compile the Testbench [cite: 140]
 vcom -reportprogress 300 -work work tb_data_input.vhd
 
 # -------------------------------------------------------------------------
 # START SIMULATION
 # -------------------------------------------------------------------------
-
-# Load the testbench entity named 'test' [cite: 140]
-# -voptargs=+acc enables visibility for all signals in the waveform
+# Loading the 'test' entity [cite: 140]
 vsim -voptargs=+acc work.test
 
 # -------------------------------------------------------------------------
 # ADD WAVES
 # -------------------------------------------------------------------------
 
-# Add top-level Testbench signals [cite: 143-146]
-add wave -divider "Testbench Signals"
-add wave -position insertpoint sim:/test/*
+# 1. Top-level Testbench signals [cite: 143-146]
+add wave -divider "Testbench Stimulus"
+add wave -color "Yellow" sim:/test/s_clk
+add wave -color "Red"    sim:/test/s_rst
+add wave -hex            sim:/test/tb_in
+add wave                 sim:/test/tb_ctrl
 
-# Add internal Data Input (DUT) signals [cite: 2, 8-23]
-add wave -divider "DUT Internal Signals"
-add wave -position insertpoint sim:/test/DUT/*
+# 2. DUT Internal State [cite: 8, 28, 32]
+add wave -divider "DUT Port States"
+add wave -hex sim:/test/DUT/state
 
-# Add independent port state arrays to monitor parallel execution 
-add wave -divider "Port States"
-add wave -position insertpoint sim:/test/DUT/state
+# 3. FCS Internal sum_reg [cite: 25, 51]
+# We use the fcs_generate(i) label to reach inside the parallel instances
+add wave -divider "FCS Checkers (sum_reg)"
+add wave -hex -label "Port0_sum_reg" sim:/test/DUT/fcs_generate(0)/u_fcs/sum_reg
+add wave -hex -label "Port1_sum_reg" sim:/test/DUT/fcs_generate(1)/u_fcs/sum_reg
+add wave -hex -label "Port2_sum_reg" sim:/test/DUT/fcs_generate(2)/u_fcs/sum_reg
+add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
+
+# 4. Monitor the FCS output signals [cite: 19, 26, 50]
+add wave -divider "FCS Status"
+add wave sim:/test/DUT/fcs_sof
+add wave sim:/test/DUT/fcs_valid_to_fsm
 
 # -------------------------------------------------------------------------
 # RUN SIMULATION
 # -------------------------------------------------------------------------
 
-# Run until the report "Simulation Finished" is reached [cite: 167]
-run -all
+# Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
+run 400 ns
 
-# Zoom to fit the entire simulation in the wave window
 wave zoom full
