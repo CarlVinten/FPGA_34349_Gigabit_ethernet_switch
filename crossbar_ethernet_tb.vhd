@@ -28,16 +28,7 @@ architecture tb of crossbar_ethernet_tb is
             tx_ctrl0        : OUT STD_LOGIC;
             tx_ctrl1        : OUT STD_LOGIC;
             tx_ctrl2        : OUT STD_LOGIC;
-            tx_ctrl3        : OUT STD_LOGIC;
-            -- Debug ports
-            debug_fifo2_wrreq  : OUT STD_LOGIC;
-            debug_fifo2_rdreq  : OUT STD_LOGIC;
-            debug_fifo2_empty  : OUT STD_LOGIC;
-            debug_fifo2_full   : OUT STD_LOGIC;
-            debug_fifo2_usedw  : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-            debug_tx_state_1   : OUT STD_LOGIC;
-            debug_tx_src_1     : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+            tx_ctrl3        : OUT STD_LOGIC
         );
     END COMPONENT;
 
@@ -58,16 +49,6 @@ architecture tb of crossbar_ethernet_tb is
     signal tx_ctrl2             : std_logic;
     signal tx_ctrl3             : std_logic;
     
-    -- Debug signals
-    signal debug_fifo2_wrreq    : std_logic;
-    signal debug_fifo2_rdreq    : std_logic;
-    signal debug_fifo2_empty    : std_logic;
-    signal debug_fifo2_full     : std_logic;
-    signal debug_fifo2_usedw    : std_logic_vector(11 downto 0);
-    signal debug_tx_state_1     : std_logic;
-    signal debug_tx_src_1       : std_logic_vector(1 downto 0);
-    signal debug_rr_turn_tx_1   : std_logic_vector(1 downto 0);
-
     -- Ethernet frame: 64 bytes = 512 bits
     -- Frame: 00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2
     
@@ -102,15 +83,7 @@ begin
         tx_ctrl0           => tx_ctrl0,
         tx_ctrl1           => tx_ctrl1,
         tx_ctrl2           => tx_ctrl2,
-        tx_ctrl3           => tx_ctrl3,
-        debug_fifo2_wrreq  => debug_fifo2_wrreq,
-        debug_fifo2_rdreq  => debug_fifo2_rdreq,
-        debug_fifo2_empty  => debug_fifo2_empty,
-        debug_fifo2_full   => debug_fifo2_full,
-        debug_fifo2_usedw  => debug_fifo2_usedw,
-        debug_tx_state_1   => debug_tx_state_1,
-        debug_tx_src_1     => debug_tx_src_1,
-        debug_rr_turn_tx_1 => debug_rr_turn_tx_1
+        tx_ctrl3           => tx_ctrl3
     );
 
     -- Clock generation
@@ -362,15 +335,5 @@ begin
             prev_tx_ctrl3 := tx_ctrl3;
         end if;
     end process tx_ctrl_monitor;
-
-    -- Debug monitor for FIFO 2 (output 2, input 0)
-    debug_monitor : process(clk)
-    begin
-        if rising_edge(clk) then
-            if debug_fifo2_wrreq = '1' then
-                report "FIFO 2 Write: usedw=" & integer'image(to_integer(unsigned(debug_fifo2_usedw)));
-            end if;
-        end if;
-    end process debug_monitor;
 
 end tb;

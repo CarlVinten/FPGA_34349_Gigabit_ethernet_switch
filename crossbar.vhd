@@ -25,17 +25,7 @@
             tx_ctrl0    : OUT STD_LOGIC;
             tx_ctrl1    : OUT STD_LOGIC;
             tx_ctrl2    : OUT STD_LOGIC;
-            tx_ctrl3    : OUT STD_LOGIC;
-            -- Debug ports
-            debug_fifo2_wrreq : OUT STD_LOGIC;
-            debug_fifo2_rdreq : OUT STD_LOGIC;
-            debug_fifo2_empty : OUT STD_LOGIC;
-            debug_fifo2_full : OUT STD_LOGIC;
-            debug_fifo2_usedw : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-            -- Debug arbiter state signals
-            debug_tx_state_1 : OUT STD_LOGIC;
-            debug_tx_src_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
-            debug_rr_turn_tx_1 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+            tx_ctrl3    : OUT STD_LOGIC
         );
     end crossbar;
 
@@ -833,16 +823,5 @@ tx_ctrl3 <= '1' when tx_state(3) = '1' else '0';
 
 
 
-
--- Debug signal assignments for FIFO 2 (output2) monitoring
-debug_fifo2_wrreq <= dstport(0)(1);
-debug_fifo2_rdreq <= rdreq(1);
-debug_fifo2_empty <= empty(1);
-debug_fifo2_full <= full(1);
-debug_fifo2_usedw <= usedw(1);
--- Debug arbiter state signals for OUTPUT 2
-debug_tx_state_1 <= tx_state(1);
-debug_tx_src_1 <= std_logic_vector(to_unsigned(tx_src(1), 2));
-debug_rr_turn_tx_1 <= std_logic_vector(to_unsigned(rr_turn_tx(1), 2));
 
 END struc1;
