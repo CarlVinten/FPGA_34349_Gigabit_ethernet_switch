@@ -109,15 +109,16 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL data_out_to_fsm : crossbar_input_array;
     SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
     SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
+    SIGNAL delay_data_in_to_fifo : crossbar_input_array;
 
     -- deadsignals
     SIGNAL used_words_fifo : STD_LOGIC_VECTOR(11 DOWNTO 0);
     SIGNAL empty_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL full_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    signal rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
-    signal wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+    SIGNAL wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
-BEGIN 
+BEGIN
 
     mac_l : MAC_learning
     PORT MAP(
@@ -144,7 +145,7 @@ BEGIN
         pack_fifo : crossbarfifo
         PORT MAP(
             clock => clk,
-            data => data_in_to_fifo(i),
+            data => delay_data_in_to_fifo(i),
             rdreq => rdreq_fifo(i),
             sclr => rst,
             wrreq => wrreq_fifo(i),
@@ -178,6 +179,8 @@ BEGIN
                 mac_data_in(i) <= (OTHERS => '0');
 
             ELSIF rising_edge(clk) THEN
+                delay_data_in_to_fifo(i) <= data_in_to_fifo(i);
+
                 CASE state(i) IS
                     WHEN state_idle =>
                         -- valid signals
@@ -253,7 +256,7 @@ BEGIN
                             mac_data_valid(i) <= '0';
 
                             -- crossbar / fifo
-                            data_in_to_fifo(i) <= '1' & data_in(i);
+                            delay_data_in_to_fifo(i) <= '0' & data_in(i);
 
                             -- -- a little weird. they should all be 1's in here
                             -- IF data_valid(i) = '1' THEN
@@ -261,6 +264,9 @@ BEGIN
                             -- ELSE
                             --     s_data_to_switch_core_fifo(i) <= '0' & data_in(i);
                             -- END IF;
+
+                        ELSIF data_valid(i) = '0' THEN
+                            delay_data_in_to_fifo(i) <= '1' & data_in(i);
 
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
