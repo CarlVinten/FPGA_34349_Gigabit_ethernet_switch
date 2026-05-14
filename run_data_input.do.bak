@@ -53,6 +53,6 @@ add wave sim:/test/DUT/fcs_valid_to_fsm
 # -------------------------------------------------------------------------
 
 # Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
-run 400 ns
+run 1200 ns
 
 wave zoom full

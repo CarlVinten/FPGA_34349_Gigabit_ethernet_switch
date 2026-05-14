@@ -183,8 +183,9 @@ BEGIN
                         END IF;
 
                     WHEN state_data =>
+                        fcs_sof(i) <= '0';
 
-                        IF state(i) = state_data AND data_valid(i) = '1' AND data_cnt(i) < 13 THEN
+                        IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
                             fcs_data_in(i) <= data_in(i);
                             fcs_data_valid(i) <= '1';
