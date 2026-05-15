@@ -52,13 +52,24 @@ add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp
 add wave -hex sim:/test/DUT/data_in 
 add wave sim:/test/DUT/fcs_generate(0)/u_fcs/start_cnt 
 
-
-
+add wave -divider "output"
+add wave -hex -position insertpoint  \
+sim:/test/DUT/data_to_crossbar 
+add wave -position insertpoint  \
+sim:/test/DUT/dst_port
+add wave  -position insertpoint  \
+sim:/test/DUT/temp_dst_array
+add wave -position insertpoint  \
+sim:/test/DUT/fsm_to_dst_to_crossbar
+add wave -hex -position insertpoint  \
+sim:/test/DUT/is_filling_crossbar
+add wave -hex -position insertpoint  \
+sim:/test/DUT/used_words_fifo
 # -------------------------------------------------------------------------
 # RUN SIMULATION
 # -------------------------------------------------------------------------
 
 # Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
-run 1200 ns
+run 2000 ns
 
 wave zoom full

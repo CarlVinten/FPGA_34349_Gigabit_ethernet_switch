@@ -59,7 +59,7 @@ ARCHITECTURE simData OF test IS
         x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
 
         x"AB", -- Start of Frame Delimiter
-
+		
         -- Destination & Source MAC Addresses
         x"00", x"10", x"A4", x"7B", x"EA", x"80",
         x"00", x"12", x"34", x"56", x"78", x"90",
@@ -77,6 +77,8 @@ ARCHITECTURE simData OF test IS
         x"10", x"11",
         -- Valid FCS Checksum 
         x"E6", x"C5", x"3D", x"B2"
+		
+		
     );
 
     -- Procedure to send a packet to a specific port

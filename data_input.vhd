@@ -107,20 +107,24 @@ ARCHITECTURE Behavioral OF data_input IS
     -- crossbar
     SIGNAL data_in_to_fifo : crossbar_input_array; -- used
     SIGNAL data_out_to_fsm : crossbar_input_array;
-    SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array;
+    SIGNAL fsm_to_dst_to_crossbar : crossbar_dstport_array := (others => (others => '0'));
     SIGNAL fsm_to_data_to_crossbar : crossbar_input_array;
-    SIGNAL delay_data_in_to_fifo : crossbar_input_array;
+    SIGNAL delay_data_in_to_fifo : crossbar_input_array := (others => (others => '0'));
 
     -- deadsignals
-    SIGNAL used_words_fifo : STD_LOGIC_VECTOR(11 DOWNTO 0);
+	type used_words_t is array(3 downto 0) of STD_LOGIC_VECTOR(11 DOWNTO 0);
+
+    SIGNAL used_words_fifo : used_words_t := (others => (others => '0')); 
     SIGNAL empty_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL full_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+	SIGNAL delay_wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 	-- Seconf FSM
 	SIGNAL temp_dst_array: crossbar_dstport_array := (others => (others => '0'));
-	SIGNAL is_filling_crossbar : std_logic_vector := "0000";
+	SIGNAL is_filling_crossbar : std_logic_vector(3 downto 0) := "0000";
+	SIGNAL delay_rx_ctrl : std_logic_vector(3 downto 0) := "0000";
 BEGIN
 
     mac_l : MAC_learning
@@ -151,11 +155,11 @@ BEGIN
             data => delay_data_in_to_fifo(i),
             rdreq => rdreq_fifo(i),
             sclr => rst,
-            wrreq => wrreq_fifo(i),
+            wrreq => delay_wrreq_fifo(i),
             empty => empty_fifo(i),
             full => full_fifo(i),
             q => data_out_to_fsm(i),
-            usedw => used_words_fifo
+            usedw => used_words_fifo(i)
         );
 
         PROCESS (clk, rst)
@@ -182,6 +186,9 @@ BEGIN
                 mac_data_in(i) <= (OTHERS => '0');
 
             ELSIF rising_edge(clk) THEN
+				delay_rx_ctrl(i) <= data_valid(i);
+				wrreq_fifo(i) <= '0';
+				delay_wrreq_fifo(i) <= wrreq_fifo(i); 
                 delay_data_in_to_fifo(i) <= data_in_to_fifo(i);
 
                 CASE state(i) IS
@@ -235,12 +242,16 @@ BEGIN
                         END IF;
 
                     WHEN state_data =>
-                        IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
+						
+                            -- fcs_data_valid(i) <= '0';
+                        
+						IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
+							wrreq_fifo(i) <= '1';
                             fcs_data_in(i) <= data_in(i);
                             data_cnt(i) <= data_cnt(i) + 1;
                             fcs_sof(i) <= '0';
-
+							data_in_to_fifo(i) <= '0' & data_in(i);
                             -- mac
                             mac_data_in(i) <= data_in(i);
                             mac_data_valid(i) <= '1';
@@ -251,6 +262,7 @@ BEGIN
                         ELSIF state(i) = state_data AND data_valid(i) = '1' THEN
                             -- fcs
                             -- fcs_data_valid(i) <= '1';
+							wrreq_fifo(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
                             fcs_data_in(i) <= data_in(i);
 
@@ -258,7 +270,7 @@ BEGIN
                             mac_data_valid(i) <= '0';
 
                             -- crossbar / fifo
-                            data_in_to_fifo(i) <= '0' & data_in(i);
+                            data_in_to_fifo(i) <= (delay_rx_ctrl(i) xor data_valid(i)) & data_in(i);
 
                             -- -- a little weird. they should all be 1's in here
                             -- IF data_valid(i) = '1' THEN
@@ -266,13 +278,11 @@ BEGIN
                             -- ELSE
                             --     s_data_to_switch_core_fifo(i) <= '0' & data_in(i);
                             -- END IF;
-
-                        ELSIF data_valid(i) = '0' THEN
+						ELSIF data_valid(i) = '0' THEN
+							wrreq_fifo(i) <= '1';
                             data_in_to_fifo(i) <= '1' & data_in(i);
-
-                        ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
-                            -- fcs_data_valid(i) <= '0';
+                        
                         END IF;
 
                 END CASE;
@@ -283,22 +293,29 @@ BEGIN
 
 		PROCESS(clk) -- FSM to put data into crossbar from fifo.
 		begin
-			if(rising_edge(clock)) then
+			if(rising_edge(clk)) then
+				data_to_crossbar(i) <= data_out_to_fsm(i);
 				temp_dst_array(i) <= temp_dst_array(i);
-				crossbar_dstport_array(i) <= crossbar_dstport_array(i);
-
-				if (is_data_valid(i) = '1') then
+				fsm_to_dst_to_crossbar(i) <= fsm_to_dst_to_crossbar(i);
+				dst_port(i) <= (others => '0');
+				rdreq_fifo(i) <= '0';
+				if (fcs_valid_to_fsm(i) = '1') then
 					is_filling_crossbar(i) <= '1';
 				end if;
 
-				if(data_out_to_fsm(8) = '1') then
+				if(data_out_to_fsm(i)(8) = '1') then
 					is_filling_crossbar(i) <= '0';
 				end if;
 
-				if (is_filling_crossbar(i) <= '1') then
-					dst_port(i) <= crossbar_dstport_array(i);
+				if(mac_valid(i) = '1') then
+					temp_dst_array(i) <= mac_data_to_fsm(i);
+				end if;
+
+				if (is_filling_crossbar(i) = '1') then
+					dst_port(i) <= fsm_to_dst_to_crossbar(i);
+					rdreq_fifo(i) <= '1';
 				else
-					dst_port(i) <= (others => '0');
+					fsm_to_dst_to_crossbar(i) <= temp_dst_array(i);
 				end if;
 
 
@@ -308,7 +325,7 @@ BEGIN
     END GENERATE fcs_generate;
 
     -- Connect internal "lane" arrays to the physical output ports 
-    data_to_crossbar <= data_in_to_fifo;
+    
     --  dst_port         <= mac_data_to_fsm; 
 
     -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
