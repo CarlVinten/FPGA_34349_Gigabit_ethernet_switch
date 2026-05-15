@@ -110,6 +110,10 @@ begin
         -- Open packet file
         file_open(rx0_file, "fpga_test_packets/packet_01.txt", read_mode);
         
+        -- Set RX_control high for entire packet reception
+        RX_control(0) <= '1';
+        RX_control(3 downto 1) <= "000";
+        
         -- Read and apply packets until file is exhausted
         loop
             -- Read from packet file
@@ -120,19 +124,12 @@ begin
             end if;
             
             -- Apply data to port 0
-            if rx0_valid then
-                RX(0) <= rx0_data;
-                RX_control(0) <= '1';
-            else
-                RX(0) <= (others => '0');
-                RX_control(0) <= '0';
-            end if;
+            RX(0) <= rx0_data;
             
             -- Keep other ports inactive
             RX(1) <= (others => '0');
             RX(2) <= (others => '0');
             RX(3) <= (others => '0');
-            RX_control(3 downto 1) <= "000";
             wait for CLK_PERIOD;
         end loop;
         
