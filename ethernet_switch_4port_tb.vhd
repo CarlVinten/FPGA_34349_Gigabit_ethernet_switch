@@ -91,21 +91,9 @@ begin
     -- Test stimulus
     stimulus : process
         file rx0_file : text;
-        file rx1_file : text;
-        file rx2_file : text;
-        file rx3_file : text;
         
         variable rx0_valid : boolean := false;
-        variable rx1_valid : boolean := false;
-        variable rx2_valid : boolean := false;
-        variable rx3_valid : boolean := false;
-        
         variable rx0_data : std_logic_vector(7 downto 0);
-        variable rx1_data : std_logic_vector(7 downto 0);
-        variable rx2_data : std_logic_vector(7 downto 0);
-        variable rx3_data : std_logic_vector(7 downto 0);
-        
-        variable any_active : boolean;
         
     begin
         -- Reset assertion
@@ -119,84 +107,37 @@ begin
         rst <= '0';
         wait for 50 ns;
         
-        -- Open packet files
-        file_open(rx0_file, "rx0_packets.txt", read_mode);
-        file_open(rx1_file, "rx1_packets.txt", read_mode);
-        file_open(rx2_file, "rx2_packets.txt", read_mode);
-        file_open(rx3_file, "rx3_packets.txt", read_mode);
+        -- Open packet file
+        file_open(rx0_file, "fpga_test_packets/packet_01.txt", read_mode);
         
-        -- Read and apply packets until all files are exhausted
+        -- Read and apply packets until file is exhausted
         loop
-            -- Read from each file
-            read_packet_file("rx0_packets.txt", rx0_data, rx0_valid, rx0_file);
-            read_packet_file("rx1_packets.txt", rx1_data, rx1_valid, rx1_file);
-            read_packet_file("rx2_packets.txt", rx2_data, rx2_valid, rx2_file);
-            read_packet_file("rx3_packets.txt", rx3_data, rx3_valid, rx3_file);
+            -- Read from packet file
+            read_packet_file("fpga_test_packets/packet_01.txt", rx0_data, rx0_valid, rx0_file);
             
-            -- Check if any port has valid data
-            any_active := rx0_valid or rx1_valid or rx2_valid or rx3_valid;
-            
-            if not any_active then
-                exit;  -- Exit loop when all files exhausted
+            if not rx0_valid then
+                exit;  -- Exit loop when file exhausted
             end if;
             
-            -- Apply data to ports
+            -- Apply data to port 0
             if rx0_valid then
                 RX(0) <= rx0_data;
+                RX_control(0) <= '1';
             else
                 RX(0) <= (others => '0');
+                RX_control(0) <= '0';
             end if;
             
-            if rx1_valid then
-                RX(1) <= rx1_data;
-            else
-                RX(1) <= (others => '0');
-            end if;
-            
-            if rx2_valid then
-                RX(2) <= rx2_data;
-            else
-                RX(2) <= (others => '0');
-            end if;
-            
-            if rx3_valid then
-                RX(3) <= rx3_data;
-            else
-                RX(3) <= (others => '0');
-            end if;
-            
-            -- Update control signal (active low for valid ports)
-			if rx0_valid then
-            RX_control(0) <= '1';
-			else
-			RX_control(0) <= '0';
-            end if;
-			
-			if(rx1_valid) then
-			RX_control(1) <= '1';
-			else
-			RX_control(1) <= '0';
-            end if;
-
-			if(rx2_valid) then
-			RX_control(2) <= '1';
-			else
-			RX_control(2) <= '0';
-            end if;
-
-			if(rx3_valid) then
-			RX_control(3) <= '1';
-			else
-			RX_control(3) <= '0';
-            end if;
+            -- Keep other ports inactive
+            RX(1) <= (others => '0');
+            RX(2) <= (others => '0');
+            RX(3) <= (others => '0');
+            RX_control(3 downto 1) <= "000";
             wait for CLK_PERIOD;
         end loop;
         
-        -- Close files
+        -- Close file
         file_close(rx0_file);
-        file_close(rx1_file);
-        file_close(rx2_file);
-        file_close(rx3_file);
         
         -- Stop all signals
         RX_control <= "0000";
