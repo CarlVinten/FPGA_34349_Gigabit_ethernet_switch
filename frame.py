@@ -42,7 +42,7 @@ for i in range(1, 11):
     payload_data = f"FPGA_TEST_PACKET_NUM_{i:02d}".encode('utf-8')
 
     # Build the packet using Scapy
-    pkt = Ether(dst="00:10:A4:7B:EA:80", src="00:12:34:56:78:90") / \
+    pkt = Ether(dst="AA:10:A4:7B:EA:80", src="BB:12:34:56:78:90") / \
           IP(src="192.168.1.100", dst=target_ip) / \
           UDP(sport=5000, dport=target_port) / \
           payload_data
