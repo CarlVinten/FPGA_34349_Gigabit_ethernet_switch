@@ -812,11 +812,12 @@ case tx_state(1) is
     end if;
 end process;
 
--- Set TX control signals based on transmission state (concurrent assignments outside process)
-tx_ctrl0 <= '1' when tx_state(0) = '1' else '0';
-tx_ctrl1 <= '1' when tx_state(1) = '1' else '0';
-tx_ctrl2 <= '1' when tx_state(2) = '1' else '0';
-tx_ctrl3 <= '1' when tx_state(3) = '1' else '0';
+-- Set TX control signals based on transmission state and EOF detection
+-- tx_ctrl goes low when EOF bit is detected on the output (one cycle before EOF appears externally)
+tx_ctrl0 <= '1' when (tx_state(0) = '1' and output1_mux(8) = '0') else '0';
+tx_ctrl1 <= '1' when (tx_state(1) = '1' and output2_mux(8) = '0') else '0';
+tx_ctrl2 <= '1' when (tx_state(2) = '1' and output3_mux(8) = '0') else '0';
+tx_ctrl3 <= '1' when (tx_state(3) = '1' and output4_mux(8) = '0') else '0';
 
 
 
