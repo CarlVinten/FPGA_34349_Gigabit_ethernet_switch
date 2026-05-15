@@ -40,7 +40,10 @@ architecture tb of ethernet_switch_4port_tb is
     
     -- Ethernet packet data
     type byte_array_t is array(integer range <>) of std_logic_vector(7 downto 0);
-    constant ETHERNET_FRAME : byte_array_t(0 to 63) := (
+    constant ETHERNET_FRAME : byte_array_t(0 to 71) := (
+        -- Preamble
+        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AB",
+        -- Frame data
         x"00", x"10", x"A4", x"7B", x"EA", x"80", x"00", x"12",
         x"34", x"56", x"78", x"90", x"08", x"00", x"45", x"00",
         x"00", x"2E", x"B3", x"FE", x"00", x"00", x"80", x"11",
