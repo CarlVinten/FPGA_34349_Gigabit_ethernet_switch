@@ -147,5 +147,29 @@ begin
         -- End simulation
         wait;
     end process stimulus;
+    
+    -- Monitor process to capture TX output on port 0
+    monitor : process
+        file tx_output_file : text;
+        variable line_buffer : line;
+    begin
+        -- Open output file for writing
+        file_open(tx_output_file, "tx_output.txt", write_mode);
+        
+        -- Monitor TX port 0 continuously
+        loop
+            wait for CLK_PERIOD;
+            
+            -- Capture data when TX_control(0) is high
+            if TX_control(0) = '1' then
+                hwrite(line_buffer, TX(0));
+                writeline(tx_output_file, line_buffer);
+            end if;
+        end loop;
+        
+        -- Close output file when done
+        file_close(tx_output_file);
+        wait;
+    end process monitor;
 
 end architecture tb;
