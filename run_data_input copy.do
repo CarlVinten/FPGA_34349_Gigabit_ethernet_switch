@@ -1,0 +1,75 @@
+# Terminate any active simulation to reset the GUI state
+quit -sim
+
+# Create and map the work library
+vlib work
+vmap work work
+
+# -------------------------------------------------------------------------
+# COMPILE VHDL FILES
+# -------------------------------------------------------------------------
+vcom -reportprogress 300 -work work global.vhd
+vcom -reportprogress 300 -work work fcs_check_parallel.vhd
+vcom -reportprogress 300 -work work MAC_learning.vhd
+vcom -reportprogress 300 -work work data_input.vhd
+vcom -reportprogress 300 -work work tb_data_input.vhd
+
+# -------------------------------------------------------------------------
+# START SIMULATION
+# -------------------------------------------------------------------------
+# Loading the 'test' entity [cite: 140]
+vsim -voptargs=+acc work.test
+
+# -------------------------------------------------------------------------
+# ADD WAVES
+# -------------------------------------------------------------------------
+
+# 1. Top-level Testbench signals [cite: 143-146]
+add wave -divider "Testbench Stimulus"
+add wave -color "Yellow" sim:/test/s_clk
+add wave -color "Red"    sim:/test/s_rst
+add wave -hex            sim:/test/tb_in
+add wave                 sim:/test/tb_ctrl
+
+# 2. DUT Internal State [cite: 8, 28, 32]
+add wave -divider "DUT Port States"
+add wave -label "State" sim:/test/DUT/state
+add wave -label "FCS Valid" sim:/test/DUT/fcs_data_valid
+
+# 3. FCS Internal sum_reg [cite: 25, 51]
+# We use the fcs_generate(i) label to reach inside the parallel instances
+add wave -divider "FCS Checkers (sum_reg)"
+add wave -hex -label "Port0_sum_reg" sim:/test/DUT/fcs_generate(0)/u_fcs/sum_reg
+add wave -hex -label "Port1_sum_reg" sim:/test/DUT/fcs_generate(1)/u_fcs/sum_reg
+add wave -hex -label "Port2_sum_reg" sim:/test/DUT/fcs_generate(2)/u_fcs/sum_reg
+add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
+
+# 4. Monitor the FCS output signals [cite: 19, 26, 50]
+add wave -divider "FCS Status"
+add wave sim:/test/DUT/fcs_sof
+add wave sim:/test/DUT/fcs_valid_to_fsm
+add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp 
+add wave -hex sim:/test/DUT/data_in 
+add wave sim:/test/DUT/fcs_generate(0)/u_fcs/start_cnt 
+
+add wave -divider "output"
+add wave -hex -position insertpoint  \
+sim:/test/DUT/data_to_crossbar 
+add wave -position insertpoint  \
+sim:/test/DUT/dst_port
+add wave  -position insertpoint  \
+sim:/test/DUT/temp_dst_array
+add wave -position insertpoint  \
+sim:/test/DUT/fsm_to_dst_to_crossbar
+add wave -hex -position insertpoint  \
+sim:/test/DUT/is_filling_crossbar
+add wave -hex -position insertpoint  \
+sim:/test/DUT/used_words_fifo
+# -------------------------------------------------------------------------
+# RUN SIMULATION
+# -------------------------------------------------------------------------
+
+# Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
+run 2000 ns
+
+wave zoom full

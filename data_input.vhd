@@ -117,6 +117,8 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL used_words_fifo : used_words_t := (others => (others => '0')); 
     SIGNAL empty_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL full_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+	
     SIGNAL rdreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL delay_wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
