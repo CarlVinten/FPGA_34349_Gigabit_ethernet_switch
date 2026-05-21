@@ -47,7 +47,7 @@ add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
 # 4. Monitor the FCS output signals [cite: 19, 26, 50]
 add wave -divider "FCS Status"
 add wave sim:/test/DUT/fcs_sof
-add wave sim:/test/DUT/fcs_valid_to_fsm
+add wave -color "Cyan" sim:/test/DUT/fcs_valid_to_fsm
 add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp 
 add wave -hex sim:/test/DUT/data_in 
 add wave sim:/test/DUT/fcs_generate(0)/u_fcs/start_cnt 
@@ -70,6 +70,6 @@ sim:/test/DUT/used_words_fifo
 # -------------------------------------------------------------------------
 
 # Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
-run 2000 ns
+run 1400 ns
 
 wave zoom full
