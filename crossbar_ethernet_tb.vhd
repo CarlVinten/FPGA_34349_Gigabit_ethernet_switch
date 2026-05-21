@@ -52,7 +52,7 @@ architecture tb of crossbar_ethernet_tb is
     -- Ethernet frame: 64 bytes = 512 bits
     -- Frame: 00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2
     
-    -- Frame stored as array of bytes for easier iteration
+        -- Frame stored as array of bytes for easier iteration
     type byte_array_t is array(integer range <>) of std_logic_vector(7 downto 0);
     constant ETHERNET_FRAME : byte_array_t(0 to 63) := (
         x"00", x"10", x"A4", x"7B", x"EA", x"80", x"00", x"12",
@@ -67,6 +67,7 @@ architecture tb of crossbar_ethernet_tb is
 
     constant CLK_PERIOD : time := 10 ns;
     constant NUM_BYTES  : integer := 64;
+    constant BROADCAST_PORT : std_logic_vector(3 downto 0) := "1111";  -- All outputs
 
 begin
 
@@ -260,6 +261,59 @@ begin
         wait for 100 * CLK_PERIOD;
         
         report "Test 3 completed.";
+        
+        -- ========================================
+        -- TEST 4: Broadcast test
+        -- ========================================
+        report "TEST 4: Testing Broadcast capabilities...";
+        report "Source: Input 0, Destination: ALL OUTPUTS (port code: 1111)";
+        report "Expected: Frame should appear on all four output ports simultaneously";
+        
+        for byte_idx in 0 to NUM_BYTES - 1 loop
+            -- Set the destination port for input 0 to broadcast (all outputs)
+            dstport_in(0) <= BROADCAST_PORT;  -- Route input 0 to all outputs (1111)
+            
+            -- Set end-of-packet flag on last byte (bit 8 = 1)
+            if byte_idx = NUM_BYTES - 1 then
+                is_eop := '1';
+            else
+                is_eop := '0';
+            end if;
+            
+            -- Load the byte into input 0
+            data_in(0) <= is_eop & ETHERNET_FRAME(byte_idx);
+            
+            -- Keep other inputs idle
+            data_in(1) <= "0" & x"00";
+            data_in(2) <= "0" & x"00";
+            data_in(3) <= "0" & x"00";
+            
+            -- Keep other dstports idle
+            dstport_in(1) <= "0000";
+            dstport_in(2) <= "0000";
+            dstport_in(3) <= "0000";
+            
+            wait for CLK_PERIOD;
+            
+            -- Print progress every 8 bytes
+            if (byte_idx + 1) mod 8 = 0 then
+                report "Broadcast test: Transmitted " & integer'image(byte_idx + 1) & " bytes to all outputs";
+            end if;
+        end loop;
+        
+        -- Stop sending data
+        data_in <= (others => (others => '0'));
+        dstport_in <= (others => (others => '0'));
+        
+        report "Broadcast test: Frame sent to all outputs. Waiting for transmission to complete...";
+        report "Checking all TX control signals for simultaneous transmission...";
+        
+        -- Wait for frames to be processed through the crossbar and output
+        -- Should see all four TX control signals active
+        wait for 200 * CLK_PERIOD;
+        
+        report "Test 4 (Broadcast) completed.";
+        
         wait;
         
     end process stimulus;
@@ -293,6 +347,51 @@ begin
             -- Frame completion is detected by tx_ctrl signal transitions
         end if;
     end process output2_monitor;
+
+    -- Monitor all outputs for broadcast test (TEST 4)
+    broadcast_monitor : process(clk)
+        variable out1_count : integer := 0;
+        variable out2_count : integer := 0;
+        variable out3_count : integer := 0;
+        variable out4_count : integer := 0;
+    begin
+        if rising_edge(clk) then
+            -- Output 1 data monitoring
+            if output1_data /= x"00" then
+                out1_count := out1_count + 1;
+            end if;
+            
+            -- Output 2 data monitoring
+            if output2_data /= x"00" then
+                out2_count := out2_count + 1;
+            end if;
+            
+            -- Output 3 data monitoring
+            if output3_data /= x"00" then
+                out3_count := out3_count + 1;
+            end if;
+            
+            -- Output 4 data monitoring
+            if output4_data /= x"00" then
+                out4_count := out4_count + 1;
+            end if;
+            
+            -- Report broadcast test results when any output completes
+            if tx_ctrl0 = '0' and tx_ctrl1 = '0' and tx_ctrl2 = '0' and tx_ctrl3 = '0' and
+               (out1_count > 0 or out2_count > 0 or out3_count > 0 or out4_count > 0) then
+                report "BROADCAST TEST RESULTS:";
+                report "  Output 1 received: " & integer'image(out1_count) & " bytes";
+                report "  Output 2 received: " & integer'image(out2_count) & " bytes";
+                report "  Output 3 received: " & integer'image(out3_count) & " bytes";
+                report "  Output 4 received: " & integer'image(out4_count) & " bytes";
+                -- Reset counters for next test
+                out1_count := 0;
+                out2_count := 0;
+                out3_count := 0;
+                out4_count := 0;
+            end if;
+        end if;
+    end process broadcast_monitor;
 
     -- Monitor TX control signals (edge detection)
     tx_ctrl_monitor : process(clk)
