@@ -121,7 +121,7 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL delay_wrreq_fifo : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
-	-- Seconf FSM
+	-- Second FSM
 	SIGNAL temp_dst_array: crossbar_dstport_array := (others => (others => '0'));
 	SIGNAL is_filling_crossbar : std_logic_vector(3 downto 0) := "0000";
 	SIGNAL delay_rx_ctrl : std_logic_vector(3 downto 0) := "0000";
@@ -164,14 +164,10 @@ BEGIN
 
         PROCESS (clk, rst)
         BEGIN
-            -- data_fifo : 
-            -- sof <= fcs_sof(i);
 
             IF rst = '1' THEN
 
                 state(i) <= state_idle;
-                -- fcs_sof(i) <= '0';
-                -- fcs_data_valid(i) <= '0';
                 mac_data_valid(i) <= '0';
 
                 -- counters
@@ -229,22 +225,14 @@ BEGIN
                             END IF;
 
                             state(i) <= state_data;
-                            -- fcs_data_in(i) <= data_in(i);
-                            -- data_cnt(i) <= data_cnt(i) + 1;
-                            -- data_cnt(i) <= 0;
 
-                            -- mac_data_valid(i) <= '1';
-                            -- mac_data_in(i) <= data_in(i);
-
-                            -- data_in_to_fifo(i) <= '1' & data_in(i);
                         ELSIF data_valid(i) = '0' THEN
                             state(i) <= state_idle;
                         END IF;
 
                     WHEN state_data =>
 						
-                            -- fcs_data_valid(i) <= '0';
-                        
+
 						IF (state(i) = state_data OR data_valid(i) = '1') AND data_cnt(i) < 13 THEN
                             -- fcs
 							wrreq_fifo(i) <= '1';
@@ -256,12 +244,8 @@ BEGIN
                             mac_data_in(i) <= data_in(i);
                             mac_data_valid(i) <= '1';
 
-                            -- crossbar / fifo
-                            -- fcs_sof(i) <= '0';
-
                         ELSIF state(i) = state_data AND data_valid(i) = '1' THEN
-                            -- fcs
-                            -- fcs_data_valid(i) <= '1';
+
 							wrreq_fifo(i) <= '1';
                             data_cnt(i) <= data_cnt(i) + 1;
                             fcs_data_in(i) <= data_in(i);
@@ -272,12 +256,6 @@ BEGIN
                             -- crossbar / fifo
                             data_in_to_fifo(i) <= (delay_rx_ctrl(i) xor data_valid(i)) & data_in(i);
 
-                            -- -- a little weird. they should all be 1's in here
-                            -- IF data_valid(i) = '1' THEN
-
-                            -- ELSE
-                            --     s_data_to_switch_core_fifo(i) <= '0' & data_in(i);
-                            -- END IF;
 						ELSIF data_valid(i) = '0' THEN
 							wrreq_fifo(i) <= '1';
                             data_in_to_fifo(i) <= '1' & data_in(i);
@@ -294,11 +272,13 @@ BEGIN
 		PROCESS(clk) -- FSM to put data into crossbar from fifo.
 		begin
 			if(rising_edge(clk)) then
+
 				data_to_crossbar(i) <= data_out_to_fsm(i);
 				temp_dst_array(i) <= temp_dst_array(i);
 				fsm_to_dst_to_crossbar(i) <= fsm_to_dst_to_crossbar(i);
 				dst_port(i) <= (others => '0');
 				rdreq_fifo(i) <= '0';
+
 				if (fcs_valid_to_fsm(i) = '1') then
 					is_filling_crossbar(i) <= '1';
 				end if;
