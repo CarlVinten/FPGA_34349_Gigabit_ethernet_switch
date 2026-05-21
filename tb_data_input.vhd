@@ -35,19 +35,7 @@ ARCHITECTURE simData OF test IS
 
     -- constant
     CONSTANT clk_period : TIME := 8 ns;
-    -- -- SIGNALS for data input
-    -- SIGNAL u_data_in : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
-    -- SIGNAL u_valid : STD_LOGIC := '0';
-    -- -- signals for fcs check parallel
 
-    -- -- signals connecting fcs and data input
-    -- SIGNAL f_start_of_frame : STD_LOGIC := '0';
-    -- SIGNAL f_fcs_data_bridge : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    -- SIGNAL f_sof_bridge : STD_LOGIC := '0';
-    -- SIGNAL f_valid_bridge : STD_LOGIC := '0';
-    -- -- SIGNAL s_end_of_frame : STD_LOGIC := '0';
-    -- -- signals out of fcs check parallel (NOT USED)
-    -- SIGNAL s_is_data_valid : STD_LOGIC := '0';
 
     TYPE byte_array IS ARRAY (NATURAL RANGE <>) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
 
