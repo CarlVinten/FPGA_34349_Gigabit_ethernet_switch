@@ -158,7 +158,7 @@ BEGIN
 
         -- Start Port 1
         tb_ctrl(1) <= '1';
-        tb_in(1)   <= PACKET_1(0);
+        tb_in(1)   <= ETHERNET_FRAME(0);
         -- Start Port 3 (Staggered by 1 clock if desired, or same time)
         tb_ctrl(3) <= '1';
         tb_in(3)   <= ETHERNET_FRAME(0);

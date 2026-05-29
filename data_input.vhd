@@ -63,9 +63,13 @@ ARCHITECTURE Behavioral OF data_input IS
         );
     END COMPONENT;
 
-    TYPE state_type IS (state_idle, state_preamble, state_data, state_idle2, state_send, state_discard);
+    TYPE state_type IS (state_idle, state_preamble, state_data);
     TYPE state_array IS ARRAY (0 TO NUM_PORTS - 1) OF state_type;
     SIGNAL state : state_array := (OTHERS => state_idle);
+
+    TYPE state_type2 IS (state_idle2, state_send, state_discard);
+    TYPE state_array2 IS ARRAY (0 TO NUM_PORTS - 1) OF state_type2;
+    SIGNAL state2 : state_array2 := (OTHERS => state_idle2);
 
     -- subtype arrays
     SUBTYPE preamble_range IS INTEGER RANGE 0 TO 7;
@@ -124,6 +128,7 @@ ARCHITECTURE Behavioral OF data_input IS
     SIGNAL temp_dst_array : crossbar_dstport_array := (OTHERS => (OTHERS => '0'));
     SIGNAL is_filling_crossbar : STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
     SIGNAL delay_rx_ctrl : STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
+    SIGNAL eof_signal : STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
 BEGIN
 
     mac_l : MAC_learning
@@ -188,6 +193,7 @@ BEGIN
 
                 CASE state(i) IS
                     WHEN state_idle =>
+                        eof_signal(i) <= '0';
                         -- valid signals
                         fcs_sof(i) <= '0';
                         fcs_data_valid(i) <= '0';
@@ -217,7 +223,7 @@ BEGIN
                             preamble_cnt(i) <= preamble_cnt(i) + 1;
                         END IF;
 
-                        IF preamble_cnt(i) = 7 AND data_in(i) = x"AB" THEN
+                        IF preamble_cnt(i) >= 7 AND data_in(i) = x"AB" THEN
                             IF data_in(i) = x"AB" THEN
                                 fcs_sof(i) <= '1';
                                 fcs_data_valid(i) <= '1';
@@ -259,6 +265,7 @@ BEGIN
                             data_in_to_fifo(i) <= '1' & data_in(i);
                             state(i) <= state_idle;
 
+                            eof_signal(i) <= '1';
                         END IF;
 
                 END CASE;
@@ -269,19 +276,19 @@ BEGIN
         BEGIN
             IF (rising_edge(clk)) THEN
 
-                CASE state(i) IS
+                CASE state2(i) IS
                     WHEN state_idle2 =>
                         is_filling_crossbar(i) <= '0';
                         rdreq_fifo(i) <= '0';
                         dst_port(i) <= (OTHERS => '0');
 
-                        IF fcs_valid_to_fsm(i) = '1' THEN
-                            state(i) <= state_send;
+                        IF fcs_valid_to_fsm(i) = '1' AND eof_signal(i) = '1' THEN
+                            state2(i) <= state_send;
                             is_filling_crossbar(i) <= '1';
                             -- ELSIF delay_rx_ctrl(i) = '1' AND fcs_valid_to_fsm(i) = '0' THEN
 
-                        ELSIF fcs_valid_to_fsm(i) = '0' THEN
-                            state(i) <= state_discard;
+                        ELSIF fcs_valid_to_fsm(i) = '0' AND eof_signal(i) = '1' THEN
+                            state2(i) <= state_discard;
                             is_filling_crossbar(i) <= '1';
                         END IF;
 
@@ -291,7 +298,7 @@ BEGIN
                         rdreq_fifo(i) <= '1';
 
                         IF (data_out_to_fsm(i)(8) = '1') THEN
-                            state(i) <= state_idle2;
+                            state2(i) <= state_idle2;
                             is_filling_crossbar(i) <= '0';
                         END IF;
 
@@ -301,7 +308,7 @@ BEGIN
                         rdreq_fifo(i) <= '1';
 
                         IF (data_out_to_fsm(i)(8) = '1') THEN
-                            state(i) <= state_idle2;
+                            state2(i) <= state_idle2;
                             is_filling_crossbar(i) <= '0';
                         END IF;
 
@@ -319,15 +326,15 @@ BEGIN
                         --     -- discard
                         --     fsm_to_dst_to_crossbar(i) <= x"0000";
                         -- END IF;
+                END CASE;
+            END IF;
+        END PROCESS;
+    END GENERATE fcs_generate;
 
-                END IF;
-            END PROCESS;
-        END GENERATE fcs_generate;
+    -- Connect internal "lane" arrays to the physical output ports 
 
-        -- Connect internal "lane" arrays to the physical output ports 
+    --  dst_port         <= mac_data_to_fsm; 
 
-        --  dst_port         <= mac_data_to_fsm; 
-
-        -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
-        mac_rdy <= (OTHERS => '1');
-    END Behavioral;
+    -- Drive the internal mac_rdy so the MAC component isn't stuck [cite: 20, 24]
+    mac_rdy <= (OTHERS => '1');
+END Behavioral;
