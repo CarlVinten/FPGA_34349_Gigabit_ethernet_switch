@@ -30,11 +30,12 @@ architecture only of test_mac_learning is
 	end component;
 	SIGNAL clk : std_logic := '0';
 	SIGNAL rst : std_logic := '0';
-	SIGNAL tb_valid : std_logic_vector(3 downto 0) := "1111";
+	SIGNAL tb_valid : std_logic_vector(3 downto 0) := "0000";
 	SIGNAL tb_dmac : mac_input;
 	SIGNAL tb_smac : mac_input;
 	--SIGNAL tb_ready : std_logic_vector(NUM_PORTS - 1 downto 0) := "0000";
 	SIGNAL tb_output_ready	: std_logic_vector(NUM_PORTS - 1 downto 0) := x"F";
+	SIGNAL cnt : integer := 0;
 begin
 	mac : MAC_learning
 		port map(
@@ -49,24 +50,70 @@ begin
 			output_ready => tb_output_ready
 		);
 
-	tb_dmac(0) <= x"FF";
-	tb_dmac(1) <= x"DD";
-	tb_dmac(2) <= x"BB";
-	tb_dmac(3) <= x"99";
+	
 
-	tb_smac(0) <= x"77";
-	tb_smac(1) <= x"55";
-	tb_smac(2) <= x"33";
-	tb_smac(3) <= x"11";
+
+	
 clock : PROCESS
    begin
+   
    wait for 3 ns; clk  <= not clk;
 end PROCESS clock;
 
 stimulus : PROCESS(clk)
    	begin
-      	if rising_edge(clk) then
-      	end if;  
+	if rising_edge(clk) then
+	cnt <= cnt + 1;
+  	tb_valid <= "0000";
+	if cnt > 0 then
+		
+		if cnt < 7 then
+		tb_valid <= "1111";
+		tb_dmac(0) <= x"DD";
+		tb_dmac(1) <= x"AA";
+		tb_dmac(2) <= x"BB";
+		tb_dmac(3) <= x"CC";
+		elsif cnt < 13 then
+		tb_valid <= "1111";
+		tb_dmac(0) <= x"11";
+		tb_dmac(1) <= x"22";
+		tb_dmac(2) <= x"33";
+		tb_dmac(3) <= x"44";
+		end if;
+
+		if cnt > 100 then
+			if cnt < 107 then
+			tb_valid <= "1111";
+			tb_dmac(0) <= x"DD";
+			tb_dmac(1) <= x"44";
+			tb_dmac(2) <= x"BB";
+			tb_dmac(3) <= x"CC";
+			elsif cnt < 113 then
+			tb_valid <= "1111";
+			tb_dmac(0) <= x"11";
+			tb_dmac(1) <= x"22";
+			tb_dmac(2) <= x"33";
+			tb_dmac(3) <= x"44";
+			end if;
+		end if;
+
+		if cnt > 200 then
+			if cnt < 207 then
+			tb_valid <= "1111";
+			tb_dmac(0) <= x"FF";
+			tb_dmac(1) <= x"FF";
+			tb_dmac(2) <= x"FF";
+			tb_dmac(3) <= x"FF";
+			elsif cnt < 213 then
+			tb_valid <= "1111";
+			tb_dmac(0) <= x"FF";
+			tb_dmac(1) <= x"FF";
+			tb_dmac(2) <= x"FF";
+			tb_dmac(3) <= x"FF";
+			end if;
+		end if;
+	end if;
+	end if;
 end PROCESS stimulus;
 end only;
 

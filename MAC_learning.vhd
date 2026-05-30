@@ -12,9 +12,7 @@ port (
 	rst : in std_logic;
 	clk : in std_logic;
 	mac_in : in mac_input;
-	--mac_src : in mac_input;
 	valid : in std_logic_vector(NUM_PORTS - 1 downto 0);
-	--ready: out std_logic_vector(NUM_PORTS - 1 downto 0); -- Might be deleted
 	port_output : out mac_output;
 	output_valid : out std_logic_vector(NUM_PORTS - 1 downto 0);
 	output_ready : in std_logic_vector(NUM_PORTS - 1 downto 0)
@@ -32,7 +30,7 @@ ARCHITECTURE struc OF MAC_learning IS
 		);
 	end component;
 	SIGNAL address: std_logic_vector(12 downto 0);
-	SIGNAL m_data: std_logic_vector(63 downto 0);
+	SIGNAL m_data: std_logic_vector(63 downto 0) := (others => '0');
 	SIGNAL m_wren: std_logic := '0';
 	SIGNAL m_out: std_logic_vector(63 downto 0) := x"0000000000000000";
 	SIGNAL rr: integer range 0 to 3 := 0;
@@ -44,8 +42,9 @@ ARCHITECTURE struc OF MAC_learning IS
 	SIGNAL mac_counter: mac_counter_type;
 	SIGNAL d_mac: mac_addr;
 	SIGNAL s_mac: mac_addr;
-	SIGNAL mac_check_state : integer range 0 to 2 := 0;
+	SIGNAL mac_check_state : integer range 0 to 4 := 0;
 	SIGNAL mac_check : std_logic_vector(63 downto 0) := x"0000000000000000";
+	SIGNAL test : std_logic_vector(47 downto 0) := (others => '0');
 
 BEGIN
 
@@ -88,15 +87,17 @@ BEGIN
 					has_data(i) <= '1';
 					mac_counter(i) <= 0;
 				elsif (valid(i) = '1') and (has_data(i) = '0') and (mac_counter(i) < 6)then
-					if(mac_counter(i) < 4) then
-						d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= (mac_in(i));
-					else
-						d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
-					end if;
+					--if(mac_counter(i) < 4) then
+					--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= (mac_in(i));
+					--else
+					--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
+					--end if;
+					d_mac(i)((47 - (mac_counter(i) * 8)) downto (40 - (mac_counter(i) * 8))) <= mac_in(i);
 					mac_counter(i) <= mac_counter(i) + 1;
 
 				elsif (valid(i) = '1') and (has_data(i) = '0') then	
-					s_mac(i)((8 * (mac_counter(i) - 5) - 1) downto (8 * (mac_counter(i) - 6))) <= mac_in(i);
+					--s_mac(i)((8 * (mac_counter(i) - 5) - 1) downto (8 * (mac_counter(i) - 6))) <= mac_in(i);
+					s_mac(i)((47 - ((mac_counter(i) - 6) * 8)) downto (40 - ((mac_counter(i) - 6) * 8))) <= mac_in(i);
 					mac_counter(i) <= mac_counter(i) + 1;
 				end if;
 			end loop;
@@ -161,32 +162,39 @@ BEGIN
 			if(process_mac = '1') then
 				case mac_check_state is
 					when 0 =>
-						if(d_mac(port_to_check) = x"ffffff") then
+						m_wren <= '0';
+						if(d_mac(port_to_check) = x"ffffffffffff") then
 							port_output(port_to_check) <= not(port_one_hot);
 							output_valid(port_to_check) <= '1';
 							if(output_ready(port_to_check) = '1') then
-								mac_check_state <= 2;
+								mac_check_state <= 4;
 							end if;
 						else
 						address <= hash_mac_addr(d_mac(port_to_check));
 						mac_check_state <= 1;
 						end if;
-
 					when 1 =>
-						if(m_out(47 downto 0) = d_mac(port_to_check))then
+						mac_check_state <= 2;
+
+					when 2 =>
+						mac_check_state <= 3;
+						
+					when 3 =>
+						test <= m_out(47 downto 0);
+						if (m_out(47 downto 0) = d_mac(port_to_check)) then
 							port_output(port_to_check) <= m_out(51 downto 48);
 						else
 							port_output(port_to_check) <= not(port_one_hot);
 						end if;
 						output_valid(port_to_check) <= '1';
 						if(output_ready(port_to_check) = '1') then
-							mac_check_state <= 2;
+							mac_check_state <= 4;
 						end if;
 
-					when 2 =>
+					when 4 =>
 						output_valid(port_to_check) <= '0';
 						m_wren <= '1';
-						address <= s_mac(port_to_check)(12 downto 0);
+						address <= hash_mac_addr(s_mac(port_to_check));
 						m_data <= x"000" & port_one_hot & s_mac(port_to_check);
 						process_mac <= '0';
 						mac_check_state <= 0;

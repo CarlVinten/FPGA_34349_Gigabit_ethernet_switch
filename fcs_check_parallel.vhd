@@ -22,7 +22,7 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '1');
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
-	SIGNAL start_cnt : INTEGER := - 1;
+	SIGNAL start_cnt : INTEGER := -1;
 	SIGNAL delay_SOF : STD_LOGIC := '0';
 	SIGNAL delay_valid : STD_LOGIC := '0';
 	signal delay_SR : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
@@ -36,7 +36,6 @@ BEGIN
 	BEGIN
 
 		IF rst = '1' THEN
-			-- data_temp <= (OTHERS => '0');
 			sum_reg <= (OTHERS => '0');
 			is_data_valid <= '0';
 			start_cnt <= - 1;
@@ -44,11 +43,11 @@ BEGIN
 		ELSIF rising_edge(clk) THEN
 
 			delay_SOF <= start_of_frame;
-	
 			delay_SR <= sum_reg;
 
+			-- using the sfd signal to reset the sum registers, start 
 			IF delay_SOF = '1' THEN
-				-- data_temp <= NOT data_in; 
+
 				is_data_valid <= '0';
 				start_cnt <= 3;
 				sum_reg <= (OTHERS => '0');
@@ -58,9 +57,6 @@ BEGIN
 				start_cnt <= start_cnt - 1;
 
 			END IF;
-
-			-- IF delay_SOF = '0' AND start_cnt > 0 THEN
-			-- data_temp <= NOT data_in;
 
 			sum_reg(0) <= data_temp(0) XOR sum_reg(24) XOR sum_reg(30);
 			sum_reg(1) <= data_temp(1) XOR sum_reg(24) XOR sum_reg(25) XOR sum_reg(30) XOR sum_reg(31);
@@ -107,10 +103,7 @@ BEGIN
 				sum_reg <= (OTHERS => '0');
 				is_data_valid <= '0';
 			END IF;
-			-- END IF;
-			-- data_temp <= data_in;
-
-			-- potential optimize is use valid below rising edge and check when it is low
+			
 		END IF;
 		--END IF;
 
