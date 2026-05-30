@@ -8,7 +8,6 @@
     LIBRARY altera_mf;
     USE altera_mf.altera_mf_components.all;
 
-    --her skal der nok stå noget om entity og architecture
 
     entity crossbar is
         port
@@ -52,7 +51,6 @@
     SIGNAL output3_mux: std_logic_vector(35 downto 0);
     SIGNAL output4_mux: std_logic_vector(35 downto 0);
 
-    -- Add these missing signals:
     SIGNAL rdreq : STD_LOGIC_vector(15 downto 0);
     SIGNAL sclr  : STD_LOGIC;
     SIGNAL wrreq : STD_LOGIC;
@@ -74,7 +72,6 @@
 
 
 
-    -- Add this right below your empty/full/usedw signals
     SIGNAL rr_turn : integer range 0 to 3 := 0;
 
 -- signal declarations 
@@ -300,8 +297,6 @@ port map (
 );
 
 process(clock)
-    -- Variables update instantly within the loop (unlike signals), 
-    -- making them perfect for this kind of routing math.
     variable input_port  : integer;
     variable output_port : integer;
     variable packet_destined_here : boolean;
@@ -317,7 +312,6 @@ begin
             input_port  := i / 4;   -- Yields 0, 0, 0, 0, 1, 1, 1, 1...
             output_port := i mod 4; -- Yields 0, 1, 2, 3, 0, 1, 2, 3...
             
-            -- Decode your custom destination port logic
             packet_destined_here := false;
             
             if output_port = 0 and (dstport(input_port) = "0001" or dstport(input_port) = "1110") then
@@ -333,7 +327,6 @@ begin
             case state(i) is
                 when '0' =>
                     -- Check space AND check destination AND check if data is valid
-                    -- NOTE: 'rx_valid' is a placeholder. You need a signal to tell you the bus isn't idle!
                     if (4096 - to_integer(unsigned(usedw(i))) >= 1526) and packet_destined_here and rx_valid(input_port) = '1' then
                         write_enable(i) <= '1';
                         state(i) <= '1';

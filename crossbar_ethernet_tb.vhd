@@ -52,7 +52,7 @@ architecture tb of crossbar_ethernet_tb is
     -- Ethernet frame: 64 bytes = 512 bits
     -- Frame: 00_10_A4_7B_EA_80_00_12_34_56_78_90_08_00_45_00_00_2E_B3_FE_00_00_80_11_05_40_C0_A8_00_2C_C0_A8_00_04_04_00_04_00_00_1A_2D_E8_00_01_02_03_04_05_06_07_08_09_0A_0B_0C_0D_0E_0F_10_11_E6_C5_3D_B2
     
-        -- Frame stored as array of bytes for easier iteration
+        -- Frame stored as array of bytes
     type byte_array_t is array(integer range <>) of std_logic_vector(7 downto 0);
     constant ETHERNET_FRAME : byte_array_t(0 to 63) := (
         x"00", x"10", x"A4", x"7B", x"EA", x"80", x"00", x"12",
