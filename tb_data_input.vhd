@@ -42,7 +42,7 @@ ARCHITECTURE simData OF test IS
     -- Change this to test different packet lengths (or make it empty)
     CONSTANT PACKET_1 : byte_array := (
 
-        x"11", -- garbage -- !!!!!!!!!!!!!!!! kom tilbage for at spørge
+    --    x"11", -- garbage -- !!!!!!!!!!!!!!!! kom tilbage for at spørge
 
         x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", -- Preamble
 
@@ -110,6 +110,18 @@ constant ETHERNET_FRAME : byte_array_t(0 to 71) := (
     x"00", x"00", x"00", x"00", x"B9", x"17", x"76", x"BC"
 );
 
+    constant PACKET_2 : byte_array_t(0 to 71) := (
+        x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AA", x"AB",
+        x"00", x"10", x"A4", x"7B", x"EA", x"80", x"00", x"99",
+        x"88", x"77", x"66", x"55", x"08", x"00", x"45", x"00",
+        x"00", x"24", x"B3", x"FE", x"00", x"00", x"80", x"11",
+        x"05", x"4A", x"C0", x"A8", x"00", x"2C", x"C0", x"A8",
+        x"00", x"04", x"04", x"00", x"04", x"00", x"00", x"10",
+        x"2D", x"E8", x"AA", x"BB", x"CC", x"DD", x"EE", x"FF",
+        x"00", x"11", x"00", x"00", x"00", x"00", x"00", x"00",
+        x"00", x"00", x"00", x"00", x"BF", x"EC", x"96", x"D0"
+    );
+
 
     -- Procedure to send a packet to a specific port
     PROCEDURE send_packet(
@@ -158,17 +170,17 @@ BEGIN
 
         -- Start Port 1
         tb_ctrl(1) <= '1';
-        tb_in(1)   <= PACKET_1(0);
+        tb_in(1)   <= PACKET_2(0);
         -- Start Port 3 (Staggered by 1 clock if desired, or same time)
         tb_ctrl(3) <= '1';
-        tb_in(3)   <= ETHERNET_FRAME(0);
+        tb_in(3)   <= PACKET_1(0);
         
         WAIT UNTIL rising_edge(s_clk);
 
         -- Continue sending the rest of the packets
         FOR i IN 1 TO ETHERNET_FRAME'HIGH LOOP
-            tb_in(1) <= PACKET_1(i);
-            tb_in(3) <= ETHERNET_FRAME(i);
+            tb_in(1) <= PACKET_2(i);
+            tb_in(3) <= PACKET_1(i);
             WAIT UNTIL rising_edge(s_clk);
         END LOOP;
         
