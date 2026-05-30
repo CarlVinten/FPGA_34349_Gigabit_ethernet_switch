@@ -24,15 +24,15 @@ ARCHITECTURE struc OF MAC_learning IS
 		port(
 			address		: IN STD_LOGIC_VECTOR (12 DOWNTO 0);
 			clock		: IN STD_LOGIC  := '1';
-			data		: IN STD_LOGIC_VECTOR (63 DOWNTO 0);
+			data		: IN STD_LOGIC_VECTOR (51 DOWNTO 0);
 			wren		: IN STD_LOGIC ;
-			q			: OUT STD_LOGIC_VECTOR (63 DOWNTO 0)
+			q			: OUT STD_LOGIC_VECTOR (51 DOWNTO 0)
 		);
 	end component;
 	SIGNAL address: std_logic_vector(12 downto 0);
-	SIGNAL m_data: std_logic_vector(63 downto 0) := (others => '0');
+	SIGNAL m_data: std_logic_vector(51 downto 0) := (others => '0');
 	SIGNAL m_wren: std_logic := '0';
-	SIGNAL m_out: std_logic_vector(63 downto 0) := x"0000000000000000";
+	SIGNAL m_out: std_logic_vector(51 downto 0) := x"0000000000000";
 	SIGNAL rr: integer range 0 to 3 := 0;
 	SIGNAL process_mac: std_logic := '0';
 	SIGNAL port_to_check: integer range 0 to 3 := 0;
@@ -43,8 +43,13 @@ ARCHITECTURE struc OF MAC_learning IS
 	SIGNAL d_mac: mac_addr;
 	SIGNAL s_mac: mac_addr;
 	SIGNAL mac_check_state : integer range 0 to 4 := 0;
-	SIGNAL mac_check : std_logic_vector(63 downto 0) := x"0000000000000000";
+	SIGNAL mac_check : std_logic_vector(51 downto 0) := x"0000000000000";
 	SIGNAL test : std_logic_vector(47 downto 0) := (others => '0');
+	SIGNAL rd_ptr : mac_reg_ptr := (others => 0);
+	SIGNAL wr_ptr : mac_reg_ptr := (others => 0);
+	SIGNAL mac_reg : mac_port_reg := (others => (others => (others => '0')));
+	SIGNAL wr_port : std_logic_vector(NUM_PORTS - 1 downto 0) := x"0";
+	SIGNAL output_valid_reg : std_logic_vector(NUM_PORTS - 1 downto 0) := "0000";
 
 BEGIN
 
@@ -83,22 +88,29 @@ BEGIN
 
 		if (rising_edge(clk)) then
 			for i in 0 to 3 loop
-				if (mac_counter(i) = 12) then
-					has_data(i) <= '1';
-					mac_counter(i) <= 0;
-				elsif (valid(i) = '1') and (has_data(i) = '0') and (mac_counter(i) < 6)then
-					--if(mac_counter(i) < 4) then
-					--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= (mac_in(i));
-					--else
-					--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
-					--end if;
-					d_mac(i)((47 - (mac_counter(i) * 8)) downto (40 - (mac_counter(i) * 8))) <= mac_in(i);
-					mac_counter(i) <= mac_counter(i) + 1;
+				if (rst = '1') then
+				mac_counter(i) <= 0;
+				has_data(i) <= '0';
+				else
+					if (mac_counter(i) = 12) then
+						has_data(i) <= '1';
+						mac_counter(i) <= 0;
+					elsif (valid(i) = '1') and (has_data(i) = '0') and (mac_counter(i) < 6)then
+						--if(mac_counter(i) < 4) then
+						--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= (mac_in(i));
+						--else
+						--	d_mac(i)((8 * (1 + mac_counter(i)) - 1) downto (8 * mac_counter(i))) <= mac_in(i);
+						--end if;
+						d_mac(i)((47 - (mac_counter(i) * 8)) downto (40 - (mac_counter(i) * 8))) <= mac_in(i);
+						mac_counter(i) <= mac_counter(i) + 1;
 
-				elsif (valid(i) = '1') and (has_data(i) = '0') then	
-					--s_mac(i)((8 * (mac_counter(i) - 5) - 1) downto (8 * (mac_counter(i) - 6))) <= mac_in(i);
-					s_mac(i)((47 - ((mac_counter(i) - 6) * 8)) downto (40 - ((mac_counter(i) - 6) * 8))) <= mac_in(i);
-					mac_counter(i) <= mac_counter(i) + 1;
+					elsif (valid(i) = '1') and (has_data(i) = '0') then	
+						--s_mac(i)((8 * (mac_counter(i) - 5) - 1) downto (8 * (mac_counter(i) - 6))) <= mac_in(i);
+						s_mac(i)((47 - ((mac_counter(i) - 6) * 8)) downto (40 - ((mac_counter(i) - 6) * 8))) <= mac_in(i);
+						mac_counter(i) <= mac_counter(i) + 1;
+					elsif ((valid(i) = '0') and (mac_counter(i) /= 12)) then
+						mac_counter(i) <= 0;
+					end if;
 				end if;
 			end loop;
 
@@ -150,6 +162,9 @@ BEGIN
 		end if;
 
 		if rising_edge(clk) then
+			if (rst = '1') then
+				mac_check_state <= 0;
+			end if;
 
 			m_wren <= '0';
 			output_valid <= "0000";
@@ -164,11 +179,9 @@ BEGIN
 					when 0 =>
 						m_wren <= '0';
 						if(d_mac(port_to_check) = x"ffffffffffff") then
-							port_output(port_to_check) <= not(port_one_hot);
-							output_valid(port_to_check) <= '1';
-							if(output_ready(port_to_check) = '1') then
-								mac_check_state <= 4;
-							end if;
+							mac_reg(port_to_check)(wr_ptr(port_to_check)) <= not(port_one_hot);
+							wr_ptr(port_to_check) <= (wr_ptr(port_to_check) + 1) mod REG_SIZE_FOR_MAC; 
+							mac_check_state <= 4;
 						else
 						address <= hash_mac_addr(d_mac(port_to_check));
 						mac_check_state <= 1;
@@ -182,20 +195,18 @@ BEGIN
 					when 3 =>
 						test <= m_out(47 downto 0);
 						if (m_out(47 downto 0) = d_mac(port_to_check)) then
-							port_output(port_to_check) <= m_out(51 downto 48);
+							mac_reg(port_to_check)(wr_ptr(port_to_check)) <= m_out(51 downto 48);
 						else
-							port_output(port_to_check) <= not(port_one_hot);
+							mac_reg(port_to_check)(wr_ptr(port_to_check)) <= not(port_one_hot);
 						end if;
-						output_valid(port_to_check) <= '1';
-						if(output_ready(port_to_check) = '1') then
-							mac_check_state <= 4;
-						end if;
-
+						-- output_valid(port_to_check) <= '1';
+						wr_ptr(port_to_check) <= (wr_ptr(port_to_check) + 1) mod REG_SIZE_FOR_MAC; 
+						mac_check_state <= 4;
 					when 4 =>
-						output_valid(port_to_check) <= '0';
+						-- output_valid(port_to_check) <= '0';
 						m_wren <= '1';
 						address <= hash_mac_addr(s_mac(port_to_check));
-						m_data <= x"000" & port_one_hot & s_mac(port_to_check);
+						m_data <= port_one_hot & s_mac(port_to_check);
 						process_mac <= '0';
 						mac_check_state <= 0;
 						has_data(port_to_check) <= '0';
@@ -203,10 +214,30 @@ BEGIN
 			end if;
 		end if;
 
+		output_valid <= output_valid_reg;
+		if rising_edge(clk) then
+			for i in 0 to 3 loop
+				if (rst = '1') then 
+				rd_ptr(i) <= 0;
+				wr_ptr(i) <= 0;
+				output_valid_reg(i) <= '0';
+				else
+					port_output(i) <= mac_reg(i)(rd_ptr(i));
+					output_valid_reg(i) <= output_valid_reg(i);
+					if(rd_ptr(i) /= wr_ptr(i)) then
+						output_valid_reg(i) <= '1';
+					else
+						output_valid_reg(i) <= '0';
+					end if;
 
-
+					if((output_valid_reg(i) = '1') and (output_ready(i) = '1')) then
+						rd_ptr(i) <= (rd_ptr(i) + 1) mod REG_SIZE_FOR_MAC;
+					end if;
+				end if;
+			end loop;
+		end if;
 	end process;	
-
+	
 
 
 END struc;
