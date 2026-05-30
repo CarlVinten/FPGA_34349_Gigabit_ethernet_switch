@@ -11,7 +11,7 @@ vsim -voptargs="+acc" work.test
 # 4. Add Waves from the Testbench (Top Level)
 add wave -noupdate -divider "TESTBENCH SIGNALS"
 add wave -hex /test/s_clk
-add wave -hex /test/s_reset
+add wave -hex /test/s_rst
 add wave -hex /test/s_data_in
 add wave -hex /test/s_valid
 add wave -hex /test/s_start_of_frame

@@ -13,6 +13,7 @@ vcom -reportprogress 300 -work work fcs_check_parallel.vhd
 vcom -reportprogress 300 -work work MAC_learning.vhd
 vcom -reportprogress 300 -work work data_input.vhd
 vcom -reportprogress 300 -work work tb_data_input.vhd
+vcom -reportprogress 300 -work work crossbarfifo.vhd
 
 # -------------------------------------------------------------------------
 # START SIMULATION
@@ -35,6 +36,7 @@ add wave                 sim:/test/tb_ctrl
 add wave -divider "DUT Port States"
 add wave -label "State" sim:/test/DUT/state
 add wave -label "FCS Valid" sim:/test/DUT/fcs_data_valid
+add wave -label " Preamble Cnt" sim:/test/DUT/preamble_cnt 
 
 # 3. FCS Internal sum_reg [cite: 25, 51]
 # We use the fcs_generate(i) label to reach inside the parallel instances
@@ -47,29 +49,48 @@ add wave -hex -label "Port3_sum_reg" sim:/test/DUT/fcs_generate(3)/u_fcs/sum_reg
 # 4. Monitor the FCS output signals [cite: 19, 26, 50]
 add wave -divider "FCS Status"
 add wave sim:/test/DUT/fcs_sof
-add wave sim:/test/DUT/fcs_valid_to_fsm
+add wave -label "Delay SOF(0)" sim:/test/DUT/fcs_generate(0)/u_fcs/delay_SOF 
+add wave -label "Delay SOF(0)" sim:/test/DUT/fcs_generate(1)/u_fcs/delay_SOF 
+add wave -label "Delay SOF(0)" sim:/test/DUT/fcs_generate(2)/u_fcs/delay_SOF 
+add wave -label "Delay SOF(0)" sim:/test/DUT/fcs_generate(3)/u_fcs/delay_SOF 
 add wave -hex sim:/test/DUT/fcs_generate(0)/u_fcs/data_temp 
 add wave -hex sim:/test/DUT/data_in 
 add wave sim:/test/DUT/fcs_generate(0)/u_fcs/start_cnt 
+add wave -color "Cyan" sim:/test/DUT/fcs_valid_to_fsm
 
-add wave -divider "output"
+add wave -divider "MAC"
+add wave -hex sim:/test/DUT/mac_data_to_fsm 
+
+add wave -divider "FIFO"
+add wave -hex sim:/test/DUT/data_in_to_fifo 
+add wave -hex sim:/test/DUT/data_out_to_fsm 
+
+
+add wave -divider "Output CTRL FSM"
+add wave -label "State2" sim:/test/DUT/state2 
+
+add wave -label "EOF" sim:/test/DUT/eof_signal 
+
 add wave -hex -position insertpoint  \
 sim:/test/DUT/data_to_crossbar 
+
 add wave -position insertpoint  \
 sim:/test/DUT/dst_port
+
 add wave  -position insertpoint  \
 sim:/test/DUT/temp_dst_array
+
 add wave -position insertpoint  \
 sim:/test/DUT/fsm_to_dst_to_crossbar
+
 add wave -hex -position insertpoint  \
 sim:/test/DUT/is_filling_crossbar
+
 add wave -hex -position insertpoint  \
 sim:/test/DUT/used_words_fifo
-# -------------------------------------------------------------------------
-# RUN SIMULATION
-# -------------------------------------------------------------------------
 
-# Running for 400ns to see the full preamble, payload, and FCS results [cite: 154-156, 162]
-run 1400 ns
+
+
+run 1600 ns
 
 wave zoom full
