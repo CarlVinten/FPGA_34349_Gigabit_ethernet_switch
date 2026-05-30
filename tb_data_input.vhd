@@ -166,7 +166,7 @@ BEGIN
         WAIT UNTIL rising_edge(s_clk);
 
         -- Continue sending the rest of the packets
-        FOR i IN 1 TO PACKET_1'HIGH LOOP
+        FOR i IN 1 TO ETHERNET_FRAME'HIGH LOOP
             tb_in(1) <= PACKET_1(i);
             tb_in(3) <= ETHERNET_FRAME(i);
             WAIT UNTIL rising_edge(s_clk);

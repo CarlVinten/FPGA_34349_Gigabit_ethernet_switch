@@ -67,7 +67,7 @@ ARCHITECTURE Behavioral OF data_input IS
     TYPE state_array IS ARRAY (0 TO NUM_PORTS - 1) OF state_type;
     SIGNAL state : state_array := (OTHERS => state_idle);
 
-    TYPE state_type2 IS (state_idle2, state_send, state_discard);
+    TYPE state_type2 IS (state_idle2, state_wait_fcs, state_send, state_discard);
     TYPE state_array2 IS ARRAY (0 TO NUM_PORTS - 1) OF state_type2;
     SIGNAL state2 : state_array2 := (OTHERS => state_idle2);
 
@@ -193,11 +193,11 @@ BEGIN
 
                 CASE state(i) IS
                     WHEN state_idle =>
-                        eof_signal(i) <= '0';
                         -- valid signals
                         fcs_sof(i) <= '0';
                         fcs_data_valid(i) <= '0';
                         mac_data_valid(i) <= '0';
+                        eof_signal(i) <= '0';
 
                         -- counters
                         preamble_cnt(i) <= 0;
@@ -282,34 +282,50 @@ BEGIN
                         rdreq_fifo(i) <= '0';
                         dst_port(i) <= (OTHERS => '0');
 
-                        IF fcs_valid_to_fsm(i) = '1' AND eof_signal(i) = '1' THEN
+                        IF eof_signal(i) = '1' THEN
+                            state2(i) <= state_wait_fcs;
+                        END IF;
+
+                    WHEN state_wait_fcs =>
+
+                        IF fcs_valid_to_fsm(i) = '1' AND mac_valid(i) = '1' THEN
                             state2(i) <= state_send;
                             is_filling_crossbar(i) <= '1';
+                            temp_dst_array(i) <= mac_data_to_fsm(i);
+                            mac_rdy(i) <= '1';
                             -- ELSIF delay_rx_ctrl(i) = '1' AND fcs_valid_to_fsm(i) = '0' THEN
 
-                        ELSIF fcs_valid_to_fsm(i) = '0' AND eof_signal(i) = '1' THEN
+                        ELSIF fcs_valid_to_fsm(i) = '0' AND mac_valid(i) = '1' THEN
                             state2(i) <= state_discard;
                             is_filling_crossbar(i) <= '1';
+                             mac_rdy(i) <= '1';
+
                         END IF;
 
                     WHEN state_send =>
                         data_to_crossbar(i) <= data_out_to_fsm(i);
-                        dst_port(i) <= mac_data_to_fsm(i);
-                        rdreq_fifo(i) <= '1';
+                      --  dst_port(i) <= mac_data_to_fsm(i);
+                        dst_port(i) <= temp_dst_array(i);
+                       
+                      rdreq_fifo(i) <= '1';
+                      mac_rdy(i) <= '0';
 
                         IF (data_out_to_fsm(i)(8) = '1') THEN
                             state2(i) <= state_idle2;
                             is_filling_crossbar(i) <= '0';
+
                         END IF;
 
                     WHEN state_discard =>
                         data_to_crossbar(i) <= data_out_to_fsm(i);
                         dst_port(i) <= (OTHERS => '0');
                         rdreq_fifo(i) <= '1';
+                        mac_rdy(i) <= '0';
 
                         IF (data_out_to_fsm(i)(8) = '1') THEN
                             state2(i) <= state_idle2;
                             is_filling_crossbar(i) <= '0';
+
                         END IF;
 
                         -- IF (fcs_valid_to_fsm(i) = '1') THEN

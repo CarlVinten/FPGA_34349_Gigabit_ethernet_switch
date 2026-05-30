@@ -22,7 +22,7 @@ ARCHITECTURE struc OF fcs_check_parallel IS
 
 	SIGNAL sum_reg : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '1');
 	SIGNAL data_temp : STD_LOGIC_VECTOR(7 DOWNTO 0);
-	SIGNAL start_cnt : INTEGER := - 1;
+	SIGNAL start_cnt : INTEGER := -1;
 	SIGNAL delay_SOF : STD_LOGIC := '0';
 	SIGNAL delay_valid : STD_LOGIC := '0';
 	signal delay_SR : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
